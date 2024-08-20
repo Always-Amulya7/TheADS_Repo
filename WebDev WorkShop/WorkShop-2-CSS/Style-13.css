@@ -1,0 +1,39 @@
+body
+{
+    background-color: rgb(243, 200, 222);
+    color: black;
+}
+.Container
+{
+    width: 80vw;
+    border: 2px solid black;
+    display: grid;
+    /*grid-template-areas: "nav nav nav"
+                         "side article article"
+                         "footer footer footer";*/
+    grid-template-columns: 1fr 2fr 1fr;
+}
+.Item
+{
+    border: 2px solid red;
+}
+.Item-1
+{
+    grid-area: nav;
+    background-color: aqua;
+}
+.Item-2
+{
+    grid-area: side;
+    background-color: azure;
+}
+.Item-3
+{
+    grid-area: article;
+    background-color: bisque;
+}
+.Item-4
+{
+    grid-area: footer;
+    background-color: rgb(230, 151, 151);
+}

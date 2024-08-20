@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Style-2.css">
+    <title>CSS Properties Selectors</title>
+    <style>
+        div
+        {
+            /*Element Selector*/
+            color: red;
+            background-color: aqua;
+        }
+        .Red
+        {
+            /*Class Selector*/
+            background-color: green;
+        }
+        #Green
+        {
+            /*Id Selector*/
+            color: black;
+        }
+        div > p
+        {
+            /*Child Selector*/
+            color: chartreuse;
+        }
+        div p
+        {
+            /*Descendant Selector*/
+            color: pink;
+        }
+        *
+        {
+            /*Universal Selector*/
+            margin: 0;
+            padding: 0;
+        }
+        a:active
+        {
+            color: brown;
+        }
+        a:link
+        {
+            color: green;
+        }
+        a:hover
+        {
+            color: yellow;
+        }
+        p:first-child
+        {
+            color: purple;
+        }
+    </style>
+</head>
+<body>
+    <div class="Red">
+        
+        <article><p>Hello I Am Hero</p></article>
+        Hi We Are Learning About CSS Properties
+    </div>
+    <div id="Green">
+        Hi How Do You Do?
+        <br>
+        <a href="https://www.google.com">Open Google</a>
+    </div>
+    <script src="Script-2.js"></script>
+</body>
+</html>

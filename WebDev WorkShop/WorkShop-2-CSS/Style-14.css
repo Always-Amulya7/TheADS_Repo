@@ -1,0 +1,21 @@
+body
+{
+    background-color: rgb(243, 200, 222);
+    color: black;
+}
+.Container
+{
+    border: 2px solid black;
+    padding: 5px;
+}
+.Box
+{
+    border: 2px solid red;
+    padding: 5px;
+    width: 20%;
+    transform: rotate(1.5turn) scale(0.95) skew(5.9turn) translateX(-22px);
+}
+.Box > p
+{
+    text-align: center;
+}

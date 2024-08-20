@@ -1,0 +1,33 @@
+body
+{
+    background-color: rgb(243, 200, 222);
+    color: black;
+}
+nav
+{
+    background-color: var(--color);
+}
+.Container
+{
+    background-color:var(--seccolor);
+}
+*
+{
+    margin: 0;
+    padding: 0;
+}
+nav ul li
+{
+    list-style: none;
+    padding: 34px;
+}
+ul
+{
+    display: flex;
+}
+/*Using Variables*/
+:root
+{
+    --color: aqua;
+    --seccolor: aquamarine;
+}

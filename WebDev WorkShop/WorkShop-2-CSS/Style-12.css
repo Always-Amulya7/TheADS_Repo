@@ -1,0 +1,28 @@
+body
+{
+    background-color: rgb(243, 200, 222);
+    color: black;
+}
+.Container
+{
+    border: 2px solid black;
+    display: grid;
+    grid-template-columns: 120px 100px;
+    grid-template-rows: 100px 100px 100px;
+}
+.Item
+{
+    border: 2px solid red;
+    height: 55px;
+    width: 55px;
+}
+.Item-1
+{
+    grid-row: 1/2;
+    grid-column: 1/2;
+}
+.Item-4
+{
+    grid-row: 1/2;
+    grid-column: 1/2;
+}

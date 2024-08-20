@@ -1,0 +1,42 @@
+body
+{
+    background-color: rgb(243, 200, 222);
+    color: black;
+}
+*
+{
+    margin: 0;
+    padding: 0;
+}
+.box
+{
+    border: 2px solid blue;
+    display: inline-block;
+    padding: 45px;
+    margin: 34px;
+    width: 334px;
+    box-shadow: 15px 15px 5px blue;
+    /*display: none;*/
+}
+.box2
+{
+    /*display: none;*/
+    /*visibility: hidden;*/
+    display: flex;
+    justify-content: center;
+}
+span
+{
+    margin: 34px;
+    text-align: center;
+}
+.TextShadow
+{
+    margin: 34px;
+    border: 2px solid blue;
+    text-align: center;
+    text-shadow: 5px 5px 4px red;
+    outline: 5px solid black;
+    outline-offset: 5px;
+    border-radius: 15px;
+}

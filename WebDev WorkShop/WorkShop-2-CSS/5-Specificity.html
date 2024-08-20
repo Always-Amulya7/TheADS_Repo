@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Specificity And Style Format</title>
+    <style>
+        h1
+        {
+            color: aqua;
+        }
+        .Yellow
+        {
+            color: yellow;
+        }
+        .Red
+        {
+            color: red;
+        }
+        .Purple
+        {
+            color: purple !important;
+        }
+        [data-x=a]
+        {
+            color: green;
+        }
+        h1.Yellow.Red.Purple
+        {
+            color: grey;
+        }
+    </style>
+
+    <style>
+        *
+        {
+            margin: 0;
+            padding: 0;
+        }
+        .box
+        {
+            box-sizing: border-box;
+            border: 2px solid green;
+            /*width: 2048px;*/
+            width: 80vw;
+            margin:auto;
+            background-color: aqua;
+            font-size: 18px;
+        }
+        .Container
+        {
+            box-sizing: border-box;
+            border: 2px solid green;
+            /*width: 2048px;*/
+            width: 80vw;
+            height: 80vh;
+            margin:23px auto;
+            background-color: aqua;
+        }
+        .Container p
+        {
+            /*Using em*/
+            /*font-size: 1em;*/
+            font-size: 1.5rem;
+        }
+        html
+        {
+            font-size: 12px;
+        }
+        .MyCont
+        {
+            box-sizing: border-box;
+            background-color: aqua;
+            font-size: 1.5rem;
+            border: 2px solid green;
+            width: 80vw;
+            margin: 23px auto;
+            min-height: 80vh;
+            min-width: 80vw;
+        }
+    </style>
+    <link rel="stylesheet" href="Style-5.css" />
+  </head>
+  <body>
+    <h1 class="Yellow Red Purple" data-x="a">CSS Specificity</h1>
+    <br>
+    We Are Done With Specificity
+    <br><br>
+    Now We Are Going To Understand About Different Styling Formats - px vd em etc.
+    <br><br>
+    <div class="box">
+        This is How We Do
+    </div>
+    <div class="Container">
+        <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Fuga natus, dolor assumenda rerum voluptatibus eaque modi 
+            accusantium labore dicta iure voluptates? Ea minus dolores 
+            quas dicta vel, dolorum at, soluta, iste dolorem cum labore 
+            et. Id non consequuntur illo qui molestiae nihil corporis 
+            fugiat. Inventore id accusamus incidunt doloribus eaque 
+            iusto dicta consectetur ipsa non cumque.
+        </p>
+    </div>
+
+    <div class="MyCont">
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. 
+        Facilis cupiditate enim quod aperiam incidunt ut illum excepturi 
+        voluptate nobis ratione! Et, alias. Facere.
+    </div>
+    <script src="Script-5.js"></script>
+  </body>
+</html>
