@@ -20,7 +20,7 @@ A full stack web development course typically begins with a gap analysis of the 
 * **Capstone Project:** Culminate the course with a comprehensive project to integrate learned skills.
 * **Job Placement Assistance:** Provide career counseling, resume building, and interview preparation support.
 
-### Course Conclusion
+### Course Conclusion :-
 
 The course typically ends with a graduation ceremony or online celebration, recognizing students' achievements. Following completion, many institutions offer alumni networks, continued learning opportunities, and job placement support. 
 
