@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Creating Forms Here By HTML">
+    <title>Creating Forms Data</title>
+    <link rel="stylesheet" href="Style-4.css">
+</head>
+<body>
+    <h1>Form Creation Raw</h1>
+    <form action="post">
+        
+        <div>
+        <label for="UniqueIdentifier">Admin User :</label>
+        <input type="text" required id="UniqueIdentifier" name="UserName" placeholder="Enter The Admin Login" autofocus pattern="[a-zA-Z0-9]+">
+        </div>
+        
+        <div>
+        <label for="radio">Gender : </label>
+        <input type="radio" id="Male" name="Gender" value="Male">
+        <label for="Male">Male</label>
+        <input type="radio" id="Female" name="Gender" value="Female">
+        <label for="Female">Female</label>
+        </div>
+
+        <div>
+            <label for="Subscribe">Subscription : </label>
+            <input type="checkbox" name="Subscribe" id="Subscribe" value="Yes">
+            <label for="Subscribe">Subscribed?</label>
+        </div>
+
+        <div>
+            <label for="comment">Submit Your Review :</label>
+            <textarea type="comment" rows="4" cols="50">Enter The Review : </textarea>
+        </div>
+
+        <div>
+            <label for="Fruit">Fruit Selection : </label>
+            <select name="Fruits" id="Fruit">
+                <option value="Apple">Apple</option>
+                <option value="Banana">Banana</option>
+                <option value="Grapes">Grapes</option>
+            </select>
+        </div>
+
+        <div>
+            <label for="Submit">Submit : </label>
+            <input type="radio" id="Submit" name="Submit" value="Yes">
+            <label for="Submit">Checked</label>
+        </div>
+    </form>
+    <script src="Script-4.js"></script>
+</body>
+</html>
