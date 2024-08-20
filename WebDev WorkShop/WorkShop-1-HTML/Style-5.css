@@ -1,0 +1,21 @@
+body
+{
+    background-color: rgb(243, 200, 222);
+    color: black;
+}
+p
+{
+    background-color: aquamarine;
+}
+a
+{
+    background-color: rgb(190, 190, 244);
+}
+div
+{
+    background-color: rgb(240, 160, 160);
+}
+span
+{
+    background-color: bisque;
+}

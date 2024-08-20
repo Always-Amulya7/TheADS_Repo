@@ -1,0 +1,1 @@
+alert("Welcome To InLine And Block Website")
