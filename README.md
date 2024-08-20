@@ -1,7 +1,7 @@
 <img src="https://i.pinimg.com/originals/77/ca/a3/77caa32884d735d439ade45ba37feaf2.gif" alt="MasterHead" height=500px width=1400px>
 <h1 align="center">Hi There 👋 It's Amulya Shrivastava</h1>
 <h3 align="center">
-  Software Development Engineeriing | Java | Python | Full Stack Web Development
+  Software Development Engineering | Java | Python | Full Stack Web Development
   | Cyber Security Enthusiast | Fuelled By Caffeine Driven By Innovation 😎
 </h3>
 
