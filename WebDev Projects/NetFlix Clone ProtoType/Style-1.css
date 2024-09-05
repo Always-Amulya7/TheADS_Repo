@@ -261,3 +261,157 @@ a
   color: white;
   font-size: 15px;
 }
+svg
+{
+  display: inline-flex;
+  justify-content: center;
+}
+#H
+{
+  position: relative;
+  left: 955px;
+}
+#Hu
+{
+  position: relative;
+  left: 794px;
+}
+#Huh
+{
+  position: relative;
+  left: 906px;
+}
+#Huhhh
+{
+  position: relative;
+  left: 860px;
+}
+#Huhh
+{
+  position: relative;
+  left: 934px;
+}
+@media screen and (max-width: 455px) {
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+  .Boxes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Logo img {
+    width: 100px; /* Adjust logo size if needed */
+  }
+  
+  .Intro p {
+    margin-bottom: 10px;
+  }
+  
+  .Container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .Trending,
+  .Add,
+  .Questions,
+  .Quest,
+  .Last {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .Trending button,
+  .grid-item {
+    margin: 5px;
+  }
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    grid-gap: 10px;
+  }
+  
+  .But1,
+  .But2 {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .Boxes {
+    flex-direction: column-reverse; /* Reverse order on small screens */
+  }
+
+  .Logo {
+    margin-bottom: 20px;
+  }
+
+  .Intro p:nth-child(1),
+  .Intro p:nth-child(2) {
+    text-align: center;
+  }
+
+  .Container {
+    flex-direction: column;
+  }
+
+  .Start svg {
+    display: none; /* Hide arrow icon on small screens */
+  }
+
+  .TextHolder select {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .HoldOn {
+    text-align: center;
+  }
+
+  .Holdings {
+    text-align: center;
+  }
+
+  .Cont {
+    margin-bottom: 10px;
+  }
+
+  .Questions p {
+    text-align: center;
+  }
+
+  .Ques svg {
+    display: none; /* Hide arrow icon on small screens */
+  }
+
+  .Last {
+    justify-content: center; /* Center email input and button */
+  }
+
+  .Last input {
+    width: 100%;
+  }
+
+  .But1 {
+    margin-top: 20px;
+  }
+
+  .grid-container {
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  }
+
+  footer p {
+    text-align: center;
+  }
+}
+
