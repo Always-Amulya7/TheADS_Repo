@@ -165,11 +165,11 @@ Html, CSS, JSS, React, Next.js, Vite**
   />
 </p>
 
-<p>
+<!--<p>
   <img
     align="center"
     src="https://github-readme-streak-stats.herokuapp.com/?user=always-amulya7&"
     alt="always-amulya7"
     width=470px
   />
-</p>
+</p>-->
