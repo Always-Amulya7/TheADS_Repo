@@ -1,0 +1,433 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("/assets/Login.jpg");
+    background-size: contain;
+    background-repeat: repeat-x;
+    background-position: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+.BodyImage {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: curtainEffect 2s ease-out forwards, fadeInContent 2s ease-out 2s forwards;
+    transform: translateY(-100%);
+    color: transparent;
+}
+
+@keyframes curtainEffect {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInContent {
+    0% {
+        color: transparent;
+    }
+
+    100% {
+        color: black;
+    }
+}
+
+.Container {
+    position: relative;
+    width: 85%;
+    max-width: 1200px;
+    height: auto;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 20px;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+}
+
+.Meeting {
+    height: 20vh;
+    width: 45vw;
+    padding: 4%;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+}
+
+.VideoSpace {
+    display: flex;
+    margin-top: 2%;
+    height: 55vh;
+    padding: 3.5%;
+    width: 100%;
+    font-family: Handlee, Roboto;
+}
+
+.VideoCam {
+    display: flex;
+}
+
+#webCam {
+    border-radius: 30px;
+}
+
+.FormHold {
+    margin-left: 7%;
+}
+
+input {
+    width: 31vw;
+    height: 30px;
+    padding: 35px;
+    text-align: center;
+    border-radius: 60px;
+    background-color: rgb(62, 62, 62);
+    font-size: 15px;
+    border: none;
+    display: block;
+    font-family: Handlee, Roboto;
+    margin-bottom: 10px;
+}
+
+.Info {
+    display: flex;
+}
+
+button {
+    padding: 10px;
+    border-radius: 5px;
+    margin-right: 5%;
+    border: none;
+    width: 120px;
+    font-size: 15px;
+    background-color: rgb(94, 94, 189);
+    cursor: pointer;
+    font-family: Handlee, Roboto;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.Worr1 {
+    font-size: 35px;
+    display: flex;
+    justify-content: center;
+}
+
+.VoiceCheck {
+    position: sticky;
+    top: 58%;
+    left: 62%;
+    width: 45%;
+    height: 9%;
+}
+
+input{
+    color: white; font-size: large;
+}
+
+.Worr2 {
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 980px) {
+    body {
+        background-size: cover;
+        padding-bottom: 200px;
+    }
+
+    .Worr1 {
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Worr2 {
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Meeting {
+        width: 75vw;
+    }
+
+    .VideoSpace {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .Videocam,
+    .FormHold {
+        display: block;
+        flex-direction: column;
+    }
+
+    .Videocam {
+        display: flex;
+        position: relative;
+        top: 22vh;
+    }
+
+    .FormHold {
+        position: relative;
+        top: 8vh;
+    }
+
+    input {
+        width: 61vw;
+        font-size: 15px;
+    }
+
+    .Container {
+        height: 118vh;
+        position: relative;
+        top: 6vh;
+    }
+
+    .VoiceCheck {
+        top: 0;
+        left: 1vw;
+        position: relative;
+    }
+
+    .Worr3 {
+        margin-left: 1.5vw;
+        font-size: 18px;
+        align-content: center;
+        display: inline-flex;
+    }
+
+}
+
+@media (max-width: 992px) {
+    body {
+        background-size: cover;
+        padding-bottom: 510px;
+    }
+
+    .Worr1 {
+        font-size: 38px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Worr2 {
+        font-size: 24px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Meeting {
+        width: 75vw;
+    }
+
+    .VideoSpace {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .Videocam,
+    .FormHold {
+        display: block;
+        flex-direction: column;
+    }
+
+    .Videocam {
+        display: flex;
+        position: relative;
+        top: 65vh;
+    }
+
+    .FormHold {
+        position: relative;
+        top: 15vh;
+    }
+
+    input {
+        width: 65vw;
+        font-size: 20px;
+    }
+
+    .Container {
+        height: 162vh;
+        position: relative;
+        top: 6vh;
+    }
+
+    .VoiceCheck {
+        top: 0;
+        left: 1vw;
+        position: relative;
+    }
+
+    .Worr3 {
+        margin-left: 1.5vw;
+        font-size: 18px;
+        align-content: center;
+        display: inline-flex;
+    }
+}
+
+@media (max-width: 970px) {
+    body {
+        background-size: cover;
+        padding-bottom: 500px;
+    }
+
+    .Worr1 {
+        font-size: 28px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Worr2 {
+        font-size:18px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Meeting {
+        width: 75vw;
+    }
+
+    .VideoSpace {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .Videocam,
+    .FormHold {
+        display: block;
+        flex-direction: column;
+    }
+
+    .Videocam {
+        display: flex;
+        position: relative;
+        top: 48vh;
+    }
+
+    .FormHold {
+        position: relative;
+        top: 20vh;
+    }
+
+    input {
+        width: 65vw;
+        font-size: 20px;
+    }
+
+    .Container {
+        height: 162vh;
+        position: relative;
+        top: 6vh;
+    }
+
+    .VoiceCheck {
+        top: 0;
+        left: 1vw;
+        position: relative;
+    }
+
+    .Worr3 {
+        margin-left: 1.5vw;
+        font-size: 18px;
+        align-content: center;
+        display: inline-flex;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        background-size: cover;
+        padding-bottom: 200px;
+    }
+
+    .Worr1 {
+        font-size: 20px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Worr2 {
+        font-size: 15px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Meeting {
+        width: 75vw;
+    }
+
+    .VideoSpace {
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    .Videocam,
+    .FormHold {
+        display: block;
+        flex-direction: column;
+    }
+
+    .Videocam {
+        display: flex;
+        position: relative;
+        top: 25vh;
+    }
+
+    .FormHold {
+        position: relative;
+        top: 11.5vh;
+    }
+
+    input {
+        width: 61vw;
+        font-size: 15px;
+    }
+
+    .Container {
+        height: 118vh;
+        position: relative;
+        top: 6vh;
+    }
+
+    .VoiceCheck {
+        top: 0;
+        left: 1vw;
+        position: relative;
+    }
+
+    .Worr3 {
+        margin-left: 1.5vw;
+        font-size: 18px;
+        align-content: center;
+        display: inline-flex;
+    }
+
+    .But{
+        display: flex;
+    }
+}
