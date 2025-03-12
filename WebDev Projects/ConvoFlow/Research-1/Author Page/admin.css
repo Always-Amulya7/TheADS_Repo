@@ -1,0 +1,271 @@
+@import url('https://fonts.googleapis.com/css2?family=Handlee&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+body {
+    font-family: Roboto;
+    margin: 3%;
+    padding: 0;
+    background-color: #f4f7fc;
+    color: #333;
+    background-color: #c7c7c7;
+    color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    height: 100%;
+    background-image: url("./img/Login.jpg");
+    background-size: contain;
+    background-position: center;
+    background-repeat: repeat-x;
+    background-attachment: fixed;
+}
+
+header {
+    color: black;
+    padding: 20px 0;
+    text-align: center;
+    font-size: 25px;
+}
+
+main {
+    padding: 20px 30px;
+}
+
+#controls {
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+#controls button {
+    padding: 12px 30px;
+    font-size: 16px;
+    background-color: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s ease-in-out;
+}
+
+#controls button:hover {
+    background-color: #357ab7;
+    transform: scale(1.05);
+}
+
+#participants {
+    margin: 0 auto;
+    max-width: 900px;
+    padding: 5%;
+    border-radius: 70px;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: rgba(255, 255, 255, 0.8);
+
+}
+
+#participants h2 {
+    text-align: center;
+    font-size: 1.75rem;
+    margin-bottom: 20px;
+    color: black;
+}
+
+table {
+    width: 100%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    border-radius: 15px;
+    border: none;
+}
+
+thead {
+    background-color: #4a90e2;
+    color: white;
+    text-align: center;
+}
+
+th {
+    padding: 12px 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: 18px;
+}
+
+td {
+    padding: 12px 20px;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+    font-size: 17px;
+    border: 1px solid black;
+}
+
+tbody tr {
+    background-color: #f4f7fc;
+}
+
+tbody tr:hover {
+    background-color: #e2effd;
+    cursor: pointer;
+}
+
+button.kick,
+button.block {
+    padding: 8px 16px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button.kick {
+    background-color: #e63946;
+}
+
+button.block {
+    background-color: #ffb703;
+}
+
+button.kick:hover {
+    background-color: #d62828;
+}
+
+button.block:hover {
+    background-color: #faa307;
+}
+
+tr {
+    color: black;
+}
+
+@media (max-width: 980px) {
+    body {
+        background-size: cover;
+    }
+
+    table {
+        width: 100%;
+    }
+    .ToDis{
+        display: none;
+    }
+    button {
+        padding: 1%;
+    }
+
+    h1{
+        font-size: 22px;
+        display: flex;
+        justify-content: center;
+    }
+    h2{
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+    }
+    tr{
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    body {
+        background-size: cover;
+    }
+
+    .ToDis{
+        display: none;
+    }
+    tr{
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    button {
+        padding: 1%;
+    }
+
+    h1{
+        font-size: 22px;
+        display: flex;
+        justify-content: center;
+    }
+    h2{
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+@media (max-width: 970px) {
+    body {
+        background-size: cover;
+    }
+    .ToDis{
+        display: none;
+    }
+    table {
+        width: 100%;
+    }
+
+    button {
+        padding: 1%;
+    }
+
+    h1{
+        font-size: 22px;
+        display: flex;
+        justify-content: center;
+    }
+    h2{
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+    }
+    tr{
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        background-size: cover;
+    }
+    .ToDis{
+        display: none;
+    }
+    table {
+        width: 100%;
+    }
+
+    button {
+        padding: 1%;
+    }
+
+    h1{
+        font-size: 22px;
+        display: flex;
+        justify-content: center;
+    }
+    h2{
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+    }
+    tr{
+        display: flex;
+        flex-direction: column;
+        padding: 15px;
+    }
+}
