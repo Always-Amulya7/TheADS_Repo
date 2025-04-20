@@ -40,8 +40,8 @@ Whether You're An Employer, Collaborator, Or Fellow Developer, Feel Free To Expl
 ## 📊 GitHub Stats
 
 <p align="left" style="display:flex;gap:10px;">
-    <img src="https://github-readme-streak-stats.herokuapp.com/?user=Always-Amulya7&theme=radical" height="80%"  />
-    <img src="https://github-readme-stats.vercel.app/api?username=Always-Amulya7&show_icons=true&theme=radical" height="80%"  />
+    <img src="https://github-readme-streak-stats.herokuapp.com/?user=Always-Amulya7&theme=radical" height="80%" width=60%/>
+    <img src="https://github-readme-stats.vercel.app/api?username=Always-Amulya7&show_icons=true&theme=radical" height="80%" width=60%/>
 </p>
 
 <p align="left">
