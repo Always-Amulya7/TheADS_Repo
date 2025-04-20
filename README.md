@@ -1,177 +1,77 @@
-## My Portifolio Website- <a href="https://always-amulya7.github.io/Amulya-PortFolio/" target="/"> Click Me</a>
+# 📂 TheADS_Repo 
 
-<img src="https://i.pinimg.com/originals/77/ca/a3/77caa32884d735d439ade45ba37feaf2.gif" alt="MasterHead" height=500px width=1400px>
-<h1 align="center">Hi There 👋 It's Amulya Shrivastava</h1>
-<h3 align="center">
-  Software Development Engineering | Java | Python | Full Stack Web Development
-  | Cyber Security Enthusiast | Fuelled By Caffeine Driven By Innovation 😎
-</h3>
+Welcome To **TheADS_Repo** — A Centralized Repository Showcasing All Of My **Professional Works**, Including Projects, Research, And Technical Accomplishments.
+
+> 🚀 _ADS Stands For: Algorithms • Development • Systems_
+
+---
+
+## 🧠 About This Repo
+
+This Repository Serves As A Portfolio Of My Professional Journey, Documenting The Projects I’ve Worked On, The Skills I’ve Honed, And The Real-World Problems I’ve Tackled Through Code And Creativity.
+
+Whether You're An Employer, Collaborator, Or Fellow Developer, Feel Free To Explore The Folders And Dive Into My Work!
+
+---
+
+## 📁 What's Inside
+
+| Project | Description |
+|--------|-------------|
+| 🌐 `Portfolio Website` | Personal Portfolio Featuring Interactive UI, Animated Skills, And A Responsive Layout. |
+| 🎓 `Courses & Certifications` | Projects And Work Related To My Learning Journey In Python, Data Science, AI, Web Dev, Etc. |
+| 🛠 `Utilities` | A Collection Of Useful Scripts, Automation Tools, And Utilities Crafted For Specific Tasks. |
+
+---
+
+## 🧰 Tech Stack & Tools
+
+![HTML](https://img.shields.io/badge/HTML-E34F26?style=flat-square&logo=html5&logoColor=white)
+![CSS](https://img.shields.io/badge/CSS-1572B6?style=flat-square&logo=css3&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![SQL](https://img.shields.io/badge/SQL-4479A1?style=flat-square&logo=mysql&logoColor=white)
+![Django](https://img.shields.io/badge/Django-092E20?style=flat-square&logo=django&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=flat-square&logo=flask&logoColor=white)
+
+---
+
+## 📊 GitHub Stats
+
+<p align="left" style="display:flex;gap:10px;">
+    <img src="https://github-readme-streak-stats.herokuapp.com/?user=Always-Amulya7&theme=radical" height="80%"  />
+    <img src="https://github-readme-stats.vercel.app/api?username=Always-Amulya7&show_icons=true&theme=radical" height="80%"  />
+</p>
 
 <p align="left">
-  <img
-    src="https://komarev.com/ghpvc/?username=always-amulya7&label=Profile%20views&color=0e75b6&style=flat"
-    alt="always-amulya7"
-  />
-
-<p><img src="https://mir-s3-cdn-cf.behance.net/project_modules/max_632/357fa89011807.560c6f78bf572.gif" alt="My Image" height="500px" width="1400px"></p>
-  
+<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Always-Amulya7&layout=compact&theme=radical" height="100%" />
+  <img src="https://github.com/7oSkaaa/7oSkaaa/blob/main/Images/about_me.gif?raw=true" alt="About Me GIF" width="150px"/>
 </p>
 
-- 🌱 Enhancing My Skills In **Cyber Security Solution, Data Structures And
-Algorithms, Full Stack Web Development** 
-- 💬 Ask Me About **Java, Python, SQL,
-Html, CSS, JSS, React, Next.js, Vite** 
-- 📫 Wanna Drop Me Mail
-**Amulyashrivastava7@gmail.com**
+---
 
-<h3 align="left">Connect with me:</h3>
-<p align="left">
-  <a
-    href="https://linkedin.com/in/https://www.linkedin.com/in/amulya-shrivastava-11a0a9288/"
-    target="blank"
-    ><img
-      align="center"
-      src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/linked-in-alt.svg"
-      alt="https://www.linkedin.com/in/amulya-shrivastava-11a0a9288/"
-      height="30"
-      width="40"
-  /></a>
-  <a
-    href="https://instagram.com/https://www.instagram.com/always_amulya7/#"
-    target="blank"
-    ><img
-      align="center"
-      src="https://raw.githubusercontent.com/rahuldkjain/github-profile-readme-generator/master/src/images/icons/Social/instagram.svg"
-      alt="https://www.instagram.com/always_amulya7/#"
-      height="30"
-      width="40"
-  /></a>
-</p>
+## 🎯 Goals
 
-<h3 align="left">Languages and Tools:</h3>
-<p align="left">
-  <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer">
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg"
-      alt="css3"
-      width="40"
-      height="40"
-    />
-  <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer">
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg"
-      alt="html5"
-      width="40"
-      height="40"
-    />
-  </a>
-  <a href="https://www.java.com" target="_blank" rel="noreferrer">
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg"
-      alt="java"
-      width="40"
-      height="40"
-    />
-  </a>
-  <a
-    href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"
-    target="_blank"
-    rel="noreferrer"
-  >
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg"
-      alt="javascript"
-      width="40"
-      height="40"
-    />
-  </a>
-  <a href="https://www.mongodb.com/" target="_blank" rel="noreferrer">
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mongodb/mongodb-original-wordmark.svg"
-      alt="mongodb"
-      width="40"
-      height="40"
-    />
-  </a>
-  <a href="https://www.mysql.com/" target="_blank" rel="noreferrer">
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg"
-      alt="mysql"
-      width="40"
-      height="40"
-    />
-  </a>
-  <a href="https://www.nginx.com" target="_blank" rel="noreferrer">
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nginx/nginx-original.svg"
-      alt="nginx"
-      width="40"
-      height="40"
-    />
-  </a>
-  <a href="https://nodejs.org" target="_blank" rel="noreferrer">
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg"
-      alt="nodejs"
-      width="40"
-      height="40"
-    />
-  </a>
-  <a href="https://pandas.pydata.org/" target="_blank" rel="noreferrer">
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/2ae2a900d2f041da66e950e4d48052658d850630/icons/pandas/pandas-original.svg"
-      alt="pandas"
-      width="40"
-      height="40"
-    />
-  </a>
-  <a href="https://www.python.org" target="_blank" rel="noreferrer">
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg"
-      alt="python"
-      width="40"
-      height="40"
-    />
-  </a>
-  <a href="https://reactjs.org/" target="_blank" rel="noreferrer">
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg"
-      alt="react"
-      width="40"
-      height="40"
-    />
-  </a>
-  <a href="https://getbootstrap.com" target="_blank" rel="noreferrer">
-    <img
-      src="https://raw.githubusercontent.com/devicons/devicon/master/icons/bootstrap/bootstrap-plain-wordmark.svg"
-      alt="bootstrap"
-      width="40"
-      height="40"
-    />
-</a>
-<a href="https://expressjs.com" target="_blank" rel="noreferrer">
-  <img
-    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg"
-    alt="express"
-    width="40"
-    height="40"
-  />
-</a>
-</p>
+- 🚀 Build Innovative, Real-World Apps  
+- 🧠 Sharpen Algorithm And Problem-Solving Skills  
+- 🤝 Contribute To Open Source  
+- 💡 Explore AI, Security, And Full-Stack Development  
 
-<p>
-  &nbsp;<img
-    align="center"
-    src="https://github-readme-stats.vercel.app/api?username=always-amulya7&show_icons=true&locale=en"
-    alt="always-amulya7"
-  />
-</p>
+---
 
-<!--<p>
-  <img
-    align="center"
-    src="https://github-readme-streak-stats.herokuapp.com/?user=always-amulya7&"
-    alt="always-amulya7"
-    width=470px
-  />
-</p>-->
+## 🙌 Let's Connect!
+
+Feel Free To Explore, Fork, And Contribute. You Can Connect With Me Here:
+
+- 🌐 [Portfolio Website](https://amulyashrivastava10.netlify.app) <!-- Replace # With Your Site If Available -->
+- 💼 [LinkedIn](https://www.linkedin.com/in/amulya-shrivastava-11a0a9288/) <!-- Replace With Your LinkedIn -->
+- 🐙 [GitHub](https://github.com/Always-Amulya7)
+
+> ⭐ If You Find Any Project Useful Or Interesting, Consider Giving It A Star!
+
+---
+
+“Code Is Like Humor. When You Have To Explain It, It’s Bad.” – Cory House
+
+![](https://komarev.com/ghpvc/?username=Always-Amulya7&color=blue)
