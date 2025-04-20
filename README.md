@@ -62,7 +62,6 @@ Whether You're An Employer, Collaborator, Or Fellow Developer, Feel Free To Expl
 <img src="https://github.com/7oSkaaa/7oSkaaa/blob/main/Images/about_me.gif?raw=true"
          alt="About Me GIF" height="150" width="150" />
 </p>
----
 
 ## 🎯 Goals
 
