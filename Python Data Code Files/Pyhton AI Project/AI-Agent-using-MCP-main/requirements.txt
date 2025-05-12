@@ -1,0 +1,6 @@
+# Dev environment
+pip
+autopep8
+flask
+langchain-groq
+mcp-use
