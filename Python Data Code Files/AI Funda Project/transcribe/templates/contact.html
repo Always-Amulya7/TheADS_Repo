@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact - MisinfoDetector</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Open+Sans:wght@400;600&display=swap');
+
+    body {
+      background: linear-gradient(135deg, #0d1117, #161b22);
+      font-family: 'Open Sans', sans-serif;
+      /* Remove padding to eliminate gap at top */
+      padding: 0 15px 60px;
+      color: #e1e4e8;
+      min-height: 100vh;
+      display: flex;
+      justify-content: right;
+      align-items: flex-end;
+      flex-direction: column;
+    }
+  
+    /* Navbar fixed to top, full width */
+    .navbar-custom {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      background-color: #161b22;
+      padding: 16px 0;
+      box-shadow: 0 0 15px rgba(88, 166, 255, 0.2);
+      margin-bottom: 0;
+      z-index: 1000;
+    }
+  
+    /* Center nav links container */
+    .navbar-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 30px;
+    }
+  
+    .navbar-custom ul {
+      display: flex;
+      justify-content: flex-end; /* Right align nav items */
+      gap: 2.5rem;
+      margin: 0;
+      padding: 0;
+      flex-wrap: wrap;
+    }
+  
+    .navbar-custom li {
+      list-style: none;
+    }
+  
+    .navbar-custom a {
+      color: #c9d1d9;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      padding-bottom: 4px;
+      border-bottom: 2px solid transparent;
+      transition: all 0.3s ease;
+    }
+  
+    .navbar-custom a:hover,
+    .navbar-custom a:focus,
+    .navbar-custom a.active {
+      color: #58a6ff;
+      border-color: #58a6ff;
+      text-shadow: 0 0 6px #58a6ffaa;
+    }
+  
+    /* Page wrapper offset to avoid content behind fixed navbar */
+    .page-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      padding-top: 130px; /* height of navbar + some spacing */
+    }
+  
+    /* container and other styles remain unchanged */
+    .container {
+      max-width: 700px;
+      width: 100%;
+      background: #21262d;
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 0 25px rgba(88, 166, 255, 0.3);
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    h2 {
+      font-family: 'Merriweather', serif;
+      font-size: 2.2rem;
+      color: #58a6ff;
+      text-align: center;
+      margin-bottom: 30px;
+      text-shadow: 0 0 8px #58a6ffaa;
+    }
+
+    .form-group label {
+      font-weight: 600;
+      color: #c9d1d9;
+      margin-bottom: 10px;
+      margin-top: 10px;
+      display: inline-block;
+    }
+
+    .form-control {
+      background-color: #0d1117;
+      border: 1px solid #30363d;
+      color: #f0f6fc;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .form-control:focus {
+      border-color: #58a6ff;
+      box-shadow: 0 0 8px #58a6ff66;
+      background-color: #161b22;
+      color: white;
+      outline: none;
+    }
+
+    textarea.form-control {
+      resize: vertical;
+      min-height: 120px;
+      color: white;
+    }
+
+    .btn-success {
+      background-color: #238636;
+      border: none;
+      color: #f0f6fc;
+      font-weight: bold;
+      padding: 12px;
+      font-size: 1.1rem;
+      border-radius: 10px;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      box-shadow: 0 8px 20px rgba(35, 134, 54, 0.5);
+      width: 100%;
+      margin-top: 15px;
+    }
+
+    .btn-success:hover,
+    .btn-success:focus {
+      background-color: #2ea043;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(46, 160, 67, 0.6);
+      outline: none;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar-custom">
+    <div class="navbar-inner">
+      <ul>
+        <li><a href="{% url 'home' %}">Home</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'detect' %}" class="active">Detect</a></li>
+        <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-wrapper">
+    <div class="container">
+      <h2 class="animate__animated animate__fadeInRight">Contact Us</h2>
+      <form method="post" action="{% url 'contact' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" class="form-control" id="email" name="email" required />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-success">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

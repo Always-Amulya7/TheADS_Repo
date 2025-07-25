@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>About - MisinfoDetector</title>
+  <link
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;1,400&family=Open+Sans:wght@400;600&display=swap');
+
+    /* Reset */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, #0d1117, #161b22);
+      color: #c9d1d9;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+    }
+
+    /* Navbar */
+    nav.navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(13, 17, 23, 0.95);
+      backdrop-filter: saturate(180%) blur(10px);
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: right;
+      z-index: 1000;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.8);
+      user-select: none;
+    }
+
+    nav.navbar ul.nav-links {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav.navbar ul.nav-links li a.nav-link {
+      color: #8b949e;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      padding-bottom: 2px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    nav.navbar ul.nav-links li a.nav-link:hover,
+    nav.navbar ul.nav-links li a.nav-link:focus,
+    nav.navbar ul.nav-links li a.nav-link.active {
+      color: #58a6ff;
+      border-bottom-color: #58a6ff;
+      outline: none;
+      cursor: pointer;
+    }
+
+    /* Main container */
+    main {
+      margin: 100px auto 3rem auto; /* leave space for fixed navbar */
+      max-width: 900px;
+      padding: 0 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    h1 {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      font-size: 3rem;
+      color: #58a6ff;
+      text-align: center;
+      text-shadow: 0 0 10px #58a6ffaa;
+      user-select: none;
+      margin-bottom: 1rem;
+    }
+
+    section h2 {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      font-size: 1.75rem;
+      margin-bottom: 0.6rem;
+      color: #79c0ff;
+      user-select: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    section p {
+      line-height: 1.6;
+      font-size: 1.1rem;
+      color: #adbac7;
+      user-select: text;
+    }
+
+    /* Emoji style inside h2 */
+    section h2::before {
+      content: attr(data-emoji);
+      font-size: 1.5rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      main {
+        padding: 0 1rem;
+      }
+
+      h1 {
+        font-size: 2.25rem;
+      }
+
+      section h2 {
+        font-size: 1.5rem;
+      }
+
+      section p {
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav class="navbar" role="navigation" aria-label="Primary Navigation">
+    <ul class="nav-links">
+      <li><a href="{% url 'home' %}" class="nav-link">Home</a></li>
+      <li><a href="{% url 'about' %}" class="nav-link active">About</a></li>
+      <li><a href="{% url 'detect' %}" class="nav-link">Detect</a></li>
+      <li><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main role="main">
+    <h1>About MythSnare</h1>
+
+    <section>
+      <h2 data-emoji="🧠">What is MythSnare?</h2>
+      <p>
+        In an age dominated by digital information, it's becoming increasingly
+        difficult to distinguish between fact and fiction. MisinfoDetector is
+        an intelligent tool designed to help users identify and flag potentially
+        false or misleading information online.
+      </p>
+    </section>
+
+    <section>
+      <h2 data-emoji="🚨">Why Misinformation Matters</h2>
+      <p>
+        Misinformation can have serious consequences — from influencing elections
+        to spreading dangerous health advice. MisinfoDetector empowers users to
+        question sources and analyze content critically.
+      </p>
+    </section>
+
+    <section>
+      <h2 data-emoji="⚙️">How It Works</h2>
+      <p>
+        Our model uses advanced NLP and machine learning to evaluate content
+        credibility. It detects biased language, compares it to verified sources,
+        and gives a real-time misinformation score.
+      </p>
+    </section>
+
+    <section>
+      <h2 data-emoji="👥">Who Can Use It?</h2>
+      <p>
+        Whether you're a student, journalist, or casual social media user,
+        MisinfoDetector is built for everyone to promote digital literacy and
+        responsible content sharing.
+      </p>
+    </section>
+
+    <section>
+      <h2 data-emoji="💡">Our Mission</h2>
+      <p>
+        We believe access to truthful information is a fundamental right. Our
+        mission is to equip people with the tools they need to fight
+        misinformation and build a safer online world.
+      </p>
+    </section>
+  </main>
+</body>
+</html>

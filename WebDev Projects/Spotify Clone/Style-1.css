@@ -1,0 +1,237 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    /* justify-content: center; */
+    /* background-color: black;
+    color: white; */
+
+    color: white;
+    border: none;
+}
+
+html,
+body {
+    overflow: hidden;
+}
+
+body {
+    background-color: black;
+}
+
+.HoldLogo {
+    position: relative;
+    height: 40px;
+    left: 35px;
+    width: 10px;
+    top: 9px;
+}
+
+.HoldLogo>svg {
+    width: 41px;
+}
+
+.Nav1 {
+    display: inline-flex;
+}
+
+nav {
+    width: 100vw;
+    height: 60px;
+    display: inline-flex;
+}
+
+.Home {
+    border-radius: 30px;
+    width: 45px;
+    height: 45px;
+    position: relative;
+    top: 17px;
+    left: 490px;
+}
+
+.Search {
+    position: relative;
+    top: 10px;
+    height: 15px;
+    width: 400px;
+    left: 510px;
+}
+
+.ButtonHold {
+    width: 500px;
+    display: inline-flex;
+    height: 43px;
+    border-radius: 25px;
+    background-color: rgb(45 42 42);
+    position: absolute;
+    top: 8px;
+}
+
+.Txt>p {
+    font-size: large;
+    position: relative;
+    top: 10px;
+}
+
+.Sign {
+    position: relative;
+    left: 880px;
+    top: 17px;
+    border: none;
+    background-color: transparent;
+    font-weight: bold;
+}
+
+.Log {
+    position: relative;
+    left: 900px;
+    width: 100px;
+    height: 45px;
+    border-radius: 50px;
+    top: 17px;
+    background-color: white;
+    color: black;
+    font-weight: bold;
+}
+
+.Last>p {
+    position: relative;
+    left: 160px;
+}
+
+svg {
+    height: 30px;
+    width: 50px;
+    position: relative;
+    top: 5px;
+    justify-content: center;
+    filter: invert(100%);
+}
+
+.GridMaker {
+    display: grid;
+    grid-template-columns: repeat(2, 5fr);
+    grid-gap: 10px;
+    position: relative;
+    top: 21px;
+    height: 650px;
+    width: 343px;
+    left: 18px;
+    border-radius: 5px;
+    background-color: rgb(23, 23, 23);
+}
+
+.Content {
+    background-color: rgb(23, 23, 23);
+    position: relative;
+    left: 374px;
+    height: 650px;
+    bottom: 629px;
+    width: 1100px;
+    padding: 25px;
+    padding-top: 40px;
+    border-radius: 8px;
+}
+
+.Box1 {
+    width: 275px;
+    height: 110px;
+    padding: 20px;
+    margin: 20px;
+    position: absolute;
+    top: 57px;
+    border-radius: 8px;
+    background-color:rgb(34, 33, 33);
+    left: -7px;
+}
+
+.Box1 > p {
+    font-size: 18px;
+    color: white;
+    padding-bottom: 10px;
+}
+
+.Box2 {
+    width: 275px;
+    padding: 20px;
+    margin: 20px;
+    height: 110px;
+    position: absolute;
+    top: 230px;
+    border-radius: 8px;
+    background-color: rgb(34, 33, 33);
+    left: -7px;
+}
+
+.Box2 > p {
+    font-size: 18px;
+    padding-bottom: 10px;
+    color: white;
+}
+
+.Box1 > button {
+    background-color: white;
+    padding: 15px;
+    border-radius: 60px;
+}
+.Box2 > button {
+    background-color: white;
+    padding: 15px;
+    border-radius: 60px;
+}
+.Content-Link{
+    position: relative;
+    top: 220px;
+    width: 310px;
+    height: 90px;
+    left: -102px;
+}
+.Content-Link > a{
+    display: inline-flex;
+    padding: 5px;
+    text-decoration: none;
+    font-size: small;
+}
+#10
+{
+    height: 5px;
+    width: 15px;
+}
+.Translate{
+    position: relative;
+    top: 70px;
+    left: 23px;
+    border: 1px solid white;
+    height: 35px;
+    border-radius: 20px;
+    width: 110px;
+}
+.Translate svg{
+    height: 20px;
+}
+.Translate > button > p{
+    padding: -1px;
+}
+.Selector{
+    position: relative;
+    top: -17px;
+    left: 42px;
+}
+.Plus{
+    position: relative;
+    top: -453px;
+    left: 162px;
+}
+.Plus-Size{
+    height: 20px;
+}
+.Card1{
+    display: flex;
+}
+/* .Card1:hover{
+    display: none;
+} */
+.Cards-Holder{
+    display: flex;
+    gap: 20px;
+}

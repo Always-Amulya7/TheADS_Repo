@@ -1,0 +1,656 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Misinformation Detection</title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap");
+
+      :root {
+        --text-primary: #c9d1d9;
+        --text-secondary: #8b949e;
+        --accent-gradient: linear-gradient(45deg, #79ffe1, #52e3ff);
+        --accent-color: #52e3ff;
+        --button-glow: #52e3ffcc;
+        --shadow-glow: rgba(82, 227, 255, 0.25);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Open Sans', sans-serif;
+        background: linear-gradient(135deg, #0d1117, #161b22);
+        color: #e1e4e8;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+      }
+
+      /* Animated abstract background blobs */
+      body::before,
+      body::after {
+        content: "";
+        position: fixed;
+        border-radius: 50%;
+        filter: blur(120px);
+        opacity: 0.35;
+        z-index: 0;
+        animation: floatBlob 20s ease-in-out infinite alternate;
+      }
+
+      body::before {
+        width: 400px;
+        height: 400px;
+        background: linear-gradient(135deg, #0d1117, #161b22);
+        top: 10vh;
+        left: -100px;
+        animation-delay: 0s;
+      }
+
+      body::after {
+        width: 350px;
+        height: 350px;
+        background: linear-gradient(135deg, #0d1117, #161b22);
+        bottom: 5vh;
+        right: -120px;
+        animation-delay: 10s;
+      }
+
+      @keyframes floatBlob {
+        0% {
+          transform: translateY(0) translateX(0) scale(1);
+        }
+        100% {
+          transform: translateY(30px) translateX(20px) scale(1.1);
+        }
+      }
+
+      nav {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        background: rgba(13, 17, 23, 0.85);
+        backdrop-filter: saturate(180%) blur(16px);
+        border-bottom: 1px solid rgba(82, 227, 255, 0.15);
+        display: flex;
+        justify-content: flex-end; /* aligns nav items to the right */
+        padding: 0.6rem 3rem; /* adds spacing */
+        z-index: 1000;
+      }
+      
+
+      nav ul {
+        list-style: none;
+        display: flex;
+        gap: 2rem;
+      }
+  
+      nav a {
+        color: #8b949e;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+        padding: 0.25rem 0;
+        gap: 2rem;
+        border-bottom: 2px solid transparent;
+        transition: color 0.3s ease, border-color 0.3s ease;
+      }
+  
+      nav a:hover,
+      nav a:focus {
+        color: #58a6ff;
+        border-color: #58a6ff;
+        outline: none;
+      }
+
+      /* Main chat container */
+      .chat-container {
+        margin: 5rem auto 2rem;
+        max-width: 900px;
+        height: 90vh;
+        background: var(--card-bg);
+        border-radius: 20px;
+        backdrop-filter: blur(var(--card-blur));
+        box-shadow: 0 8px 32px var(--shadow-glow);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        position: relative;
+        z-index: 1;
+        border: 1px solid rgba(82, 227, 255, 0.15);
+      }
+
+      /* Chat box */
+      #chat-box {
+        flex-grow: 1;
+        padding: 2rem;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+        scrollbar-width: thin;
+        scrollbar-color: var(--accent-color) transparent;
+      }
+
+      #chat-box::-webkit-scrollbar {
+        width: 8px;
+      }
+
+      #chat-box::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      #chat-box::-webkit-scrollbar-thumb {
+        background: var(--accent-color);
+        border-radius: 10px;
+        box-shadow: 0 0 5px var(--accent-color);
+      }
+
+      /* Chat message bubbles */
+      .message {
+        max-width: 70%;
+        background: rgba(255, 255, 255, 0.1);
+        padding: 1rem 1.6rem;
+        border-radius: 16px;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: var(--text-primary);
+        box-shadow: 0 0 8px rgba(82, 227, 255, 0.15);
+        backdrop-filter: blur(6px);
+        user-select: text;
+        opacity: 0;
+        transform: translateY(20px);
+        animation: fadeUp 0.5s forwards ease;
+        transition: box-shadow 0.3s ease;
+      }
+
+      .message.user {
+        align-self: flex-end;
+        background: linear-gradient(135deg, #52e3ffbb, #79ffe1bb);
+        color: #0d1117;
+        box-shadow: 0 0 15px var(--accent-color);
+      }
+
+      .message.bot {
+        align-self: flex-start;
+        background: rgba(255 255 255 / 0.08);
+        color: var(--text-primary);
+        font-weight: 600;
+        box-shadow: 0 0 10px #79ffe1cc;
+      }
+
+      @keyframes fadeUp {
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* Input form */
+      form {
+        display: flex;
+        gap: 1rem;
+        padding: 1.7rem 5rem;
+        background: rgba(13, 17, 23, 0.85);
+        border-top: 1px solid rgba(82, 227, 255, 0.2);
+        backdrop-filter: saturate(180%) blur(16px);
+      }
+
+      .text-input {
+        flex-grow: 1;
+        padding: 1rem 3.4rem;
+        font-size: 1.1rem;
+        font-weight: 500;
+        border-radius: 14px;
+        border: none;
+        background: rgba(255 255 255 / 0.1);
+        color: var(--text-primary);
+        box-shadow: inset 0 0 12px rgba(82, 227, 255, 0.4);
+        transition: box-shadow 0.3s ease;
+        outline: none;
+        font-family: "Poppins", sans-serif;
+        user-select: text;
+      }
+
+      .text-input::placeholder {
+        color: var(--text-secondary);
+        font-style: italic;
+      }
+
+      .text-input:focus {
+        box-shadow: 0 0 20px var(--accent-color);
+        background: rgba(255 255 255 / 0.15);
+      }
+
+      /* Buttons */
+      .button-group {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .btn {
+        background: transparent;
+        border: 2px solid var(--accent-color);
+        color: var(--accent-color);
+        font-weight: 600;
+        font-size: 1.05rem;
+        padding: 0.6rem 1.4rem;
+        border-radius: 14px;
+        cursor: pointer;
+        transition: all 0.35s ease;
+        user-select: none;
+        box-shadow: 0 0 5px transparent;
+      }
+
+      .btn:hover:not(:disabled) {
+        background: var(--accent-gradient);
+        box-shadow: 0 0 20px var(--accent-color);
+        color: var(--bg-dark);
+        transform: scale(1.05);
+      }
+
+      .btn:disabled {
+        border-color: #555;
+        color: #555;
+        cursor: not-allowed;
+        box-shadow: none;
+        background: transparent;
+        transform: none;
+      }
+
+      /* File upload style */
+      .file-upload label {
+        padding: 0.6rem 1.1rem;
+        border: 2px dashed var(--accent-color);
+        border-radius: 14px;
+        color: var(--accent-color);
+        font-weight: 600;
+        cursor: pointer;
+        font-family: "Poppins", sans-serif;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        user-select: none;
+      }
+
+      .file-upload label:hover {
+        background: var(--accent-gradient);
+        box-shadow: 0 0 14px var(--accent-color);
+        color: var(--bg-dark);
+      }
+
+      .file-upload input {
+        display: none;
+      }
+
+      /* Responsive */
+      @media (max-width: 768px) {
+        .chat-container {
+          margin: 5rem 1rem 2rem;
+          height: 85vh;
+        }
+        .message {
+          max-width: 90%;
+          font-size: 1rem;
+        }
+        form {
+          flex-direction: column;
+          gap: 0.8rem;
+        }
+        .button-group {
+          width: 100%;
+          justify-content: space-between;
+        }
+        .btn {
+          flex: 1 1 48%;
+        }
+      }
+      .transcription-box {
+        margin: 1rem 0;
+        border: 1px solid rgba(82, 227, 255, 0.2);
+        border-radius: 12px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.02);
+      }
+      
+      .transcription-toggle {
+        all: unset;
+        width: 100%;
+        display: block;
+        cursor: pointer;
+        padding: 0.8rem 1rem;
+        font-weight: 600;
+        color: var(--text-primary);
+        background: none;
+        text-align: left;
+        transition: background 0.2s ease;
+      }
+      
+      .transcription-toggle:hover {
+        background: rgba(82, 227, 255, 0.1);
+      }
+      
+      .transcription-content {
+        padding: 1rem;
+        color: var(--text-secondary);
+        border-top: 1px solid rgba(82, 227, 255, 0.1);
+      }
+      
+      .hidden {
+        display: none;
+      }
+      
+      
+    </style>
+  </head>
+  <body>
+    <nav>
+      <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'detect' %}" class="active">Detect</a></li>
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+      </ul>
+    </nav>
+
+    <div class="chat-container">
+      <div id="chat-box" aria-live="polite" role="log">
+        <!-- dynamic messages -->
+      </div>
+      {% csrf_token %}
+      <form
+        id="chat-form"
+        method="POST"
+        enctype="multipart/form-data"
+        autocomplete="off"
+      >
+        <textarea
+          id="text-input"
+          name="text_input"
+          class="text-input"
+          placeholder="Type your message..."
+          rows="1"
+          aria-label="Type your message"
+        ></textarea>
+
+        <div class="button-group">
+          <button type="submit" id="send-btn" class="btn" disabled>
+            📤 Send
+          </button>
+          <div class="file-upload">
+            <label for="audio-file" title="Upload a file">📎 Upload</label>
+            <input
+              type="file"
+              name="audio_file"
+              id="audio-file"
+              aria-label="Upload file"
+            />
+          </div>
+          <button type="button" id="mic-btn" class="btn" aria-pressed="false">🎤 Start</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      const chatBox = document.getElementById("chat-box");
+      const form = document.getElementById("chat-form");
+      const fileInput = document.getElementById("audio-file");
+      const textInput = document.getElementById("text-input");
+      const micBtn = document.getElementById("mic-btn");
+      const sendBtn = document.getElementById("send-btn");
+      const fileUrl = "{% url 'detect' %}";
+
+      let stream = null;
+      let mediaRecorder = null;
+      let chunks = [];
+      let isRecording = false;
+
+      // Auto resize textarea
+      textInput.addEventListener("input", () => {
+        textInput.style.height = "auto";
+        textInput.style.height = textInput.scrollHeight + "px";
+        toggleSendButton();
+      });
+
+      // Enable send button if text input or file selected
+      function toggleSendButton() {
+        if (textInput.value.trim().length > 0 || fileInput.files.length > 0) {
+          sendBtn.disabled = false;
+        } else {
+          sendBtn.disabled = true;
+        }
+      }
+
+
+      fileInput.addEventListener("change", () => {
+        if (fileInput.files.length > 0) {
+          const fileName = fileInput.files[0].name;
+          textInput.value = fileName;
+          textInput.style.height = "auto"; // reset height
+          textInput.style.height = textInput.scrollHeight + "px"; // adjust to new text
+          toggleSendButton(); // re-evaluate send button state
+        }
+      });
+
+
+      const appendMessage = (message, sender = "user", isLoading = false) => {
+        const bubble = document.createElement("div");
+        bubble.className = "message " + (sender === "user" ? "user" : "bot");
+        bubble.style.width = "fit-content";
+
+        if (isLoading) {
+          // Show loading dots or spinner
+          bubble.textContent = "⏳ Loading...";
+        } else {
+          if (sender === "bot") {
+            bubble.innerHTML = message;
+          } else {
+            bubble.textContent = message;
+          }
+        }
+
+        chatBox.appendChild(bubble);
+        chatBox.scrollTop = chatBox.scrollHeight;
+        return bubble;
+      };
+
+      // Setup WebSocket connection for live transcription
+      const ws = new WebSocket(
+        `ws://${window.location.host}/ws/live-transcribe/`
+      );
+
+      ws.onmessage = function (event) {
+        const data = JSON.parse(event.data);
+        if (data.type === "transcription") {
+          textInput.value = data.text;
+          toggleSendButton();
+          // Resize textarea after setting value
+          textInput.style.height = "auto";
+          textInput.style.height = textInput.scrollHeight + "px";
+        } else if (data.type === "error") {
+          alert(data.text);
+        }
+      };
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const file = fileInput.files[0];
+        const text = textInput.value.trim();
+
+        async function classifyAndDisplay(textToClassify) {
+          const loaderBubble = appendMessage("", "bot", true);
+          try {
+            const response = await fetch("{% url 'classify_text' %}", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": document.querySelector(
+                  "[name=csrfmiddlewaretoken]"
+                ).value,
+              },
+              body: JSON.stringify({ message: textToClassify }),
+            });
+
+            const data = await response.json();
+            loaderBubble.remove();
+
+            if (data.prediction) {
+              const msg =
+                `✅ Fact Check Result:<br><br>` +
+                `• Is True: ${data.is_true ? "✅ Yes" : "❌ No"}<br>` +
+                `• Confidence: ${data.confidence}%<br>` +
+                `• Explanation: ${data.explanation}`;
+              appendMessage(msg, "bot");
+            } else {
+              appendMessage(
+                `❌ Classification error: ${data.error || "Unknown issue"}`,
+                "bot"
+              );
+            }
+          } catch (err) {
+            loaderBubble.remove();
+            appendMessage(`❌ Classification request failed`, "bot");
+          }
+        }
+
+        // Disable send button while processing
+        sendBtn.disabled = true;
+
+        if (text && !(file)) {
+          appendMessage(text, "user");
+          if (ws.readyState === WebSocket.OPEN) {
+            ws.send(JSON.stringify({ type: "text", message: text }));
+          }
+          textInput.value = "";
+          textInput.style.height = "auto";
+          await classifyAndDisplay(text);
+        }
+
+        if (file) {
+          appendMessage(`📎 ${file.name}`, "user");
+          textInput.value = "";
+          textInput.style.height = "auto";
+          const formData = new FormData();
+          formData.append("audio_file", file);
+
+          const loaderBubble = appendMessage("", "bot", true);
+
+          try {
+            const response = await fetch(fileUrl, {
+              method: "POST",
+              body: formData,
+              headers: {
+                "X-CSRFToken": document.querySelector(
+                  "[name=csrfmiddlewaretoken]"
+                ).value,
+              },
+            });
+            const data = await response.json();
+            loaderBubble.remove();
+
+            if (data.transcription) {
+              appendMessage(`
+              <div class="transcription-box">
+                <button class="transcription-toggle">📝 Transcription ▼</button>
+                <div class="transcription-content hidden">
+                  ${data.transcription}
+                </div>
+              </div>
+            `, "bot");
+            
+              await classifyAndDisplay(data.transcription);
+            } else {
+              appendMessage(
+                "❌ Transcription error: " +
+                  (data.error || "Something went wrong"),
+                "bot"
+              );
+            }
+          } catch (err) {
+            loaderBubble.remove();
+            appendMessage("❌ Failed to transcribe audio", "bot");
+          }
+
+          fileInput.value = "";
+        }
+
+        toggleSendButton();
+      });
+
+      document.addEventListener("click", function (e) {
+        if (e.target.classList.contains("transcription-toggle")) {
+          const content = e.target.nextElementSibling;
+          content.classList.toggle("hidden");
+          e.target.textContent = content.classList.contains("hidden")
+            ? "📝 Transcription ▼"
+            : "📝 Transcription ▲";
+        }
+      });
+      
+      micBtn.addEventListener("click", async () => {
+        if (!isRecording) {
+          isRecording = true;
+          micBtn.textContent = "⏹ Stop";
+          micBtn.setAttribute("aria-pressed", "true");
+          try {
+            stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            mediaRecorder = new MediaRecorder(stream, {
+              mimeType: "audio/webm",
+            });
+          } catch (err) {
+            alert("Could not start microphone: " + err.message);
+            micBtn.textContent = "🎤 Start";
+            micBtn.setAttribute("aria-pressed", "false");
+            return;
+          }
+          appendMessage("🎙️ Listening...", "bot");
+
+          chunks = [];
+
+          mediaRecorder.ondataavailable = (event) => {
+            if (event.data.size > 0) chunks.push(event.data);
+          };
+
+          mediaRecorder.onstop = () => {
+            if (stream) stream.getTracks().forEach((track) => track.stop());
+
+            const audioBlob = new Blob(chunks, { type: "audio/webm" });
+            audioBlob.arrayBuffer().then((buffer) => {
+              if (ws.readyState === WebSocket.OPEN) {
+                ws.send(buffer);
+                ws.send(JSON.stringify({ type: "stop" }));
+              }
+            });
+
+            mediaRecorder = null;
+            chunks = [];
+            stream = null;
+          };
+
+          mediaRecorder.start();
+        } else {
+          isRecording = false;
+          micBtn.textContent = "🎤 Start";
+          micBtn.setAttribute("aria-pressed", "false");
+          appendMessage("⏹ Recording stopped", "bot");
+
+          if (mediaRecorder && mediaRecorder.state !== "inactive") {
+            mediaRecorder.stop();
+          }
+        }
+      });
+
+      // Initialize send button state
+      toggleSendButton();
+    </script>
+  </body>
+</html>

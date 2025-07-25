@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Graphify & Cipherus</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" type="image/png" href="images/Logo.png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/11.8.0/math.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+  <nav class="navbar">
+    <div class="navbar-left">
+      <img src="images/Logo.png" alt="Logo" class="logo" />
+      <h1>Graphify & Cipherus</h1>
+    </div>
+    <div class="navbar-right">
+      <a href="https://www.linkedin.com/in/amulya-shrivastava-11a0a9288/" target="_blank" class="icon linkedin"><i
+          class="fab fa-linkedin"></i></a>
+      <a href="https://www.facebook.com/amulyadeep.amulyadeep.3" target="_blank" class="icon facebook"><i
+          class="fab fa-facebook"></i></a>
+      <a href="https://www.instagram.com/always_amulya7/" target="_blank" class="icon instagram"><i
+          class="fab fa-instagram"></i></a>
+      <a href="https://t.me/Always_Amulya7" target="_blank" class="icon telegram"><i class="fab fa-telegram"></i></a>
+    </div>
+  </nav>
+
+  <div class="parent">
+    <div class="tool-section div1">
+      <h2><i>File Encrypting & Decrypting</i></h2>
+      <div class="file-upload-wrapper">
+        <label class="upload-card">
+          <p class="upload-instruction">Click To Browse Or Drag Files Here To Start Sharing</p>
+          <div class="plus-icon">
+            <img src="images/Uploads.png" alt="Upload">
+          </div>
+          <input type="file" class="file-input" accept=".txt" />
+        </label>
+      </div>
+      <div class="Selection">
+        <select name="Files" id="File">
+          <option value="Encrypt">Encrypt File</option>
+          <option value="Decrypt">Decrypt File</option>
+        </select>
+      </div>
+      <div class="Selection">
+        <select id="method-select">
+          <option value="caesar">Caesar Cipher</option>
+          <option value="vigenere">AES Cipher</option>
+          <option value="xor">XOR Cipher</option>
+        </select>
+      </div>
+      <div class="Selection">
+        <input type="text" id="key-input" placeholder="Enter Key" />
+      </div>
+      <div class="Get">
+        <button id="Work">Submit</button>
+      </div>
+    </div>
+    <div class="tool-section div2">
+      <h2><i>Text Encryption</i></h2>
+      <textarea id="encrypt-text" placeholder="Enter Text To Encrypt..." required></textarea>
+      <input type="text" id="encrypt-key" placeholder="Encryption Key" />
+      <select id="encrypt-method">
+        <option value="caesar">Caesar Cipher</option>
+        <option value="vigenere">AES Cipher</option>
+        <option value="xor">XOR Cipher</option>
+      </select>
+      <button onclick="encryptText()">Encrypt</button>
+      <div class="result scrollable" id="encrypt-result">
+        <span>Encrypting....</span>
+        <span class="info-icon" onclick="showPopup('encrypt')">ℹ️</span>
+      </div>
+    </div>
+    <div class="tool-section div3">
+      <h2><i>Text Decryption</i></h2>
+      <textarea id="decrypt-text" placeholder="Enter Text To Decrypt..." required></textarea>
+      <input type="text" id="decrypt-key" placeholder="Decryption Key" />
+      <select id="decrypt-method">
+        <option value="caesar">Caesar Cipher</option>
+        <option value="vigenere">AES Cipher</option>
+        <option value="xor">XOR Cipher</option>
+      </select>
+      <button onclick="decryptText()">Decrypt</button>
+      <div class="result scrollable" id="decrypt-result">
+        <span>Decrypting...</span>
+        <span class="info-icon" onclick="showPopup('decrypt')">ℹ️</span>
+      </div>
+    </div>
+    <div class="tool-section div4">
+      <h2><i>Equation Graph</i></h2>
+      <textarea id="equation-input" placeholder="Example -> x**2 + 3*x - 2" required></textarea>
+      <input type="text" id="x-range" placeholder="X range (min,max)" value="-10,10" />
+      <button onclick="plotEquation()">Plot Equation</button>
+    </div>
+    <div class="tool-section div5">
+      <h2><i>Data Graph</i></h2>
+      <textarea id="data-input" placeholder="Enter x,y Pairs Onto Next Lines" required></textarea>
+      <select id="graph-type">
+        <option value="line">Line Chart</option>
+        <option value="bar">Bar Chart</option>
+        <option value="scatter">Scatter Plot</option>
+      </select>
+      <button type="submit" onclick="plotData()">Plot Data</button>
+    </div>
+    <div class="tool-section div6">
+      <canvas id="equation-chart"></canvas>
+    </div>
+    <div class="tool-section div7">
+      <canvas id="data-chart"></canvas>
+    </div>
+  </div>
+  <div id="popup" class="popup">
+    <div class="popup-content">
+      <span class="close" onclick="closePopup()">&times;</span>
+      <pre id="popup-text"></pre>
+    </div>
+  </div>
+  <footer class="footer">
+    &copy; 2025 Amulya Shrivastava. All rights reserved.
+  </footer>
+  <script src="js/script.js"></script>
+</body>
+
+</html>

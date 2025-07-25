@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "@tailwindcss/vite": "^4.0.14",
+    "body-parser": "^1.20.3",
+    "bootstrap": "^5.3.5",
+    "cors": "^2.8.5",
+    "create-react-app": "^5.1.0",
+    "express": "^4.21.2",
+    "install": "^0.13.0",
+    "nodemon": "^3.1.10",
+    "path": "^0.12.7",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-router-dom": "^7.5.3",
+    "redux": "^5.0.1",
+    "tailwindcss": "^4.1.5",
+    "vite": "^6.2.2"
+  },
+  "name": "port-folio",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

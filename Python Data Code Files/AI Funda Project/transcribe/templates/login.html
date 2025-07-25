@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - MisinfoDetector</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(135deg, #0d1117, #161b22);
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+      color: #e1e4e8;
+    }
+
+    .login-box {
+      background-color: #21262d;
+      padding: 40px 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 25px rgba(88, 166, 255, 0.3);
+      width: 100%;
+      max-width: 420px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    h2 {
+      text-align: center;
+      color: #58a6ff;
+      margin-bottom: 28px;
+      text-shadow: 0 0 8px #58a6ffaa;
+      font-weight: 600;
+    }
+
+    .input-box {
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .input-box input {
+      width: 100%;
+      padding: 14px 12px;
+      font-size: 1rem;
+      border: 1px solid #30363d;
+      border-radius: 8px;
+      background-color: #0d1117;
+      color: #f0f6fc;
+      transition: 0.3s;
+    }
+
+    .input-box input:focus {
+      border-color: #58a6ff;
+      box-shadow: 0 0 6px #58a6ff66;
+      outline: none;
+      background-color: #161b22;
+    }
+
+    .input-box label {
+      position: static;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      display: block;
+      color: #ccc;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      padding: 12px;
+      background-color: #238636;
+      color: #f0f6fc;
+      border: none;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 1.05rem;
+      cursor: pointer;
+      transition: background-color 0.3s, transform 0.2s;
+      box-shadow: 0 8px 20px rgba(35, 134, 54, 0.5);
+    }
+
+    button[type="submit"]:hover {
+      background-color: #2ea043;
+      transform: translateY(-2px);
+      box-shadow: 0 12px 25px rgba(46, 160, 67, 0.6);
+    }
+
+    .register-link {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.9rem;
+    }
+
+    .register-link a {
+      color: #58a6ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="login-box">
+    <form action="{% url 'login' %}" method="post">
+      {% csrf_token %}
+      <h2>Login</h2>
+      {% if messages %}
+        <ul class="messages" style="margin-bottom: 20px;">
+          {% for message in messages %}
+            <li class="{{ message.tags }}" style="color: {% if message.tags == 'error' %}#ff6b6b{% else %}#58a6ff{% endif %}; text-align:center;">
+              {{ message }}
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+      <!-- Username -->
+      <div class="input-box">
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      
+      <!-- Password -->
+      <div class="input-box">
+        <label for="password">Password</label>
+        <input type="password" name="password" required />
+      </div>
+
+      <button type="submit">Login</button>
+
+      <div class="register-link">
+        <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

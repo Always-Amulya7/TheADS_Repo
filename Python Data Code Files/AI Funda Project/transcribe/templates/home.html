@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MythSnare - Trusted Misinformation Detection</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,700;1,400&family=Open+Sans:wght@400;600&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0; padding: 0;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, #0d1117, #161b22);
+      color: #e1e4e8;
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      scroll-behavior: smooth;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(13, 17, 23, 0.95);
+      backdrop-filter: saturate(180%) blur(10px);
+      padding: 1rem 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+    }
+
+    .logo {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      font-size: 1.8rem;
+      color: #58a6ff;
+      text-shadow: 0 0 10px #58a6ffaa;
+      letter-spacing: 0.05em;
+      user-select: none;
+      cursor: default;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: #8b949e;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.25rem 0;
+      border-bottom: 2px solid transparent;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      color: #58a6ff;
+      border-color: #58a6ff;
+      outline: none;
+    }
+
+    /* Main */
+    main {
+      margin-top: 80px;
+      flex-grow: 1;
+      padding: 3rem 4rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 5rem;
+    }
+
+    /* Hero */
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .hero-text {
+      flex: 1 1 400px;
+      max-width: 600px;
+    }
+
+    .hero-text h1 {
+      font-family: 'Merriweather', serif;
+      font-weight: 700;
+      font-size: 3rem;
+      color: #58a6ff;
+      text-shadow: 0 0 12px #58a6ff99;
+      margin-bottom: 1rem;
+    }
+
+    .hero-text p {
+      font-size: 1.25rem;
+      color: #c9d1d9;
+      margin-bottom: 2rem;
+    }
+
+    .btn-primary {
+      background-color: #238636;
+      color: #f0f6fc;
+      font-weight: 700;
+      padding: 15px 40px;
+      font-size: 1.1rem;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 8px 15px rgba(35, 134, 54, 0.4);
+      transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+      user-select: none;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn-primary:hover,
+    .btn-primary:focus {
+      background-color: #2ea043;
+      box-shadow: 0 12px 25px rgba(46, 160, 67, 0.6);
+      transform: translateY(-2px);
+      outline: none;
+    }
+
+.hero-stats {
+  flex: 0 1 300px;
+  background: #21262d;
+  border-radius: 1rem;
+  padding: 2rem 3rem;
+  box-shadow: 0 8px 20px rgba(56, 139, 252, 0.7);
+  text-align: center;
+}
+
+.hero-stats h2 {
+  font-family: 'Merriweather', serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  color: #58a6ff;
+  text-shadow: 0 0 10px #58a6ffaa;
+}
+
+.hero-stats p {
+  font-size: 1.2rem;
+  color: #8b949e;
+  font-weight: 600;
+}
+
+/* Features */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2.5rem;
+}
+
+.feature-card {
+  background: #21262d;
+  border-radius: 14px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(35, 46, 68, 0.5);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.feature-card:hover,
+.feature-card:focus-within {
+  box-shadow: 0 8px 20px rgba(56, 139, 252, 0.8);
+  transform: translateY(-6px);
+  outline: none;
+}
+
+.feature-icon {
+  font-size: 3rem;
+  color: #58a6ff;
+  margin-bottom: 1rem;
+}
+
+.feature-title {
+  font-family: 'Merriweather', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #cdd9e5;
+  margin-bottom: 0.8rem;
+}
+
+.feature-desc {
+  color: #8b949e;
+  font-size: 1rem;
+}
+
+/* Footer */
+footer {
+  background: #161b22;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #6e7681;
+  margin-top: auto;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  main {
+    padding: 2rem;
+  }
+
+  .hero {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .testimonial-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+  }
+
+  .cta form {
+    flex-direction: column;
+  }
+
+  .cta input[type="email"],
+  .cta button {
+    width: 100%;
+  }
+}
+
+  </style>
+</head>
+<body>
+
+<header role="banner">
+  <div class="logo" aria-label="MythSnare Logo">MythSnare</div>
+  <nav class="navbar">
+    <ul class="nav-links">
+        <li><a href="{% url 'home' %}" class="nav-link neon-link">Home</a></li>
+        <li><a href="{% url 'about' %}" class="nav-link neon-link">About</a></li>
+        <li><a href="{% url 'detect' %}" class="nav-link neon-link">Detect</a></li>
+        <li><a href="{% url 'contact' %}" class="nav-link neon-link">Contact</a></li>
+    </ul>
+</nav>
+</header>
+
+<main role="main">
+
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-text">
+      <h1 id="hero-title">Cut Through the Noise with MythSnare</h1>
+      <p>Detect misinformation, rumors, and fake news quickly and confidently with AI-powered analysis across voice and text.</p>
+      <a href="{% url 'detect' %}" class="btn-primary">Start Detection</a>
+    </div>
+    <div class="hero-stats" aria-label="Key statistics">
+      <h2>89%</h2>
+      <p>Accuracy in detecting misinformation</p>
+    </div>
+  </section>
+
+  <section id="features" class="features" aria-label="Features">
+    <article class="feature-card" tabindex="0">
+      <div class="feature-icon" aria-hidden="true">🤖</div>
+      <h3 class="feature-title">AI-Powered Analysis</h3>
+      <p class="feature-desc">Leverage advanced machine learning to verify facts in real-time from any input type.</p>
+    </article>
+
+    <article class="feature-card" tabindex="0">
+      <div class="feature-icon" aria-hidden="true">🎙️</div>
+      <h3 class="feature-title">Multi-Modal Inputs</h3>
+      <p class="feature-desc">Submit text, voice, or video and get instant analysis — wherever and however you communicate.</p>
+    </article>
+
+    <article class="feature-card" tabindex="0">
+      <div class="feature-icon" aria-hidden="true">⚡</div>
+      <h3 class="feature-title">Fast & Clear Results</h3>
+      <p class="feature-desc">Get confidence scores, summaries, and related sources to help you understand the truth quickly.</p>
+    </article>
+  </section>
+
+</main>
+
+<footer role="contentinfo">
+  &copy; 2025 MythSnare. All rights reserved.
+</footer>
+
+</body>
+</html>
