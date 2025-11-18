@@ -1,0 +1,1 @@
+// Remove the characters from the string

@@ -1,0 +1,8 @@
+Name:- Amulya Shrivastava
+Regd Number:- 2341019456
+Section:- 23412F3
+Serial Number- 59
+Subject:- PFCD Major Assignment-1
+Date of Submission:- 05/11/2025
+
+The folder includes a pdf file for reference and a .ipynb file i.e for Jupyter code file.
