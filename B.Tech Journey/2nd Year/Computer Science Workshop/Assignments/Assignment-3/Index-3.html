@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index-3</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #animateDiv {
+            display: flex;
+            justify-content: center;
+            transform: translateY(45vh) translateX(46.2vw);
+            width: 100px;
+            height: 50px;
+            background-color: lightcoral;
+        }
+        .Container{
+            display: flex;
+            justify-content: center;
+            transform: translateY(45vh);
+        }
+    </style>
+</head>
+
+<body>
+    <div id="animateDiv"></div>
+    <div class="Container">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#start").click(function () {
+                $("#animateDiv").animate({ width: '400px' }, 2000);
+            });
+            $("#stop").click(function () {
+                $("#animateDiv").stop();
+            });
+        });
+    </script>
+</body>
+
+</html>

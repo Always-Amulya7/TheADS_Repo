@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout-1</title><!--
+    <link rel="stylesheet" href="style.css">-->
+    <style>
+        * {
+            overflow: hidden;
+        }
+
+        .container {
+            border: 5px solid gray;
+            border-radius: 18px;
+            height: 96vh;
+        }
+
+        .navbar {
+            height: 100px;
+            background-color: #26bfbf;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .Circle {
+            height: 8vh;
+            width: 4vw;
+            background-color: white;
+            border-radius: 500px;
+            margin-left: 20px;
+        }
+
+        .Rectangle {
+            width: 55vw;
+            height: 5vh;
+            background-color: white;
+            margin-left: 18%;
+        }
+
+        .content-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .image-container {
+            /*flex: 0 0 50%;*/
+            display: flex;
+            flex-direction: column;
+            padding: 15px;
+            width: 30%;
+        }
+
+        .image-container img {
+            width: 50%;
+            height: 30vh;
+            border-radius: 15px;
+            object-fit: fill;
+            padding: 15px;
+        }
+
+        #Work-1 {
+            height: 26%;
+            width: 30vw;
+            border-radius: 15px;
+        }
+
+        #Work-2 {
+            height: 20%;
+            width: 30vw;
+            border-radius: 15px;
+        }
+
+        .content {
+            border-radius: 10px;
+            width: 62.5%;
+            border: 2px solid black;
+            height: 74vh;
+            margin-top: 2.5%;
+            margin-left: 30px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="navbar">
+            <div class="Circle"></div>
+            <div class="Circle"></div>
+            <div class="Circle"></div>
+            <div class="Rectangle"></div>
+        </div>
+        <div class="content-container">
+            <div class="image-container">
+                <img id="Work-1" src="./img/Login.jpg" alt="Image 1" style="border-radius: 50px;">
+                <img id="Work-2" src="./img/Login.jpg" alt="Image 2" style="border-radius: 50px;">
+            </div>
+            <div class="content">
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

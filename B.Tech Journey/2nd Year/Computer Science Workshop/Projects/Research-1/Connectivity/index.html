@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Amulya's Automated Conferencing</title>
+    <link rel="shortcut icon" href="/assets/MyImage.png" type="image/x-icon">
+    <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+    <link rel="stylesheet" href="/Connectivity/style.css">
+</head>
+
+<body>
+    <div class="BodyImage">
+        <div class="Container">
+            <div class="Meeting">
+                <div class="Introduction">
+                    <p class="Worr1"><strong>Automated Joint
+                            Conferencing</strong></p> <br>
+                    <p class="Worr2"><em>Ensure All Devices And
+                            Functioning Properly</em></p>
+                </div>
+            </div>
+            <div class="VideoSpace">
+                <div class="Videocam">
+                    <video id="webCam" autoplay playsinline
+                        style="border-radius:30px;margin:1px;height:100%;width:100%;"></video>
+                    <canvas id="canvas"></canvas>
+                </div>
+                <div class="FormHold">
+                    <div class="DetailsStore">
+                        <p><input id="userNameInput" type="text" name="userName" placeholder="Your Decent Name" required
+                                disabled></p>
+                        <p><input type="text" name="roomName" placeholder="Room Number : ADS10" required disabled></p>
+                        <br>
+                        <p style="margin-left:1.5vw;font-size:18px;" class="Worr3">Voice Check -
+                            <!-- Voice check bar canvas -->
+                            <canvas id="voiceCheckCanvas" class="VoiceCheck"></canvas>
+                        </p>
+                    </div> <br> <br>
+                    <div class="Instruct" style="display: flex; margin-right: 5px">
+                        <p><img src="/assets/Tick.png" alt="Validation" style="border-radius: 600px; height: 13px;"></p>
+                        <p style="font-size: 15px;">&nbsp;<b>Do Not Make Any False Entry. Please Make Use Of A Valid
+                                User Name.</b></p>
+                    </div>
+                    <br>
+                    <div class="But">
+                        <button type="button" id="connectButton"
+                            style="font-family: Handlee, Roboto; color: white;">Connect</button>
+                        <button type="button" id="joinButton"
+                            style="font-family: Handlee, Roboto; color: white;">Join</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="/Connectivity/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,36 @@
+<!-- Add an image as the background of a <div> element and change the image source when the user hovers the mouse over the
+image. In other words, when the user moves the mouse pointer over the image, the background image should change. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Objective-4</title>
+    <style>
+        .Container {
+            width: 50vw;
+            height: 90vh;
+            background-image: url("./img/Login.jpg");
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .Container:hover {
+            background-image: url("./img/Thor.jpeg");
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Container"></div>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $(".Container").hover(function(){
+                $(".Container").css("background-image","url(./img/Thor.jpeg)");
+            })
+        })
+    </script> -->
+</body>
+
+</html>

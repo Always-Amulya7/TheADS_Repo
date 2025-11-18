@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index-6</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .highlight { background-color: yellow; }
+        .dim { opacity: 0.5; }
+        body{
+            transform: translateY(40vh) translateX(43vw);
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div id="contentDiv">Click a button to apply a class.</div>
+    <button id="addHighlight">Add Highlight</button>
+    <button id="addDim">Add Dim</button>
+
+    <script>
+        $(document).ready(function() {
+            $("#addHighlight").click(function() {
+                $("#contentDiv").removeClass("dim").addClass("highlight");
+            });
+            $("#addDim").click(function() {
+                $("#contentDiv").removeClass("highlight").addClass("dim");
+            });
+        });
+    </script>
+</body>
+</html>

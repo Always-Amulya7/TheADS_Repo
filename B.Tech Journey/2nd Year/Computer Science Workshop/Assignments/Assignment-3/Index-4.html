@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index-4</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body{
+            overflow: hidden;
+        }
+        .Container{
+            transform: translateY(45vh) translateX(43vw);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Container">
+        <p id="textContent">This is some text content.</p>
+        <div id="htmlContent"><span>This is some HTML content.</span></div>
+        <br>
+        <button id="fetchText">Fetch Text</button>
+        <button id="fetchHTML">Fetch HTML</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $("#fetchText").click(function () { alert($("#textContent").text()); });
+            $("#fetchHTML").click(function () { alert($("#htmlContent").html()); });
+        });
+    </script>
+</body>
+
+</html>

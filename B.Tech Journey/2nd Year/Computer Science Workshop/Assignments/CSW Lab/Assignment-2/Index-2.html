@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Editor</title>
+    <style>
+        * {
+            margin: 2px;
+            overflow: hidden;
+        }
+
+        body {
+            background-color: rgb(239 235 235);
+        }
+
+        .Navbar {
+            height: 6vh;
+            background-color: rgb(239 235 235);
+            align-content: center;
+            display: flex;
+            margin-top: 10px;
+            padding: 5px;
+        }
+
+        .Image-Hold {
+            height: 4vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .Box1,
+        .Box2 {
+            display: flex;
+            justify-content: center;
+            border-radius: 6px;
+            align-items: center;
+            width: 7vw;
+            height: 4vh;
+            background-color: #4ebf4e;
+        }
+
+        .ArrowImage {
+            height: 1vh;
+        }
+
+        .Box2 {
+            width: 12vw;
+            align-items: center;
+            position: relative;
+            left: 52%;
+        }
+
+        .Page1,
+        .Page2 {
+            margin-top: 10px;
+            padding: 15px;
+            display: inline-flex;
+            height: 88vh;
+            margin-left: 7px;
+            width: 48vw;
+            padding: 5px;
+            background-color: whitesmoke;
+        }
+
+        .Page2 {
+            width: 48vw;
+        }
+
+        .DataHold1 {
+            text-align: left;
+            font-size: larger;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Navbar">
+        <img class="Image-Hold" src="./img/Tiles.png" alt="Tiles">
+        <img class="Image-Hold" src="./img/Save.png" alt="Save">
+        <img class="Image-Hold" src="./img/Auto Rotate.png" alt="Auto Rotate">
+        <img class="Image-Hold" src="./img/Mode.png" alt="Mode">
+        <div class="Box1">
+            <p>Run</p>
+            <img class="ArrowImage" src="./img/Arrrow.png" alt="Arrow">
+        </div>
+        <p style="padding: 8px;position: relative;left: 50%;font-size: large;">Result Size : 753 x 753</p>
+        <div class="Box2">
+            <p class="Text2">Get Your Own Website</p>
+        </div>
+    </div>
+    <div class="Page1">
+        <pre class="DataHold1">&lt!DOCTYPE html&gt
+&lthtml lang="en"&gt
+&lthead&gt
+&ltmeta charset="UTF-8"&gt
+&ltmeta name="viewport" content="width=device-width, initial-scale=1.0"&gt
+&lttitle&gtDocument&lt/lttitle&gt
+&lt/head&gt
+&ltbody&gt
+
+&lth1&gtThis Is A Heading&lt/lth1&gt
+&ltp&gtThis Is A Paragraph.&lt/ltp&gt
+&lt/body&gt
+
+&lt/html&gt
+        </pre>
+    </div>
+    <div class="Page2">
+        <pre class="DataHold2">
+            <h1>This Is A Heading</h1>
+            <p style="font-size: large;">This Is A Paragraph.</p>
+        </pre>
+    </div>
+</body>
+
+</html>

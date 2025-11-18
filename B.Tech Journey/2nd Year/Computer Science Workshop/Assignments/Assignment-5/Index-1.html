@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index-1</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin-top: 30vh;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            font-weight: bold;
+        }
+        .input-group input {
+            width: 95%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <h1>Welcome To SOA Management System</h1>
+    <p style="text-align: center;">Manage All SOA Data</p>
+    <div class="container">
+        <form id="loginForm" action="./Index-2.html" method="post">
+            <div class="input-group">
+                <label for="username">Username</label><br>
+                <input type="text" id="username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <br>
+                <input type="password" id="password" required>
+                <small class="error" id="passwordError"></small>
+            </div>
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#loginForm').submit(function(e) {
+                var password = $('#password').val();
+                var regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+                if (!regex.test(password)) {
+                    e.preventDefault();
+                    $('#passwordError').text("Password must include at least 1 uppercase, 1 lowercase letter, and 1 digit.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

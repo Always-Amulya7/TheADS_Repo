@@ -1,0 +1,1173 @@
+Assignment - 6
+
+Question-1 : Write a Java program to count the number of bits that are set to 1 in an integer.
+
+import java.util.*;
+class Q1{
+    public static void main(String args[]){
+        try(Scanner Sc=new Scanner(System.in)){
+            System.out.print("Enter The Number : ");
+            int Number=Sc.nextInt();
+            String Binary=ToBinary(Number);
+            System.out.println("The Binary Represenation Is : "+Binary);
+            int Count=0;
+            for (int i=0;i<Binary.length();i++){
+                if (Binary.charAt(i)=='1')
+                Count++;
+            }
+            System.out.println("The Count Of 1 Is : "+Count);
+        }
+    }
+    public static String ToBinary(int Number){
+        return Integer.toBinaryString(Number);
+    }
+}
+
+Question-2 : The parity of a binary word is 1 if the number of 1s in the word is odd; otherwise, it is 0. Write a Java program to count the parity 
+of an integer number.
+
+import java.util.*;
+class Q2{
+    public static void main(String args[]){
+        try(Scanner Sc=new Scanner(System.in)){
+            System.out.print("Enter The Number : ");
+            int Number=Sc.nextInt();
+            String Binary=ToBinary(Number);
+            System.out.println("The Binary Represenation Is : "+Binary);
+            int Count=0;
+            for (int i=0;i<Binary.length();i++){
+                if (Binary.charAt(i)=='1')
+                Count++;
+            }
+            System.out.println("The Count Of 1 Is : "+Count);
+            if (Count%2==0)
+            System.out.println("The Parity Of The Number Is : 1");
+            else
+            System.out.println("The Parity Of The Number Is : 0");
+        }
+    }
+    public static String ToBinary(int Number){
+        return Integer.toBinaryString(Number);
+    }
+}
+
+Question-3 : Write a program to swap the ith bit with jth bit of a number.
+
+import java.lang.reflect.Array;
+import java.util.*;
+class Q3{
+    public static void main(String args[]){
+        try(Scanner Sc=new Scanner(System.in)){
+            System.out.print("Enter The Number : ");
+            int Num=Sc.nextInt();
+            int Count=0,Temp=Num;
+            while(Num>0){
+                Num=Num/10;
+                Count++;
+            }
+            System.out.println("The Count Is : "+Count);
+            int[] Arr=new int[Count];
+            for (int i=0;i<Count;i++){
+                Arr[i]=Temp%10;
+                Temp=Temp/10;
+            }
+            int[] NumArr=new int[Count];
+            for (int i=0;i<Count;i++){
+                NumArr[i]=Arr[Count-1-i];
+            }
+            System.err.println("The Number Array Is : "+Arrays.toString(NumArr));
+            System.out.print("Enter The Bit For Operation : ");
+            int Bit1=Sc.nextInt();
+            System.out.print("Enter The Bit To Swap With : ");
+            int Bit2=Sc.nextInt();
+            int Store=0;
+            Store=NumArr[Bit1];
+            NumArr[Bit1]=NumArr[Bit2];
+            NumArr[Bit2]=Store;
+            System.out.println("The New Array After Swapping : "+Arrays.toString(NumArr));
+        }
+    }
+}
+
+Question-4 : Write a program that takes a 64-bit word and returns the 64-bit word consisting
+of the bits of the input word in reverse order. For example, if the input is
+alternating 1s and 0s, i.e., (1010...10), the output should be alternating 0s and
+1s, i.e.,(0101...01).
+
+import java.util.*;
+class Q4{
+    public static void main(String args[]){
+        try(Scanner Sc=new Scanner(System.in)){
+            System.out.print("Enter The 64 Bit Number : ");
+            long Number=Sc.nextLong();
+            String Value=Long.toString(Number);
+            System.out.println("The Binary Entered : "+Value);
+            char[] Array=new char[Value.length()];
+            for (int i=0;i<Array.length;i++){
+                Array[i]=Value.charAt(i);
+                if (Array[i]=='1'){
+                    Array[i]='0';
+                }
+                else{
+                    Array[i]='1';
+                }
+            }
+            System.out.print("The New 64-Bit Number Is : ");
+            for (char Element : Array){
+                System.out.print(Element);
+            }
+        }
+    }
+}
+
+Question-5 : Write a java program to copmute x × y without arithmetic operators.
+
+import java.util.*;
+class Q5 {
+    public static void main(String args[]) {
+        try (Scanner Sc = new Scanner(System.in)) {
+            System.out.print("Enter The First Number: ");
+            double Num1 = Sc.nextDouble();
+            System.out.print("Enter The Second Number: ");
+            double Num2 = Sc.nextDouble();
+            int intNum2 = (int) Num2;
+            System.out.println("The Multiplicative Product Is: " + Multiply(Num1, intNum2));
+        }
+    }
+    public static double Multiply(double Num1, int Num2) {
+        double Product = 0;
+        for (int i = 1; i <= Num2; i++) {
+            Product += Num1;
+        }
+        return Product;
+    }
+}
+
+Question-6 : Write a java program to copmute x/y without arithmetic operators.
+
+import java.util.*;
+class Q6 {
+    public static void main(String[] args) {
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.print("Enter The Dividend: ");
+            int Dividend = sc.nextInt();
+            System.out.print("Enter The Divisor: ");
+            int Divisor = sc.nextInt();
+            if ((Divisor == 0) || (Divisor<0)) {
+                System.out.println("Division by zero is not allowed.");
+            } else {
+                int result = divide(Dividend, Divisor);
+                System.out.println("The Division of " + Dividend + " / " + Divisor + " = " + result);
+            }
+        }
+    }
+    public static int divide(int Dividend, int Divisor) {
+        int Quotient = 0;
+        while (Dividend >= Divisor) {
+            Dividend -= Divisor;
+            Quotient++;
+        }
+        return Quotient;
+    }
+}
+
+Question-7 : Write a program to find x^y
+
+import java.util.*;
+class Q7 {
+    public static void main(String args[]) {
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.print("Enter The Base: ");
+            int Base = sc.nextInt();
+            System.out.print("Enter The Power: ");
+            int Exponent = sc.nextInt();
+            int Answer = 1;
+            for (int i = 0; i < Exponent; i++) {
+                Answer *= Base;
+            }
+            System.out.println("The Exponential Calculation Is: " + Answer);
+        }
+    }
+}
+
+Question-8 : Write a program to find the reverse of a number. For example, if the input is
+123 output is 321, and if the input is -245 output is -542.
+
+import java.util.Scanner;
+class Q8 {
+    public static void main(String[] args) {
+        try (Scanner Sc = new Scanner(System.in)) {
+            System.out.print("Enter The Number To Be Reversed : ");
+            int Number = Sc.nextInt();
+            boolean isNegative = Number < 0;
+            Number = Math.abs(Number);
+            System.out.print("The Reversed Number Is : ");
+            if (isNegative) {
+                System.out.print("-");
+            }
+            while (Number > 0) {
+                System.out.print(Number % 10);
+                Number = Number / 10;
+            }
+        }
+    }
+}
+
+Question-9 : Write a program to check whether a number is palindrome or not.
+
+import java.util.Scanner;
+class Q9 {
+    public static void main(String[] args) {
+        try (Scanner Sc = new Scanner(System.in)) {
+            System.out.print("Enter The Number To Be Reversed : ");
+            int Num = Sc.nextInt();
+            boolean isNegative = Num < 0;
+            int Number = Math.abs(Num);
+            int Reverse = 0;
+            int Temp = Number;
+            while (Temp > 0) {
+                Reverse = Reverse * 10 + Temp % 10;
+                Temp = Temp / 10;
+            }
+            System.out.print("The Reversed Number Is : ");
+            if (isNegative) {
+                System.out.print("-");
+            }
+            System.out.println(Reverse);
+            if (Number == Reverse) {
+                System.out.println("Yes, It Is A Palindrome");
+            } else {
+                System.out.println("No, It Is Not A Palindrome");
+            }
+        }
+    }
+}
+
+Question-10 : Write a Java program that reads two float numbers and checks whether the
+difference between these two numbers is less than ε (ε < 1).
+
+import java.util.*;
+class Q10{
+    public static void main(String args[]){
+        try(Scanner Sc=new Scanner(System.in)){
+            System.out.print("Enter Two Numbers : ");
+            float Val1=Sc.nextFloat();
+            float Val2=Sc.nextFloat();
+            float Difference=Val2-Val1;
+            if (Difference<1)
+            System.out.println("The Difference Has Value Less Than Of e");
+            else
+            System.err.println("No The Value Is Of Type Difference > e");
+        }
+    }
+}
+
+Question-11 : Write a Java program that reads an integer number and counts the number of
+digits that are even.
+
+import java.util.*;
+class Q11{
+    public static void main(String args[]){
+        try(Scanner Sc=new Scanner(System.in)){
+            System.out.print("Enter The Number For Even Check : ");
+            int Number=Sc.nextInt();
+            int Count=0;
+            while(Number>0){
+                int Digit=Number%10;
+                if (Digit%2==0){
+                    Count++;
+                }
+                Number=Number/10;
+            }
+            System.out.println("The Total Even Digits Are : "+Count);
+        }
+    }
+}
+
+Question-12 : Write a Java program that reads two integer number and create a third number
+by taking the first two digits of the first number and the last two digits of the
+second number.
+Example: Input: 45678, 312 Output:4512
+
+import java.util.*;
+class Q12 {
+    public static void main(String args[]) {
+        try (Scanner sc = new Scanner(System.in)) {
+            System.out.print("Enter two numbers: ");
+            int Num1 = sc.nextInt();
+            int Num2 = sc.nextInt();
+            String Val1 = Integer.toString(Num1);
+            String Val2 = Integer.toString(Num2);
+            if (Val1.length() < 2 || Val2.length() < 2) {
+                System.out.println("Both Numbers Must Have At Least Two Digits");
+            }
+            String Number = Val1.substring(0, 2) + Val2.substring(Val2.length() - 2);
+            System.out.println("The New Number Formed : " + Number);
+        }
+    }
+}
+
+Question-13 : Write a Java program to count the frequency of each digit of a number.
+
+import java.util.*;
+class Q13 {
+    public static void main(String[] args) {
+        try (Scanner Sc = new Scanner(System.in)) {
+            System.out.println("Enter The Number To Be Checked : ");
+            int Number = Sc.nextInt();
+            int Count = 0;
+            int Temp = Number;
+            while (Temp > 0) {
+                Count++;
+                Temp = Temp / 10;
+            }
+            int[] Arr = new int[Count];
+            Temp = Number;
+            for (int i = Arr.length - 1; i >= 0; i--) {
+                Arr[i] = Temp % 10;
+                Temp = Temp / 10;
+            }
+            System.out.println("The Array Is : " + Arrays.toString(Arr));
+            int[] FrequencyArray = Frequency(Arr);
+            for (int i = 0; i < Arr.length; i++) {
+                if (FrequencyArray[i] > 0) {
+                    System.out.println("The Frequency Of " + Arr[i] + " Is : " + FrequencyArray[i]);
+                    for (int j = i + 1; j < Arr.length; j++) {
+                        if (Arr[j] == Arr[i]) {
+                            FrequencyArray[j] = 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    public static int[] Frequency(int[] Arr) {
+        int[] FreArray = new int[Arr.length];
+        for (int i = 0; i < Arr.length; i++) {
+            int Digit = Arr[i];
+            int Count = 0;
+            for (int j = 0; j < Arr.length; j++) {
+                if (Digit == Arr[j]) {
+                    Count++;
+                }
+            }
+            FreArray[i] = Count;
+        }
+        return FreArray;
+    }
+}
+
+Question-14 : Write a Java program to check whether a number is prime or not.
+
+import java.util.*;
+class Q14 {
+    public static void main(String args[]) {
+        try (Scanner Sc = new Scanner(System.in)) {
+            System.out.print("Enter The Number To Be Checked: ");
+            int Number = Sc.nextInt();
+            if (Number <= 1) {
+                System.out.println("No, It Is Not A Prime Number");
+                return;
+            }
+            boolean isPrime = true;
+            for (int i = 2; i <= Math.sqrt(Number); i++) {
+                if (Number % i == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime)
+                System.out.println("Yes, It Is A Prime Number");
+            else
+                System.out.println("No, It Is Not A Prime Number");
+        }
+    }
+}
+
+Question-15 : Write a program to print the first 100th prime number.
+
+import java.util.*;
+class Q15 {
+    public static void main(String args[]) {
+        Scanner Sc=new Scanner(System.in);
+        int Count = 0;
+        int Num = Sc.nextInt();
+        int Target = 100;
+        while (Count < Target) {
+            boolean isPrime = true;
+            for (int i = 2; i <= Math.sqrt(Num); i++) {
+                if (Num % i == 0) {
+                    isPrime = false;
+                    break;
+                }
+            }
+            if (isPrime) {
+                Count++;
+            }
+            if (Count == Target) {
+                System.out.println("The 100th Prime Number Is : " + Num);
+            }
+            Num++;
+        }
+    }
+}
+
+Question-16 : Write a Java program to print the prime number in a range.
+
+import java.util.*;
+
+class Q16 {
+    public static void main(String args[]) {
+        try (Scanner Sc = new Scanner(System.in)) {
+            System.out.print("Enter The Range For Primes : ");
+            int Lower = Sc.nextInt();
+            int Upper = Sc.nextInt();
+            if (Lower > Upper) {
+                System.out.println("Invalid Range");
+            }
+            System.out.print("The Prime Numbers In The Range Are: ");
+            for (int i = Lower; i <= Upper; i++) {
+                if (isPrime(i)) {
+                    System.out.print(i + " ");
+                }
+            }
+        }
+    }
+    public static boolean isPrime(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        for (int j = 2; j <= Math.sqrt(num); j++) {
+            if (num % j == 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+
+Question-17 : Write a program that returns true if the number is even else returns false.
+Note: don’t use if else.
+
+import java.util.*;
+class Q17{
+    public static void main(String args[]){
+        try(Scanner Sc=new Scanner(System.in)){
+            System.out.print("Enter The Number To be Checked : ");
+            int Number=Sc.nextInt();
+            boolean Check=(Number%2==0)?true:false;
+            System.out.println("The Number "+Number+" Is Even ? "+Check);
+        }
+    }
+}
+
+Output--
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q1.java 
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q1
+Enter The Number : 15
+The Binary Represenation Is : 1111
+The Count Of 1 Is : 4
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q2.java 
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q2
+Enter The Number : 12
+The Binary Represenation Is : 1100
+The Count Of 1 Is : 2
+The Parity Of The Number Is : 1
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q3.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q3
+Enter The Number : 684521
+The Count Is : 6
+The Number Array Is : [6, 8, 4, 5, 2, 1]
+Enter The Bit For Operation : 0
+Enter The Bit To Swap With : 3
+The New Array After Swapping : [5, 8, 4, 6, 2, 1]
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q4.java
+
+D:\VS Code Files\HTML Files\Assignments\AsAssignment-6>javac Q4.java
+
+D:\VS Code Files\HTML Files\Assignment
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q4
+Enter The 64 Bit Number : 12345       
+The Binary Entered : 12345
+The New 64-Bit Number Is : 01111      
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q5.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q5
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q5
+Enter The First Number: 15
+Enter The Second Number: 15
+The Multiplicative Product Is: 225.0    
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q6.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q6
+Enter The Dividend: 10
+Enter The Divisor: 5
+The Division of 10 / 5 = 2
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q7.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q7
+Enter The Base: 2
+Enter The Power: 5
+The Exponential Calculation Is: 32      
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q8.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q8
+Enter The Number To Be Reversed : 12345 
+The Reversed Number Is : 54321
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q9.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q9
+Enter The Number To Be Reversed : 121
+The Reversed Number Is : 121
+Yes, It Is A Palindrome
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q10.java 
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q10
+Enter Two Numbers : 1 1
+The Difference Has Value Less Than Of e 
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q11.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q11
+Enter The Number For Even Check : 22
+The Total Even Digits Are : 2
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q12.java 
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q12
+Enter two numbers: 45678 312
+The New Number Formed : 4512
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q13.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q13
+Enter The Number To Be Checked : 11211
+The Array Is : [1, 1, 2, 1, 1]
+The Frequency Of 1 Is : 4
+The Frequency Of 2 Is : 1
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q14.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q14
+Enter The Number To Be Checked: 5
+Yes, It Is A Prime Number
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q15.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q15
+Enter A Number : 15
+The 100th Prime Number Is : 577
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q16.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q16
+Enter The Range For Primes : 2 19
+The Prime Numbers In The Range Are: 2 3 5 7 11 13 17 19 
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>javac Q17.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-6>java Q17
+Enter The Number To be Checked : 5
+The Number 5 Is Even ? false
+
+Assignment - 7
+
+Explain the following concepts:
+• Wrapper class
+• Need for the wrapper class
+• Different techniques of wrapping
+• Autoboxing
+• Unboxing
+
+
+Q1. Write a program to convert an integer to an Integer object.
+(a) Autoboxing
+(b) Using Constructor
+
+import java.util.*;
+class Q1 {
+    public static void main(String[] args) {
+        Scanner Sc=new Scanner(System.in);
+        System.out.print("Enter The Number: ");
+        //Part-A
+        int Num = Sc.nextInt();
+        Integer Obj = Num;
+        System.out.println("Integer Object Autoboxing: " + Obj);
+    }
+}
+
+import java.util.*;
+class Q1_1 {
+    public static void main(String[] args) {
+        Scanner Sc=new Scanner(System.in);
+        System.out.print("Enter The Number: ");
+        //Part-B
+        int Num = Sc.nextInt();
+        Integer obj = new Integer(Num);
+        System.out.println("Integer Object Using Constructor: " + obj);
+    }
+}
+
+Q2. Write a program to convert a float to a Float object.
+(a) Autoboxing
+(b) Using Constructor
+
+import java.util.Scanner;
+public class Q2 {
+    public static void main(String[] args) {
+        Scanner Sc=new Scanner(System.in);
+        System.out.print("Enter The Number: ");
+        float Num=Sc.nextInt();
+        //Part-A
+        Float obj = Num;
+        System.out.println("Float Object: " + obj);
+    }
+}
+
+import java.util.Scanner;
+public class Q2_1 {
+    public static void main(String[] args) {
+        Scanner Sc=new Scanner(System.in);
+        System.out.print("Enter The Number: ");
+        float Num=Sc.nextInt();
+        //Part-B
+        Float obj = new Float(Num);
+        System.out.println("Float Object: " + obj);
+    }
+}
+
+Q3. Write a program to convert a double to a Double object.
+(a) Autoboxing
+(b) Using Constructor
+
+import java.util.*;
+class Q3 {
+    public static void main(String[] args) {
+        Scanner Sc=new Scanner(System.in);
+        System.out.print("Enter The Number: ");
+        double Num=Sc.nextInt();
+        //Part-A
+        Double obj = Num;
+        System.out.println("Double Object: " + obj);
+    }
+}
+
+import java.util.*;
+class Q3 {
+    public static void main(String[] args) {
+        Scanner Sc=new Scanner(System.in);
+        System.out.print("Enter The Number: ");
+        double Num=Sc.nextInt();
+        //Part-B
+        Double obj = new Double(Num); // Using constructor
+        System.out.println("Double Object: " + obj);
+    }
+}
+
+
+Q4. Write a program to convert a boolean to a Boolean object.
+(a) Autoboxing
+(b) Using Constructor
+
+public class Q4 {
+    public static void main(String[] args) {
+        //Part-A
+        boolean flag = true;
+        Boolean obj = flag; // Autoboxing
+        System.out.println("Boolean Object: " + obj);
+    }
+}
+
+public class Q4 {
+    public static void main(String[] args) {
+        //Part-B
+        boolean flag = true;
+        Boolean obj = new Boolean(flag); // Using constructor
+        System.out.println("Boolean Object: " + obj);
+    }
+}
+
+Q5. Write a program to read an integer as a string and convert it to an Integer object.
+
+import java.util.Scanner;
+
+public class Q5 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter An Integer: ");
+        String input = scanner.nextLine();
+        Integer obj = Integer.valueOf(input);
+        System.out.println("Integer Object: " + obj);
+    }
+}
+
+Q6. Write a program to read a float as a string and convert it to a Float object.
+
+import java.util.Scanner;
+
+public class Q6 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter A Float: ");
+        String input = scanner.nextLine();
+        Float obj = Float.valueOf(input);
+        System.out.println("Float Object: " + obj);
+    }
+}
+
+Q7. Write a program to read a double as a string and convert it to a Double object.
+
+import java.util.Scanner;
+
+public class Q7 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter A Double: ");
+        String input = scanner.nextLine();
+        Double obj = Double.valueOf(input);
+        System.out.println("Double Object: " + obj);
+    }
+}
+
+Q8. Write a program to read a boolean as a string and convert it to a Boolean object.
+Explain the concept of converting a base data type to an object type(Wrapping) using the
+valueOf() method.
+
+import java.util.Scanner;
+
+public class Q8 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter True/False: ");
+        String input = scanner.nextLine();
+        Boolean obj = Boolean.valueOf(input);
+        System.out.println("Boolean Object: " + obj);
+    }
+}
+
+Q9. Write a program that reads to convert int, float, double, and boolean as string
+types and convert them to respective object types using the valueOf method.
+
+import java.util.Scanner;
+
+public class Q9 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Int, Float, Double, And Boolean : ");
+        int intVal = Integer.valueOf(scanner.next());
+        float floatVal = Float.valueOf(scanner.next());
+        double doubleVal = Double.valueOf(scanner.next());
+        boolean boolVal = Boolean.valueOf(scanner.next());
+
+        System.out.println("Integer Object: " + intVal);
+        System.out.println("Float Object: " + floatVal);
+        System.out.println("Double Object: " + doubleVal);
+        System.out.println("Boolean Object: " + boolVal);
+    }
+}
+
+Q10. Write a program to design a simple calculator (only +,-,*,/ operations). The
+calculator works as follows:
+Input: ”123+345”
+Output: Sum=468
+Input: ”5*10”
+Output: mul=50
+Explain the concept of converting object type to base type.
+Explain the method used to do so.
+
+import java.util.Scanner;
+class Q10 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter An Expression: ");
+        String expression = scanner.nextLine();
+        char operator = expression.replaceAll("\\d", "").charAt(0);
+        String[] numbers = expression.split("[-+*/]");
+        int num1 = Integer.parseInt(numbers[0]);
+        int num2 = Integer.parseInt(numbers[1]);
+        switch (operator) {
+            case '+':
+                System.out.println("Sum = " + (num1 + num2));
+                break;
+            case '-':
+                System.out.println("Difference = " + (num1 - num2));
+                break;
+            case '*':
+                System.out.println("Product = " + (num1 * num2));
+                break;
+            case '/':
+                System.out.println("Quotient = " + (num1 / num2));
+                break;
+        }
+    }
+}
+
+Q11. Write a program that reads a double number as a sting and converts it to a
+double base type.
+
+import java.util.Scanner;
+
+public class Q11 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter A Double As A String: ");
+        String input = scanner.nextLine();
+        double value = Double.parseDouble(input);
+        System.out.println("Double Base Type: " + value);
+    }
+}
+
+Q12. Write a program that reads an integer number as a sting and converts it to an
+int base type.
+Explain the following concepts:
+• Arrays
+• Conditional Statements
+• Loops
+
+import java.util.Scanner;
+
+class Q12 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter An Integer As A String: ");
+        String input = scanner.nextLine();
+        int value = Integer.parseInt(input);
+        System.out.println("Integer Base Type: " + value);
+    }
+}
+
+Q13. Write a program that prompts the user to input a positive integer. It should then
+print the multiplication table of that number.
+
+import java.util.Scanner;
+
+public class Q13 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter A Positive Integer: ");
+        int Num = scanner.nextInt();
+        System.out.println("Multiplication Table For " + Num);
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(Num + " x " + i + " = " + (Num * i));
+        }
+    }
+}
+
+Q14. Write a java program to calculate HCF and LCM of Two given number.
+
+import java.util.Scanner;
+
+public class Q14 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter Two Numbers: ");
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        int hcf = 1;
+        for (int i = 1; i <= a && i <= b; i++) {
+            if (a % i == 0 && b % i == 0)
+                hcf = i;
+        }
+        int lcm = (a * b) / hcf;
+        System.out.println("HCF: " + hcf);
+        System.out.println("LCM: " + lcm);
+    }
+}
+
+Q15. Write a program to calculate the sum of following series where n is input by
+user. 1 + 1/2 + 1/3 + 1/4 + 1/5 +............1/n
+
+import java.util.Scanner;
+public class Q15 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter The Value Of N: ");
+        int n = scanner.nextInt();
+        double sum = 0;
+        for (int i = 1; i <= n; i++) {
+            sum += 1.0 / i;
+        }
+        System.out.println("Sum Of The Series: " + sum);
+    }
+}
+
+Q16. Write a program to enter the numbers till the user wants and at the end the
+program should display the largest and smallest numbers entered.
+
+import java.util.Scanner;
+public class Q16 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int largest = Integer.MIN_VALUE;
+        int smallest = Integer.MAX_VALUE;
+        String choice;
+        do {
+            System.out.print("Enter A Number: ");
+            int num = scanner.nextInt();
+            if (num > largest) largest = num;
+            if (num < smallest) smallest = num;
+            System.out.print("Do You Want To Continue?: ");
+            choice = scanner.next();
+        } while (choice.equalsIgnoreCase("yes"));
+        System.out.println("Largest Number: " + largest);
+        System.out.println("Smallest Number: " + smallest);
+    }
+}
+
+Q17. Write a java program to find the minimum and maximum element in an array.
+
+import java.util.Scanner;
+public class Q17 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter The Size Of The Array: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        System.out.print("Enter The Elements: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        int min = arr[0], max = arr[0];
+        for (int num : arr) {
+            if (num < min) min = num;
+            if (num > max) max = num;
+        }
+        System.out.println("Minimum: " + min);
+        System.out.println("Maximum: " + max);
+    }
+}
+
+Q18. Write java program to find the Kth largest and Kth smallest number in an
+array.
+
+import java.util.Arrays;
+import java.util.Scanner;
+public class Q18 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter The Size Of The Array: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        System.out.print("Enter The Elements: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        System.out.print("Enter The Value Of K: ");
+        int k = scanner.nextInt();
+        Arrays.sort(arr);
+        System.out.println("Kth Smallest: " + arr[k - 1]);
+        System.out.println("Kth Largest: " + arr[n - k]);
+    }
+}
+
+Q19. Write a java program to reverse the given array. (Without using Library
+function)
+
+import java.util.Scanner;
+public class Q19 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter The Size Of The Array: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        System.out.print("Enter The Elements: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        System.out.print("Reversed Array: ");
+        for (int i = n - 1; i >= 0; i--) {
+            System.out.print(arr[i] + " ");
+        }
+    }
+}
+
+Q20. Write a java program to sort the given array. (Without using Library function)
+
+import java.util.Scanner;
+
+public class Q20 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter The Size Of The Array: ");
+        int n = scanner.nextInt();
+        int[] arr = new int[n];
+        System.out.print("Enter The Elements: ");
+        for (int i = 0; i < n; i++) {
+            arr[i] = scanner.nextInt();
+        }
+        // Bubble sort
+        for (int i = 0; i < n - 1; i++) {
+            for (int j = 0; j < n - i - 1; j++) {
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                }
+            }
+        }
+    System.out.print("Sorted Array: ");
+        for (int num : arr) {
+            System.out.print(num + " ");
+        }
+    }
+}
+
+Output--
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q1.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q1
+Enter The Number: 5
+Integer Object Autoboxing: 5
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q2.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q2
+Enter The Number: 7
+Float Object: 7.0
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q3.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q3
+Enter The Number: 10
+Double Object: 10.0
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q4.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q4
+Boolean Object: true
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q5.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q5
+Enter An Integer: 10
+Integer Object: 10
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q6.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q6
+Enter A Float: 6.5
+Float Object: 6.5
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q6.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q6
+Enter A Float: 6.5
+Float Object: 6.5
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q7.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q7
+Enter A Double: 6.66
+Double Object: 6.66
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q8.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q8
+Enter True/False: True
+Boolean Object: true
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q9.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q9
+Enter Int, Float, Double, And Boolean : 10 10.0 10.5 true
+Integer Object: 10
+Float Object: 10.0
+Double Object: 10.5
+Boolean Object: true
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q11.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q11
+Enter A Double As A String: 10
+Double Base Type: 10.0
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q12.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q12
+Enter An Integer As A String: 8
+Integer Base Type: 8
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q13.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q13
+Enter A Positive Integer: 10
+Multiplication Table For 10
+10 x 1 = 10
+10 x 2 = 20
+10 x 3 = 30
+10 x 4 = 40
+10 x 5 = 50
+10 x 6 = 60
+10 x 7 = 70
+10 x 8 = 80
+10 x 9 = 90
+10 x 10 = 100
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q14.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q14
+Enter Two Numbers: 5 15
+HCF: 5
+LCM: 15
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q15.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q15
+Enter The Value Of N: 15
+Sum Of The Series: 3.3182289932289937   
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q16.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q16
+Enter A Number: 10
+Do You Want To Continue?: Yes
+Enter A Number: 15
+Do You Want To Continue?: Yes
+Enter A Number: 25
+Do You Want To Continue?: No
+Largest Number: 25
+Smallest Number: 10
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q17.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q17
+Enter The Size Of The Array: 5
+Enter The Elements: 1 5 3 4 2
+Minimum: 1
+Maximum: 5
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q18.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q18
+Enter The Size Of The Array: 5
+Enter The Elements: 6 9 5 7 8
+Enter The Value Of K: 1
+Kth Smallest: 5
+Kth Largest: 9
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q19.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q19
+Enter The Size Of The Array: 5
+Enter The Elements: 3 5 1 4 2
+Reversed Array: 2 4 1 5 3
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>javac Q20.java
+
+D:\VS Code Files\HTML Files\Assignments\Assignment-7>java Q20
+Enter The Size Of The Array: 5
+Enter The Elements: 3 5 2 4 1
+Sorted Array: 1 2 3 4 5 

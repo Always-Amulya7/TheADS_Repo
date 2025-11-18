@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Auto Talk | Admin</title>
+    <link rel="shortcut icon" href="./img/Login.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="./admin.css">
+</head>
+
+<body>
+    <header>
+        <h1>|| Auto Talk Admin Panel ||</h1>
+    </header>
+    <main>
+        <section id="controls">
+            <button id="toggle-video">Video Toggle</button>
+            <button id="toggle-voice">Voice Toggle</button>
+        </section>
+        <section id="participants">
+            <h2>Connected Participants</h2>
+            <table>
+                <thead>
+                    <tr class="ToDis">
+                        <th>Name</th>
+                        <th>Room Number</th>
+                        <th>UID</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="participants-list">
+                </tbody>
+            </table>
+        </section>
+    </main>
+    <script src="./admin.js" defer></script>
+    <script src="/Meeting/main.js"></script>
+</body>
+
+</html>

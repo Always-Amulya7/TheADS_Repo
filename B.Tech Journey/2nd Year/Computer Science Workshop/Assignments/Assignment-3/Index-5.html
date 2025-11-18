@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index-5</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            transform: translateY(40vh) translateX(42vw);
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <ul id="topicList">
+        <li>Getting Started with Full Stack</li>
+        <li>HTML</li>
+        <li>CSS</li>
+    </ul>
+
+    <button id="Here">Click</button>
+
+    <script>
+        $(document).ready(function () {
+            $("#Here").click(function () {
+                $("#topicList").append("<li>JavaScript</li>"); // Add at end
+                $("#topicList").prepend("<li>Introduction to Full Stack Development</li>"); // Add at beginning
+                $("#topicList").after("<p>Topics updated</p>"); // Add after the list
+                $("#topicList").before("<h3>List of Topics Covered</h3>"); // Add before the list
+            })
+        });
+    </script>
+</body>
+
+</html>

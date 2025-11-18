@@ -1,0 +1,48 @@
+<!-- Imagine you are designing a webpage for a product display. You want to style the product container using the CSS box
+model. The product container should have a content width of 400px, padding of 20px on all sides, a border of 10px, and a
+margin of 15px around it. Inside this container, place an image of the product along with a brief description. Arrange
+three products in a row and ensure that the images and descriptions are properly aligned within each container. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Objective-2</title>
+    <style>
+        .Box {
+            display: flex;
+        }
+
+        .Container {
+            width: 400px;
+            padding: 20px;
+            border: 10px solid #ccc;
+            margin: 15px;
+            text-align: center;
+        }
+
+        .ImageHold {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Box">
+        <div class="Container">
+            <img class="ImageHold" src="./img/Login.jpg" alt="Product 1">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut, accusantium!</p>
+        </div>
+        <div class="Container">
+            <img class="ImageHold" src="./img/Login.jpg" alt="Product 2">
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla, necessitatibus.</p>
+        </div>
+        <div class="Container">
+            <img class="ImageHold" src="./img/Login.jpg" alt="Product 3">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusantium, sunt?</p>
+        </div>
+    </div>
+</body>
+
+</html>

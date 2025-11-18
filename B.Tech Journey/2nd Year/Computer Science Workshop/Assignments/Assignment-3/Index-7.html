@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index-7</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+    </style>
+</head>
+<body>
+    <table border="1" id="studentTable">
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+        </tr>
+        <tr>
+            <td>Amulya Shrivastava</td>
+            <td>18</td>
+        </tr>
+    </table>
+    <br>
+    Name: <input type="text" id="name">
+    <br><br>
+    Age: &nbsp;&nbsp;&nbsp;<input type="text" id="age">
+    <br><br>
+    <button id="addRow">Add Row</button>
+    <button id="changeColor">Change Color</button>
+
+    <script>
+        $(document).ready(function() {
+            $("#addRow").click(function() {
+                let name = $("#name").val();
+                let age = $("#age").val();
+                $("#studentTable").append("<tr><td>" + name + "</td><td>" + age + "</td></tr>");
+            });
+            $("#changeColor").click(function() {
+                $("#studentTable td").css("color", "red");
+            });
+        });
+    </script>
+</body>
+</html>

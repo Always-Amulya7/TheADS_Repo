@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Layout-2</title>
+    <style>
+        * {
+            overflow: hidden;
+        }
+
+        .Container {
+            height: 98vh;
+            border-radius: 30px;
+        }
+
+        .Navbar {
+            height: 15vh;
+            background-color: red;
+            border-radius: 30px;
+        }
+
+        .Box {
+            border: 5px solid #26bfbf;
+            margin: 40px;
+            height: 20vh;
+            padding: 15px;
+            padding-left: 60px;
+            display: flex;
+        }
+
+        .Box img {
+            display: flex;
+            justify-content: left;
+            border-radius: 70px;
+        }
+
+        .Box1 {
+            margin-left: 15px;
+            border: 2px solid #26bfbf;
+            width: 78vw;
+        }
+
+        .ImageHold,
+        .Content {
+            display: flex;
+            align-items: center;
+            height: 40vh;
+        }
+
+        .ImageHold {
+            padding: 20px;
+            width: 20%;
+            margin-left: 8%;
+            justify-content: center;
+            background-color: orange;
+        }
+
+        .ImageHold img {
+            border: 2px solid black;
+            width: 80%;
+        }
+
+        .Content {
+            border: 5px solid #26bfbf;
+            position: relative;
+            width: 64.4vw;
+            margin-left: 10px;
+            top: -46.1%;
+            left: 31%;
+            height: 45%;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Container">
+        <div class="Navbar"></div>
+        <div class="Box">
+            <img src="./img/Login.jpg" alt="Picture-1" height="100%">
+            <div class="Box1">
+            </div>
+        </div>
+        <div class="ImageHold">
+            <img src="./img/Login.jpg" alt="Picture-2">
+        </div>
+        <div class="Content">
+        </div>
+    </div>
+</body>
+
+</html>

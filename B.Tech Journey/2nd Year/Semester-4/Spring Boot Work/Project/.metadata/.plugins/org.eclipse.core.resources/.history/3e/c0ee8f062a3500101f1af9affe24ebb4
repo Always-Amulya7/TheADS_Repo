@@ -1,0 +1,37 @@
+package Quiz_Workspace.Quiz_Work;
+
+public class Work {
+	private int LowerNo,HigherNo;
+
+	public int getLowerNo(){
+		return LowerNo;
+	}
+
+	public void setLowerNo(int LowerNo){
+		this. LowerNo = LowerNo;
+	}
+
+	public int getHigherNo(){
+		return HigherNo;
+	}
+
+	public void setHigherNo(int HigherNo){
+		this. HigherNo = HigherNo;
+	}
+
+	public Work(int LowerNo, int HigherNo) {
+		super();
+		this.LowerNo = LowerNo;
+		this.HigherNo = HigherNo;
+	}
+
+	public Work() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	@Override
+	public String toString() {
+		return "Work [LowerNo=" + LowerNo + ", HigherNo=" + HigherNo + "]";
+	}
+}

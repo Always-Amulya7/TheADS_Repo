@@ -1,0 +1,856 @@
+Q1.Write a Java program with a Car class having private fields (make, model), a parameterized constructor, getter, and setter methods. In the CarTester class, 
+instantiate myCar1 with values and myCar2 with null. Print their initial details, update myCar2 using setters, and print the updated details.
+
+import java.util.*;
+
+import javax.security.sasl.SaslClientFactory;
+
+class Car {
+    private String make;
+    private String model;
+
+    Car(String make, String model) {
+        this.make = make;
+        this.model = model;
+        System.out.println("Welcome To Car Shop");
+    }
+
+    void set(String make, String model) {
+        this.make = make;
+        this.model = model;
+    }
+
+    void get() {
+        System.out.println("The Make Is: " + make);
+        System.out.println("The Model Is: " + model);
+    }
+}
+
+class CarTester {
+    public static void main(String args[]) {
+        System.out.println("My Car Details-1: ");
+        Car myCar1 = new Car("Indian", "Fortuner");
+        myCar1.get();
+        System.out.println("My Car Details-2: ");
+        Car myCar2 = new Car(null, null);
+        myCar2.set("German", "Maserati");
+        myCar2.get();
+    }
+}
+
+
+Q2.Design a Java class called Rectangle with private attributes length and width. Include a constructor to initialize these attributes, as well as setter and 
+getter methods for each attribute. Additionally, implement methods to calculate the area and perimeter of the rectangle. Write a main method to create an object
+ of the Rectangle class, set values for its attributes, and display the area and perimeter.
+
+import java.util.*;
+
+class Main {
+    private double Length;
+    private double Width;
+
+    Main(double Length, double Width) {
+        this.Length = Length;
+        this.Width = Width;
+        System.out.println("The Rectangle Calculations: ");
+    }
+
+    void set(double Length, double Width) {
+        this.Length = Length;
+        this.Width = Width;
+    }
+
+    void get(){
+        System.out.println("The Area Of Rectangle Is: "+Area(Length,Width));
+        System.out.println("The Perimeter Of Rectangle Is: "+Perimeter(Length,Width));
+    }
+
+    double Area(double Length,double Width){
+        return Length*Width;
+    }
+
+    double Perimeter(double Length,double Width){
+        return 2*(Length+Width);
+    }
+}
+
+class Calculations {
+    public static void main(String args[]) {
+        Main Calculate = new Main(5.5, 9.5);
+        System.out.println("By Parameterized Calling\n");
+        Calculate.get();
+        System.out.println("By Setter And Getter Method\n");
+        Calculate.set(9.5, 5.5);
+        Calculate.get();
+    }
+}
+
+Q3.Write a Java program that defines a Point class with attributes X and Y, and includes a parameterized constructor to initialize these attributes. Implement a
+ copy constructor to create a new point object with the same attribute values. Ensure that modifications made to one object do not affect the other. Utilize 
+ getter and setter methods to retrieve and update the attribute values.
+
+import java.util.*;
+
+class Point {
+    private double X;
+    private double Y;
+
+    Point(double X, double Y) {
+        this.X = X;
+        this.Y = Y;
+    }
+
+    void Copy(double X, double Y) {
+        this.X = X;
+        this.Y = Y;
+    }
+
+    void set(double X, double Y) {
+        this.X = X;
+        this.Y = Y;
+    }
+
+    void get() {
+        System.out.println("The Value Of X And Y Is: (" + X + ", " + Y + ")");
+    }
+}
+
+class Coordinate {
+    public static void main(String args[]){
+        try(Scanner Sc=new Scanner(System.in)){
+            System.out.print("Enter X And Y Coordinate Values: ");
+            double X=Sc.nextDouble();
+            double Y=Sc.nextDouble();
+            System.out.println("\nBy Using Parameterized Constructor");
+            Point Coord1=new Point(X, Y);
+            Coord1.get();
+            Point Coord2=new Point(X,Y);
+            System.out.println("By Using The Setter And Getter Method");
+            Coord2.set(95.3, -5.4);
+            Coord2.get();
+            System.err.println("By Using The Copy Method To Retrieve");
+            Coord2.Copy(X, Y);
+            Coord2.get();
+        }
+    }
+}
+
+Q4.Write a program to create an Image class with attributes imageWidth, imageHeight, and colorCode. Add the required constructor, set methods, get methods, and 
+toString method. Create the object of the image class using the default and parameterized constructor and print the details of the object.
+
+class Image {
+    private double imageWidth;
+    private double imageHeight;
+    private String colorCode;
+
+    Image() {
+        this.imageWidth = 0;
+        this.imageHeight = 0;
+        this.colorCode = "Unknown";
+    }
+
+    Image(double imageWidth, double imageHeight, String colorCode) {
+        this.imageWidth = imageWidth;
+        this.imageHeight = imageHeight;
+        this.colorCode = colorCode;
+    }
+
+    void setImageWidth(double imageWidth) {
+        this.imageWidth = imageWidth;
+    }
+
+    void setImageHeight(double imageHeight) {
+        this.imageHeight = imageHeight;
+    }
+
+    void setColorCode(String colorCode) {
+        this.colorCode = colorCode;
+    }
+
+    double getImageWidth() {
+        return imageWidth;
+    }
+
+    double getImageHeight() {
+        return imageHeight;
+    }
+
+    String getColorCode() {
+        return colorCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Image Width: " + imageWidth + ", Image Height: " + imageHeight + ", Color Code: " + colorCode;
+    }
+}
+
+class ImgDetails {
+    public static void main(String args[]) {
+        Image defaultImg = new Image();
+        System.out.println("\nDefault Constructor: " + defaultImg.toString());
+        Image paramImg = new Image(45.5, 91, "RGBA");
+        System.out.println("\nParameterized Constructor: " + paramImg.toString());
+        paramImg.setImageWidth(50);
+        paramImg.setImageHeight(100);
+        paramImg.setColorCode("RGB");
+        System.out.println("\nAfter Setting New Values: " + paramImg.toString());
+    }
+}
+
+Q5.Create an ImageLibrary, which contains a set of image objects (from Q4) and operations such as searching an image, inserting an image, and getting an image.
+ Create an ImageController class to manage the program execution and call the methods to create and manipulate images.
+
+import java.util.*;
+
+class ImageLibrary {
+    Scanner sc = new Scanner(System.in);
+    Vector<Image> store = new Vector<>();
+    ImageLibrary() {
+        System.out.println("Welcome To Image Library");
+        String choice = "";
+        while (true) {
+            System.out.println("Do you want to add an image (Yes/No)?");
+            choice = sc.nextLine();
+            if (!choice.equalsIgnoreCase("Yes")) {
+                break;
+            }
+            System.err.println("Enter The Image Properties: ");
+            double x = sc.nextDouble();
+            double y = sc.nextDouble();
+            sc.nextLine();
+            String color = sc.nextLine();
+            Image obj = new Image(x, y, color);
+            store.add(obj);
+        }
+        System.out.println("Exit Image Library.");
+    }
+    
+
+    boolean search(double x, double y, String color) {
+        for (Image img : store) {
+            if (img.getImageWidth() == x && img.getImageHeight() == y && img.getColorCode().equalsIgnoreCase(color)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    void insert(double x, double y, String color) {
+        Image img = new Image(x, y, color);
+        store.add(img);
+        System.out.println("Image Inserted Successfully.");
+    }
+
+    void getImag(double x, double y, String color) {
+        for (Image img : store) {
+            if (img.getImageWidth() == x && img.getImageHeight() == y && img.getColorCode().equalsIgnoreCase(color)) {
+                System.out.println("Image Found: " + img);
+                return;
+            }
+        }
+        System.out.println("Image Not Found.");
+    }
+}
+
+public class ImageController {
+    public static void main(String[] args) {
+        ImageLibrary main = new ImageLibrary();
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.println("Enter The Characteristics: ");
+        double x = sc.nextDouble();
+        double y = sc.nextDouble();
+        sc.nextLine();
+        String color = sc.nextLine();
+        System.out.println("The Search Was Successful? " + main.search(x, y, color));
+        
+        System.out.println("Perform Insertion? ");
+        double x1 = sc.nextDouble();
+        double y1 = sc.nextDouble();
+        sc.nextLine();
+        String color1 = sc.nextLine();
+        main.insert(x1, y1, color1);
+        
+        System.out.println("Need The Image? ");
+        double x2 = sc.nextDouble();
+        double y2 = sc.nextDouble();
+        sc.nextLine();
+        String color2 = sc.nextLine();
+        main.getImag(x2, y2, color2);
+        sc.close();
+    }
+}
+
+Q6.Develop a Java-based College Management System to model the relationship between colleges and students. Create a College class with attributes collegeName and
+collegeLoc, and a Student class with studentId, studentName, and a reference to a College object. Implement a constructor in Student to initialize these
+attributes and a displayStudentInfo() method to print student and college details. In the MainApp class, instantiate at least two College and Student objects, 
+enroll each student in one of the colleges, and display all details using appropriate methods.
+
+import java.util.Scanner;
+
+class College {
+    private String collegeName, collegeLoc;
+
+    void set(String collegeName, String collegeLoc) {
+        this.collegeName = collegeName;
+        this.collegeLoc = collegeLoc;
+    }
+
+    String getCollege() {
+        return collegeName + ", " + collegeLoc;
+    }
+}
+
+class Student {
+    private String studentId, studentName;
+    private College college;
+
+    void set(String studentId, String studentName, College college) {
+        this.studentId = studentId;
+        this.studentName = studentName;
+        this.college = college;
+    }
+
+    String get() {
+        return studentId + ", " + studentName + " College: " + college.getCollege();
+    }
+}
+
+public class MainApp {
+    public static void main(String[] args) {
+        try (Scanner sc = new Scanner(System.in)) {
+            College college = new College();
+            Student student = new Student();
+            boolean quit = false;
+            while (!quit) {
+                System.out.print("Wish For Enrollment? ");
+                String choice = sc.nextLine();
+                if (choice.equalsIgnoreCase("Yes")) {
+                    System.out.println("Enter College Name and Location: ");
+                    String clgName = sc.nextLine();
+                    String clgLoc = sc.nextLine();
+                    college.set(clgName, clgLoc);
+                    System.out.println("Enter Student ID And Name: ");
+                    String studId = sc.nextLine();
+                    String studName = sc.nextLine();
+                    student.set(studId, studName, college);
+                    System.out.println("The Details Are: " + student.get());
+                } else {
+                    quit = true;
+                }
+            }
+        }
+    }
+}
+
+Q7.Develop a Java program for a library system using encapsulation, abstraction, and inheritance. Create an abstract LibraryResource class with private 
+attributes (title, author), a constructor, getters, setters, and an abstract displayDetails() method. Extend it into Book, Magazine, and DVD classes, each
+ adding a specific attribute (pageCount, issueDate, duration), along with constructors, getters, setters, and overridden displayDetails() methods. In the 
+ LibrarySystem class, instantiate various resources and call displayDetails() to display their information.
+
+abstract class LibraryResource {
+    private String title;
+    private String author;
+
+    public LibraryResource(String title, String author) {
+        this.title = title;
+        this.author = author;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public abstract void displayDetails();
+}
+
+class Book extends LibraryResource {
+    private int pageCount;
+
+    public Book(String title, String author, int pageCount) {
+        super(title, author);
+        this.pageCount = pageCount;
+    }
+
+    public int getPageCount() {
+        return pageCount;
+    }
+
+    public void setPageCount(int pageCount) {
+        this.pageCount = pageCount;
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("Book: " + getTitle() + ", Author: " + getAuthor() + ", Pages: " + pageCount);
+    }
+}
+
+class Magazine extends LibraryResource {
+    private String issueDate;
+
+    public Magazine(String title, String author, String issueDate) {
+        super(title, author);
+        this.issueDate = issueDate;
+    }
+
+    public String getIssueDate() {
+        return issueDate;
+    }
+
+    public void setIssueDate(String issueDate) {
+        this.issueDate = issueDate;
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("Magazine: " + getTitle() + ", Author: " + getAuthor() + ", Issue Date: " + issueDate);
+    }
+}
+
+class DVD extends LibraryResource {
+    private int duration;
+
+    public DVD(String title, String author, int duration) {
+        super(title, author);
+        this.duration = duration;
+    }
+
+    public int getDuration() {
+        return duration;
+    }
+
+    public void setDuration(int duration) {
+        this.duration = duration;
+    }
+
+    @Override
+    public void displayDetails() {
+        System.out.println("DVD: " + getTitle() + ", Author: " + getAuthor() + ", Duration: " + duration + " mins");
+    }
+}
+
+public class LibrarySystem {
+    public static void main(String[] args) {
+        Book book = new Book("Harry Potter", "J.K Rowling", 512);
+        Magazine magazine = new Magazine("Indian Times", "Sweta", "March 2023");
+        DVD dvd = new DVD("Intestellar", "Christopher Nolan", 9000);
+
+        book.displayDetails();
+        magazine.displayDetails();
+        dvd.displayDetails();
+    }
+}
+
+Q8.Develop a Java banking application using polymorphism with three classes: Account, SavingsAccount, and CurrentAccount. The abstract Account class has private 
+attributes (accountNumber, balance) and abstract methods for deposit and withdrawal. SavingsAccount adds an interestRate attribute, overrides deposit to 
+calculate interest, and ensures sufficient balance in withdrawal. CurrentAccount introduces an overdraftLimit and overrides withdrawal to check this limit. 
+In the BankingApp class, instantiate both account types, perform transactions, and display account details to demonstrate polymorphism.
+
+abstract class Account {
+    private String accountNumber;
+    private double balance;
+
+    public Account(String accountNumber, double balance) {
+        this.accountNumber = accountNumber;
+        this.balance = balance;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public abstract void deposit(double amount);
+
+    public abstract void withdraw(double amount);
+}
+
+class SavingsAccount extends Account {
+    private double interestRate;
+
+    public SavingsAccount(String accountNumber, double balance, double interestRate) {
+        super(accountNumber, balance);
+        this.interestRate = interestRate;
+    }
+
+    @Override
+    public void deposit(double amount) {
+        double interest = amount * interestRate / 100;
+        setBalance(getBalance() + amount + interest);
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        if (getBalance() >= amount) {
+            setBalance(getBalance() - amount);
+        } else {
+            System.out.println("Insufficient balance.");
+        }
+    }
+}
+
+class CurrentAccount extends Account {
+    private double overdraftLimit;
+
+    public CurrentAccount(String accountNumber, double balance, double overdraftLimit) {
+        super(accountNumber, balance);
+        this.overdraftLimit = overdraftLimit;
+    }
+
+    @Override
+    public void deposit(double amount) {
+        setBalance(getBalance() + amount);
+    }
+
+    @Override
+    public void withdraw(double amount) {
+        if (getBalance() + overdraftLimit >= amount) {
+            setBalance(getBalance() - amount);
+        } else {
+            System.out.println("Exceeded overdraft limit.");
+        }
+    }
+}
+
+public class BankingApp {
+    public static void main(String[] args) {
+        SavingsAccount savings = new SavingsAccount("S123", 1000.0, 5.0);
+        CurrentAccount current = new CurrentAccount("C123", 500.0, 1000.0);
+
+        savings.deposit(500);
+        savings.withdraw(200);
+        current.deposit(300);
+        current.withdraw(1000);
+
+        System.out.println("Savings Account Balance: " + savings.getBalance());
+        System.out.println("Current Account Balance: " + current.getBalance());
+    }
+}
+
+Q9.Write a Java program demonstrating interfaces, method overriding, and method overloading. Define a Vehicle interface with abstract methods accelerate() and
+brake(). Implement Car and Bicycle classes that override these methods with specific messages for acceleration and braking. Introduce method overloading in
+both classes by defining multiple accelerate() methods with different parameters (e.g., speed, duration). In the VehicleApp class, instantiate Car and Bicycle 
+objects, test overridden methods, and invoke overloaded accelerate() methods to showcase polymorphism.
+
+interface Vehicle {
+    void accelerate();
+
+    void brake();
+}
+
+class Car implements Vehicle {
+    @Override
+    public void accelerate() {
+        System.out.println("Car is accelerating.");
+    }
+
+    @Override
+    public void brake() {
+        System.out.println("Car is braking.");
+    }
+
+    public void accelerate(int speed) {
+        System.out.println("Car is accelerating to " + speed + " km/h.");
+    }
+
+    public void accelerate(int speed, int duration) {
+        System.out.println("Car is accelerating to " + speed + " km/h for " + duration + " seconds.");
+    }
+}
+
+class Bicycle implements Vehicle {
+    @Override
+    public void accelerate() {
+        System.out.println("Bicycle is accelerating.");
+    }
+
+    @Override
+    public void brake() {
+        System.out.println("Bicycle is braking.");
+    }
+
+    public void accelerate(int speed) {
+        System.out.println("Bicycle is accelerating to " + speed + " km/h.");
+    }
+
+    public void accelerate(int speed, int duration) {
+        System.out.println("Bicycle is accelerating to " + speed + " km/h for " + duration + " seconds.");
+    }
+}
+
+public class VehicleApp {
+    public static void main(String[] args) {
+        Car car = new Car();
+        Bicycle bicycle = new Bicycle();
+
+        car.accelerate();
+        car.brake();
+        car.accelerate(60);
+        car.accelerate(80, 10);
+
+        bicycle.accelerate();
+        bicycle.brake();
+        bicycle.accelerate(15);
+        bicycle.accelerate(20, 5);
+    }
+}
+
+Q10.Design a Java program for university student enrollment, ensuring loose coupling and high cohesion. Create Student and Course classes, and an Enrollment 
+class that interacts with them through an EnrollmentSystem interface. Implement methods for enrolling and dropping students from courses, and displaying enrollment details. In the MainEnrollApp class, demonstrate functionality by managing student enrollments. Use comments to explain how the design maintains loose coupling (by relying on interfaces) and high cohesion (by keeping related functionalities within appropriate classes).
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Student {
+    private String name;
+    private String studentId;
+    
+    public Student(String name, String studentId) {
+        this.name = name;
+        this.studentId = studentId;
+    }
+    
+    public String getName() {
+        return name;
+    }
+    
+    public String getStudentId() {
+        return studentId;
+    }
+}
+class Course {
+    private String courseName;
+    private String courseId;
+
+    public Course(String courseName, String courseId) {
+        this.courseName = courseName;
+        this.courseId = courseId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public String getCourseId() {
+        return courseId;
+    }
+}
+interface EnrollmentSystem {
+    void enrollStudent(Student student, Course course);
+
+    void dropStudent(Student student, Course course);
+
+    void displayEnrollments();
+}
+
+class Enrollment implements EnrollmentSystem {
+    private List<String> enrollments = new ArrayList<>();
+
+    @Override
+    public void enrollStudent(Student student, Course course) {
+        enrollments.add(student.getName() + " enrolled in " + course.getCourseName());
+    }
+
+    @Override
+    public void dropStudent(Student student, Course course) {
+        enrollments.remove(student.getName() + " enrolled in " + course.getCourseName());
+    }
+
+    @Override
+    public void displayEnrollments() {
+        for (String enrollment : enrollments) {
+            System.out.println(enrollment);
+        }
+    }
+}
+
+public class MainEnrollApp {
+    public static void main(String[] args) {
+        Student student1 = new Student("Alice", "S001");
+        Student student2 = new Student("Bob", "S002");
+
+        Course course1 = new Course("Mathematics", "C101");
+        Course course2 = new Course("Physics", "C102");
+
+        EnrollmentSystem enrollmentSystem = new Enrollment();
+
+        enrollmentSystem.enrollStudent(student1, course1);
+        enrollmentSystem.enrollStudent(student2, course2);
+        enrollmentSystem.enrollStudent(student1, course2);
+
+        System.out.println("Enrollment Details:");
+        enrollmentSystem.displayEnrollments();
+
+        enrollmentSystem.dropStudent(student1, course2);
+
+        System.out.println("\nEnrollment Details after dropping:");
+        enrollmentSystem.displayEnrollments();
+    }
+}
+
+Outputs:
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>javac CarTester.java
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>java CarTester
+My Car Details-1: 
+Welcome To Car Shop
+The Make Is: Indian
+The Model Is: Fortuner
+My Car Details-2: 
+Welcome To Car Shop
+The Make Is: German
+The Model Is: Maserati
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>javac Calculations.java
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>java Calculations
+The Rectangle Calculations: 
+By Parameterized Calling
+
+The Area Of Rectangle Is: 52.25
+The Perimeter Of Rectangle Is: 30.0
+By Setter And Getter Method
+
+The Area Of Rectangle Is: 52.25
+The Perimeter Of Rectangle Is: 30.0
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>javac Coordinate.java
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>java Coordinate
+Enter X And Y Coordinate Values: 7.5 101
+
+By Using Parameterized Constructor
+The Value Of X And Y Is: (7.5, 101.0)
+By Using The Setter And Getter Method
+The Value Of X And Y Is: (95.3, -5.4)
+By Using The Copy Method To Retrieve
+The Value Of X And Y Is: (7.5, 101.0)
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>javac ImgDetails.java
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>java ImgDetails
+
+Default Constructor: Image Width: 0.0, Image Height: 0.0, Color Code: Unknown
+
+Parameterized Constructor: Image Width: 45.5, Image Height: 91.0, Color Code: RGBA      
+
+After Setting New Values: Image Width: 50.0, Image Height: 100.0, Color Code: RGB       
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>javac ImageController.java
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>java ImageController
+Welcome To Image Library
+Do you want to add an image (Yes/No)?       
+Yes
+Enter The Image Properties:
+6.5
+9.8
+RGBA
+Do you want to add an image (Yes/No)?       
+Yes
+Enter The Image Properties:
+8.5
+9.1
+RGB
+Do you want to add an image (Yes/No)?       
+No
+Exit Image Library.
+Enter The Characteristics:
+65.4
+45.2
+HSLA
+The Search Was Successful? false
+Perform Insertion?
+8.5
+6.2
+HSL
+Image Inserted Successfully.
+Need The Image?
+6.5
+9.8
+RGBA
+Image Found: Image Width: 6.5, Image Height: 9.8, Color Code: RGBA
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>javac MainApp.java
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>java MainApp
+Wish For Enrollment? Yes
+Enter College Name and Location:
+ITER SOA
+Jagamara 
+Enter Student ID And Name:
+2341019456
+Amulya Shrivastava
+The Details Are: 2341019456, Amulya Shrivastava College: ITER SOA, Jagamara
+Wish For Enrollment? Yes
+Enter College Name and Location:
+Kalinga University
+Patia
+Enter Student ID And Name:
+2004637483
+Kaushal
+The Details Are: 2004637483, Kaushal College: Kalinga University, Patia
+Wish For Enrollment? No
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>javac LibrarySystem.java
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>java LibrarySystem
+Book: Harry Potter, Author: J.K Rowling, Pages: 512
+Magazine: Indian Times, Author: Sweta, Issue Date: March 2023
+DVD: Intestellar, Author: Christopher Nolan, Duration: 9000 mins
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>javac BankingApp.java
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>java BankingApp
+Savings Account Balance: 1325.0
+Current Account Balance: -200.0
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>javac VehicleApp.java
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>java VehicleApp
+Car is accelerating.
+Car is braking.
+Car is accelerating to 60 km/h.
+Car is accelerating to 80 km/h for 10 seconds.
+Bicycle is accelerating.
+Bicycle is braking.
+Bicycle is accelerating to 15 km/h.
+Bicycle is accelerating to 20 km/h for 5 seconds.
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>javac MainEnrollApp.java
+
+D:\VS Code Files\Java Code Files\Semester-4\Assignment-1>java MainEnrollApp
+Enrollment Details:
+Alice enrolled in Mathematics
+Bob enrolled in Physics
+Alice enrolled in Physics
+
+Enrollment Details after dropping:
+Alice enrolled in Mathematics
+Bob enrolled in Physics

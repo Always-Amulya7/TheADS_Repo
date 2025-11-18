@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index-1</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .Container,#content{
+            display: flex;
+            justify-content: center;
+            transform: translateY(45vh);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Container">
+        <button id="red">Red</button>
+        <button id="blue">Blue</button>
+        <button id="green">Green</button>
+        <button id="toggleDiv">Toggle Div</button>
+    </div>
+    <div id="content">This is a div content.</div>
+    <script>
+        $(document).ready(function () {
+            $("#red").click(function () { $("body").css("background-color", "red"); });
+            $("#blue").click(function () { $("body").css("background-color", "blue"); });
+            $("#green").click(function () { $("body").css("background-color", "green"); });
+            $("#toggleDiv").click(function () { $("#content").toggle(); });
+        });
+    </script>
+</body>
+
+</html>

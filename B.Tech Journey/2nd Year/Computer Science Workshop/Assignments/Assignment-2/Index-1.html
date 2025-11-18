@@ -1,0 +1,62 @@
+<!-- Create an HTML page with headings and paragraphs. Apply inline styles to the h1 and h2 headings, such as changing the
+font color and size. Use internal styles for the h3 and h4 headings by applying styles using the id attribute, such as
+setting text alignment and font-weight. Additionally, link an external stylesheet to define the body background color,
+style the h5 heading, and set the paragraph's text color and font size using the class attribute. Ensure the external
+stylesheet is properly linked to the HTML page. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objective-1</title>
+    <style>
+        #Heading3,
+        #Heading4 {
+            text-align: left;
+            font-weight: 900;
+        }
+
+        /*Now We Have To Link External CSS*/
+        body {
+            background-color: grey;
+        }
+
+        .Heading5 {
+            text-align: left;
+            color: green;
+            font-size: large;
+        }
+
+        .Paragraph {
+            color: green;
+            font-size: large;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="Style.css">
+    <!-- Now We Have To Link External CSS
+    body{
+    background-color: grey;
+    }
+    .Heading5{
+    text-align: left;
+    color: green;
+    font-size: large;
+    }
+    .Paragraph{
+    color: green;
+    font-size: large;
+    } -->
+</head>
+
+<body>
+    <h1 style="color: blue; font-size: 50px;">This is a Heading 1</h1>
+    <h2 style="color: red; font-size: 45px;">This is a Heading 2</h2>
+    <h3 id="Heading3">This Is A Heading 3</h3>
+    <h4 id="Heading4">This Is A Heading 4</h4>
+    <h5 class="Heading5">This Is A Heading 5</h5>
+    <p class="Paragraph">This Is A Paragraph.</p>
+</body>
+
+</html>

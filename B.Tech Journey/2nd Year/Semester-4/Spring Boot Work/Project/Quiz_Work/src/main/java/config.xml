@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <bean id="employee1" class="Quiz_Workspace.Quiz_Work.Employee">
+        <property name="employeeId" value="456"/>
+        <property name="employeeName" value="Amulya"/>
+        <property name="employeeAddress" value="Ranchi"/>
+        <property name="employeeTravel" value="Jamshedpur"/>
+    </bean>
+    <bean id="employee2" class="Quiz_Workspace.Quiz_Work.Employee">
+        <property name="employeeId" value="956"/>
+        <property name="employeeName" value="Kaushal"/>
+        <property name="employeeAddress" value="Ranchi"/>
+        <property name="employeeTravel" value="Kashmir"/>
+    </bean>
+
+    <bean id="Check" class="Quiz_Workspace.Quiz_Work.Work">
+        <property name="LowerNo" value="1"/>
+        <property name="HigherNo" value="50"/>
+    </bean>
+</beans>

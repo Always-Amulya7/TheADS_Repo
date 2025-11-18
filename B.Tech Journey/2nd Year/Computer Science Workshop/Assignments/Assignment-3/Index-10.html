@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index-10</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        .hoverEffect:hover {
+            background-color: lightblue;
+        }
+
+        .error {
+            color: red;
+        }
+
+        body {
+            transform: translateY(40vh) translateX(42vw);
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <form id="signUpForm" method="get">
+        <label class="hoverEffect">Name: <input type="text" id="name"></label><br><br>
+        <label class="hoverEffect">Email: <input type="email" id="email"></label><br><br>
+        <p id="errorMsg" class="error"></p>
+        <button type="submit" id="submitForm">Submit</button>
+    </form>
+    <script>
+        $(document).ready(function () {
+            $("#submitForm").click(function () {
+                let name = $("#name").val();
+                let email = $("#email").val();
+                let errorMsg = "";
+
+                if (name === "" || email === "") {
+                    errorMsg = "All fields are required.";
+                } else if (!validateEmail(email)) {
+                    errorMsg = "Please enter a valid email address.";
+                }
+
+                if (errorMsg !== "") {  // Check if there's an error message
+                    $("#errorMsg").text(errorMsg);
+                    return false;  // Prevent form submission if error exists
+                }
+
+                // If no errors, form submission can continue (optional, for future actions)
+                return true;
+            });
+
+            /*$(".hoverEffect").mouseenter(function(){
+                $(this).css("background-color","green");
+            });
+            $(".hoverEffect").mouseleave(function(){
+                $(this).css("background-color","white");
+            });*/
+        });
+    </script>
+</body>
+
+</html>

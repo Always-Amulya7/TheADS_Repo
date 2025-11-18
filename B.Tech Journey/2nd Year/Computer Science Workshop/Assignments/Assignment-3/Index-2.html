@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index-2</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        #interactiveDiv {
+            display: flex;
+            justify-content: center;
+            transform: translateY(45vh) translateX(42vw);
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+            border: 2px solid black;
+            line-height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <div id="interactiveDiv">Hover or Click Me</div>
+
+    <script>
+        $(document).ready(function() {
+            $("#interactiveDiv").click(function() { $("#interactiveDiv").text("Clicked!"); });
+            $("#interactiveDiv").dblclick(function() { $(this).css("background-color", "orange"); });
+            $("#interactiveDiv").mouseenter(function() { $(this).css("border-color", "green"); });
+            $("#interactiveDiv").mouseleave(function() { $(this).css("border-color", "black"); });
+        });
+    </script>
+</body>
+</html>

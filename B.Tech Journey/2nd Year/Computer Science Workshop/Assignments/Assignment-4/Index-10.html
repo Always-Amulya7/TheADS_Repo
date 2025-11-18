@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Index-10</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    <style>
+        .carousel-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;}
+            .carousel,.carousel-item {
+                height: 100vh;
+            }
+    </style>
+</head>
+
+<body>
+    <h1 style="display: flex;justify-content:center;">Carousel with Caption Example</h1>
+    <div id="demo" class="carousel slide" data-ride="carousel">
+        <ul class="carousel-indicators">
+            <li data-target="#demo" data-slide-to="0" class="active"></li>
+            <li data-target="#demo" data-slide-to="1"></li>
+            <li data-target="#demo" data-slide-to="2"></li>
+            <li data-target="#demo" data-slide-to="3"></li>
+        </ul>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://www.holidify.com/images/cmsuploads/compressed/Taj_Mahal_20180814141729.png"
+                    alt="TAJ MAHAL" width="1000" height="300">
+                <div class="carousel-caption">
+                    <h1 style="color:green; font-size:75px;">TAJ MAHAL,AGRA</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://travel-blog.waytoindia.com/wp-content/uploads/2018/02/1-11.jpg" alt="QUTUB MINAR"
+                    width="1000" height="450">
+                <div class="carousel-caption">
+                    <h1 style="color:blue; font-size:75px;">QUTUB MINAR, DELHI</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.puredestinations.co.uk/wp-content/uploads/2016/11/Charminar-PD-BLOG-1.jpg"
+                    alt="Char minar" width="1000" height="300">
+                <div class="carousel-caption">
+                    <h1 style="color:orange; font-size:75px;">CHAR MINAR, HYDRABAD</h1>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://assets.architecturaldigest.in/photos/60083ab1a8f8397741704225/16:9/w_2560%2Cc_limit/Independence-Day-Historic-Monuments-Red-Fort-Delhi-1366x768.jpg"
+                    alt="Red fort" width="1100" height="300">
+                <div class="carousel-caption">
+                    <h1 style="color:red; font-size:75px;">RED FORT, DELHI</h1>
+                </div>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#demo" data-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </a>
+        <a class="carousel-control-next" href="#demo" data-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </a>
+</body>
+</html>

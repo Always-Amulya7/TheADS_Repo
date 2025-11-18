@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index-8</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body{
+            transform: translateY(40vh) translateX(42vw);
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p id="para1">This is paragraph 1.</p>
+        <p id="para2">This is paragraph 2.</p>
+        <p id="para3">This is paragraph 3.</p>
+    </div>
+    <input type="text" id="elementId" placeholder="Enter ID to remove">
+    <button id="removeElement">Remove Element</button>
+
+    <script>
+        $(document).ready(function() {
+            $("#removeElement").click(function() {
+                let id = $("#elementId").val();
+                $("#" + id).remove();
+            });
+        });
+    </script>
+</body>
+</html>

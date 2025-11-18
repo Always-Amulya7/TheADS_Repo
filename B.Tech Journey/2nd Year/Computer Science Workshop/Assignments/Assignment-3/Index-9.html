@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index-9</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <button id="showPopup">Show Popup</button>
+    <div id="popupBox">
+        <p>This is a custom popup box.</p>
+        <button id="closePopup">Close</button>
+    </div>
+    <!-- <script>
+        $(document).ready(function() {
+            $("#showPopup").click(function() {
+                $("#popupBox").toggle();
+                $("#showPopup").text("Close PopUp")
+            });
+        });
+    </script> -->
+</body>
+<style>
+    #popupBox {
+        display: none;
+        width: 200px;
+        padding: 20px;
+        background-color: lightgray;
+        border: 1px solid black;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+    body{
+        display: flex;
+        justify-content: center;
+    }
+</style>
+<script>
+    $(document).ready(function() {
+        $("#showPopup").click(function() {
+            $("#popupBox").show();
+        });
+        $("#closePopup").click(function() {
+            $("#popupBox").hide();
+        });
+    });
+</script>
+</html>

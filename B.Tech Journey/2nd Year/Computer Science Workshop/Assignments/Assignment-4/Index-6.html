@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index-6</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        *{
+            overflow: hidden;
+        }
+        .progress {
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 0;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <button class="btn btn-primary" id="uploadButton">Upload File</button>
+        <div class="progress mt-3" style="display: none;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar"></div>
+        </div>
+        <div class="progress" style="display: none;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar"></div>
+        </div>
+        <div class="progress" style="display: none;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" role="progressbar"></div>
+        </div>
+        <div class="progress" style="display: none;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar"></div>
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $('#uploadButton').click(function () {
+            $('.progress').show();
+            var progressBars = $('.progress-bar');
+            var index = 0;
+            function fillProgressBar() {
+                if (index < progressBars.length) {
+                    var progressBar = $(progressBars[index]);
+                    var width = 0;
+                    var interval = setInterval(function () {
+                        if (width >= 100) {
+                            clearInterval(interval);
+                            index++;
+                            fillProgressBar();
+                        } else {
+                            width++;
+                            progressBar.css('width', width + '%');
+                        }
+                    }, 100);
+                }
+            }
+            fillProgressBar();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index-3</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        table{
+            padding: 15px;
+        }
+        tr:hover {
+            background-color: #ffeeba;
+            transition: background-color 0.3s;
+        }
+        td,tr{
+            padding: 15px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Search Student Information</h1>
+    <input type="text" id="search" placeholder="Search by Name" onkeyup="filterTable()">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Semester</th>
+                <th>Regd Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Amulya</td>
+                <td>20</td>
+                <td>3</td>
+                <td>2341019456</td>
+            </tr>
+            <tr>
+                <td>Kaushal</td>
+                <td>22</td>
+                <td>6</td>
+                <td>2001458516</td>
+            </tr>
+        </tbody>
+    </table>
+    <script>
+        function filterTable() {
+            const filter = $('#search').val().toLowerCase();
+            $('tbody tr').each(function () {
+                const name = $(this).find('td:first').text().toLowerCase();
+                $(this).toggle(name.includes(filter));
+            });
+        }
+    </script>
+</body>
+</html>

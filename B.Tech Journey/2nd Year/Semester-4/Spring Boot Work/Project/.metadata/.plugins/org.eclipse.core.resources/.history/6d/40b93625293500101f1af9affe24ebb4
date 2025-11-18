@@ -1,0 +1,46 @@
+package Quiz_Workspace.Quiz_Work;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import java.util.*;
+
+/**
+ * Hello world!
+ *
+ */
+public class App 
+{
+    public static void main( String[] args )
+    {
+        System.out.println( "Hello World!" );
+        @SuppressWarnings("resource")
+		ApplicationContext context=new ClassPathXmlApplicationContext("config.xml");
+        Employee employee1=(Employee) context.getBean("employee1");
+        System.out.println(employee1);
+        Employee employee2=(Employee) context.getBean("employee2");
+        System.out.println(employee2);
+        Work work=(Work) context.getBean("Check");
+        ArrayList<Integer> Even=new ArrayList<>();
+        ArrayList<Integer> Odd=new ArrayList<>();
+        ArrayList<Integer> Prime=new ArrayList<>();
+        for (int i=work.getStart();i<=work.getStop();i++) {
+            if (i%2==0)
+                Even.add(i);
+            else
+                Odd.add(i);
+            boolean isPrime=(i>1);
+            for (int j=2;j*j<= i;j++){
+                if (i%j==0){
+                    isPrime=false;
+                    break;
+                }
+            }
+            if (isPrime)
+                Prime.add(i);
+        }
+        System.out.println(work);
+        System.out.println("Even: "+Even);
+        System.out.println("Odd:  "+Odd);
+        System.out.println("Prime: "+Prime);
+    }
+}

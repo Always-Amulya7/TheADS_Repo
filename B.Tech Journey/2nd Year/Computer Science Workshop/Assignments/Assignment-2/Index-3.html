@@ -1,0 +1,42 @@
+<!-- Add a <div> element and an image element. Write "My Special Div" as inline text inside the <div> like <div>My Special
+Div</div>. Change the text color of the <div> when the user moves the mouse over the image, and change it
+back when the user moves the mouse out of the image. -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objective-3</title>
+    <style>
+        .Container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .ImageSet {
+            width: 200px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .SpecialDiv {
+            font-size: 24px;
+            color: black;
+        }
+
+        .Container:hover .SpecialDiv {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Container">
+        <img src="./img/Login.jpg" alt="Sample Image" class="ImageSet">
+        <div class="SpecialDiv">My Special Div</div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,1437 @@
+Assignment - 3
+
+Question : 1 --> Creating A Link List And Display
+
+import java.util.List;
+import java.util.Scanner;
+
+class Q1 {
+    static class Node {
+        int Data;
+        Node Next;
+
+        Node(int Data) {
+            this.Data = Data;
+            this.Next = null;
+        }
+    }
+
+    Node Head;
+
+    public void insertFirst(int Data) {
+        Node NewNode = new Node(Data);
+        NewNode.Next = Head;
+        Head = NewNode;
+    }
+
+    public void displayList() {
+        Node Temp = Head;
+        System.out.print("\nLinked List: ");
+        while (Temp != null) {
+            System.out.print(Temp.Data + " -> ");
+            Temp = Temp.Next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Q1 List = new Q1();
+        String Choice;
+        do {
+            System.out.print("Enter The Choice : ");
+            Choice = scanner.nextLine();
+            switch (Choice) {
+                case "Insert":
+                    System.out.println("Enter Elements For The Linked List : ");
+                    System.out.print("Insert At Beginning: ");
+                    int FirstElement = scanner.nextInt();
+                    List.insertFirst(FirstElement);
+                    scanner.nextLine();
+                    break;
+                case "Display":
+                    System.out.print("Final Linked List : ");
+                    List.displayList();
+                    break;
+                case "Exit":
+                    System.out.print("Exiting...");
+                    break;
+                default:
+                    System.out.print("Invalid Choice");
+                    break;
+            }
+        } while (!Choice.equalsIgnoreCase("Exit"));
+    }
+}
+
+
+Question : 2 --> Insertion In A Link List And Search A Element
+
+import java.util.Scanner;
+
+class Q2 {
+    static class Node {
+        int Data;
+        Node Next;
+
+        Node(int Data) {
+            this.Data = Data;
+            this.Next = null;
+        }
+    }
+
+    Node Head;
+
+    // Insert at the beginning of the linked list
+    public void insertFirst(int Data) {
+        Node NewNode = new Node(Data);
+        NewNode.Next = Head;
+        Head = NewNode;
+    }
+
+    // Insert at the end of the linked list
+    public void insertLast(int Data) {
+        Node NewNode = new Node(Data);
+        if (Head == null) {
+            Head = NewNode;
+            return;
+        }
+        Node Temp = Head;
+        while (Temp.Next != null) {
+            Temp = Temp.Next;
+        }
+        Temp.Next = NewNode;
+    }
+
+    // Insert at a specific position in the linked list
+    public void insertAtPosition(int Data, int Position) {
+        Node NewNode = new Node(Data);
+        if (Position == 0) {
+            insertFirst(Data);
+            return;
+        }
+        Node Temp = Head;
+        for (int i = 1; i < Position && Temp != null; i++) {
+            Temp = Temp.Next;
+        }
+        if (Temp != null) {
+            NewNode.Next = Temp.Next;
+            Temp.Next = NewNode;
+        }
+    }
+
+    // Display the linked list
+    public void displayList() {
+        Node Temp = Head;
+        System.out.print("\nLinked List: ");
+        while (Temp != null) {
+            System.out.print(Temp.Data + " -> ");
+            Temp = Temp.Next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Q2 List = new Q2();
+        String Choice;
+        do {
+            System.out.print("\nEnter The Choice : ");
+            Choice = scanner.nextLine();
+            switch (Choice) {
+                case "Insert":
+                    System.out.print("Insert At Beginning: ");
+                    int FirstElement = scanner.nextInt();
+                    List.insertFirst(FirstElement);
+                    scanner.nextLine(); // Consume newline
+                    break;
+                case "AtEnd":
+                    System.out.print("Insert At End: ");
+                    int LastElement = scanner.nextInt();
+                    List.insertLast(LastElement);
+                    scanner.nextLine(); // Consume newline
+                    break;
+                case "Between":
+                    System.out.print("Insert At Position: ");
+                    int Position = scanner.nextInt();
+                    System.out.print("Value To Insert: ");
+                    int PositionElement = scanner.nextInt();
+                    List.insertAtPosition(PositionElement, Position);
+                    scanner.nextLine(); // Consume newline
+                    break;
+                case "Display":
+                    List.displayList();
+                    break;
+                case "Exit":
+                    System.out.print("Exiting...\n");
+                    break;
+                default:
+                    System.out.print("Invalid Choice\n");
+                    break;
+            }
+        } while (!Choice.equalsIgnoreCase("Exit"));
+        scanner.close();
+    }
+}
+
+Question : 3
+
+import java.util.Scanner;
+
+class Q3 {
+    static class Node {
+        int Data;
+        Node Next;
+
+        Node(int Data) {
+            this.Data = Data;
+            this.Next = null;
+        }
+    }
+
+    Node Head;
+
+    // Insert at the end of the linked list
+    public void insert(int Data) {
+        Node NewNode = new Node(Data);
+        if (Head == null) {
+            Head = NewNode;
+            return;
+        }
+        Node Temp = Head;
+        while (Temp.Next != null) {
+            Temp = Temp.Next;
+        }
+        Temp.Next = NewNode;
+    }
+
+    // Delete the first node
+    public void deleteFirst() {
+        if (Head != null) {
+            Head = Head.Next;
+        }
+    }
+
+    // Delete the last node
+    public void deleteLast() {
+        if (Head == null || Head.Next == null) {
+            Head = null;
+            return;
+        }
+        Node Temp = Head;
+        while (Temp.Next.Next != null) {
+            Temp = Temp.Next;
+        }
+        Temp.Next = null;
+    }
+
+    // Delete a node at a specific position (0-based index)
+    public void deleteAtPosition(int Position) {
+        if (Position == 0) {
+            deleteFirst();
+            return;
+        }
+        Node Temp = Head;
+        for (int i = 1; i < Position && Temp.Next != null; i++) {
+            Temp = Temp.Next;
+        }
+        if (Temp.Next != null) {
+            Temp.Next = Temp.Next.Next;
+        }
+    }
+
+    // Display the linked list
+    public void display() {
+        Node Temp = Head;
+        System.out.print("\nLinked List: ");
+        while (Temp != null) {
+            System.out.print(Temp.Data + " -> ");
+            Temp = Temp.Next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Q3 List = new Q3();
+
+        System.out.print("Enter Number Of Elements : ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter the Elements : ");
+        for (int i = 0; i < Count; i++) {
+            List.insert(scanner.nextInt());
+        }
+
+        System.out.println("Original List : ");
+        List.display();
+
+        System.out.println("Choose Deletion Operation : ");
+        System.out.print("Enter Your Choice : ");
+        int Choice = scanner.nextInt();
+
+        switch (Choice) {
+            case 1:
+                List.deleteFirst();
+                System.out.print("After Deleting First : ");
+                List.display();
+                break;
+            case 2:
+                List.deleteLast();
+                System.out.print("After Deleting Last : ");
+                List.display();
+                break;
+            case 3:
+                System.out.print("Enter Position to Delete : ");
+                int Position = scanner.nextInt();
+                List.deleteAtPosition(Position);
+                System.out.print("After Deleting At Position " + Position + ":");
+                List.display();
+                break;
+            default:
+                System.out.print("Invalid Choice");
+        }
+
+        scanner.close();
+    }
+}
+
+
+Question : 4
+
+import java.util.Scanner;
+
+class Q4 {
+    static class Node {
+        int Data;
+        Node Next;
+
+        Node(int Data) {
+            this.Data = Data;
+            this.Next = null;
+        }
+    }
+
+    Node Head;
+
+    // Insert at the end of the linked list
+    public void insert(int Data) {
+        Node NewNode = new Node(Data);
+        if (Head == null) {
+            Head = NewNode;
+            return;
+        }
+        Node Temp = Head;
+        while (Temp.Next != null) {
+            Temp = Temp.Next;
+        }
+        Temp.Next = NewNode;
+    }
+
+    // Search for an element in the linked list
+    public boolean search(int Key) {
+        Node Temp = Head;
+        while (Temp != null) {
+            if (Temp.Data == Key) {
+                return true;
+            }
+            Temp = Temp.Next;
+        }
+        return false;
+    }
+
+    // Display the linked list
+    public void display() {
+        Node Temp = Head;
+        System.out.print("\nLinked List: ");
+        while (Temp != null) {
+            System.out.print(Temp.Data + " -> ");
+            Temp = Temp.Next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Q4 List = new Q4();
+
+        System.out.print("Enter Number Of Elements In The Linked List: ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter The Elements: ");
+        for (int i = 0; i < Count; i++) {
+            List.insert(scanner.nextInt());
+        }
+
+        System.out.print("Original Linked List: ");
+        List.display();
+
+        System.out.print("Enter Element to Search: ");
+        int Key = scanner.nextInt();
+        boolean Found = List.search(Key);
+
+        if (Found) {
+            System.out.println("Element Found In The Linked List");
+        } else {
+            System.out.println("Element Not Found In The Linked List");
+        }
+
+        scanner.close();
+    }
+}
+
+
+Question : 5
+
+import java.util.Scanner;
+
+class Q5 {
+    static class Node {
+        int Data;
+        Node Next;
+
+        Node(int Data) {
+            this.Data = Data;
+            this.Next = null;
+        }
+    }
+
+    Node Head;
+
+    // Insert a new node at the end of the linked list
+    public void insert(int Data) {
+        Node NewNode = new Node(Data);
+        if (Head == null) {
+            Head = NewNode;
+            return;
+        }
+        Node Temp = Head;
+        while (Temp.Next != null) {
+            Temp = Temp.Next;
+        }
+        Temp.Next = NewNode;
+    }
+
+    // Sort the linked list in ascending order
+    public void sort() {
+        if (Head == null || Head.Next == null) return;
+
+        Node Temp = Head;
+        while (Temp != null) {
+            Node Index = Temp.Next;
+            while (Index != null) {
+                if (Temp.Data > Index.Data) {
+                    int Swap = Temp.Data;
+                    Temp.Data = Index.Data;
+                    Index.Data = Swap;
+                }
+                Index = Index.Next;
+            }
+            Temp = Temp.Next;
+        }
+    }
+
+    // Display the linked list
+    public void display() {
+        Node Temp = Head;
+        System.out.print("\nLinked List : ");
+        while (Temp != null) {
+            System.out.print(Temp.Data + " -> ");
+            Temp = Temp.Next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Q5 List = new Q5();
+
+        System.out.print("Enter Number Of Elements : ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter The Elements : ");
+        for (int i = 0; i < Count; i++) {
+            List.insert(scanner.nextInt());
+        }
+
+        System.out.print("Linked List Before Sorting : ");
+        List.display();
+
+        List.sort();
+        System.out.print("Linked List After Sorting : ");
+        List.display();
+
+        scanner.close();
+    }
+}
+
+Question : 6
+
+import java.util.Scanner;
+
+class Q6 {
+    static class Node {
+        int Data;
+        Node Next;
+
+        Node(int Data) {
+            this.Data = Data;
+            this.Next = null;
+        }
+    }
+
+    Node Head;
+
+    public void insert(int Data) {
+        Node NewNode = new Node(Data);
+        if (Head == null) {
+            Head = NewNode;
+            return;
+        }
+        Node Temp = Head;
+        while (Temp.Next != null) {
+            Temp = Temp.Next;
+        }
+        Temp.Next = NewNode;
+    }
+
+    public void removeDuplicates() {
+        Node Temp = Head;
+        while (Temp != null && Temp.Next != null) {
+            if (Temp.Data == Temp.Next.Data) {
+                Temp.Next = Temp.Next.Next;
+            } else {
+                Temp = Temp.Next;
+            }
+        }
+    }
+
+    public Node reverseRecursively(Node Current) {
+        if (Current == null || Current.Next == null) {
+            return Current;
+        }
+        Node NewHead = reverseRecursively(Current.Next);
+        Current.Next.Next = Current;
+        Current.Next = null;
+        return NewHead;
+    }
+
+    public void reverse() {
+        Head = reverseRecursively(Head);
+    }
+
+    public void display() {
+        Node Temp = Head;
+        System.out.print("\nLinked List : ");
+        while (Temp != null) {
+            System.out.print(Temp.Data + " -> ");
+            Temp = Temp.Next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Q6 List = new Q6();
+
+        System.out.print("Enter Number Of Elements : ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter The Elements : ");
+        for (int i = 0; i < Count; i++) {
+            List.insert(scanner.nextInt());
+        }
+
+        System.out.print("Original Linked List : ");
+        List.display();
+
+        List.removeDuplicates();
+        System.out.print("Linked List After Removing Duplicates : ");
+        List.display();
+
+        List.reverse();
+        System.out.print("Linked List After Reversing : ");
+        List.display();
+
+        scanner.close();
+    }
+}
+
+
+Question : 7
+
+import java.util.Scanner;
+import java.util.HashSet;
+
+class Q7 {
+    static class Node {
+        int Data;
+        Node Next;
+
+        Node(int Data) {
+            this.Data = Data;
+            this.Next = null;
+        }
+    }
+
+    Node Head;
+
+    // Insert a new node at the end of the linked list
+    public void insert(int Data) {
+        Node NewNode = new Node(Data);
+        if (Head == null) {
+            Head = NewNode;
+            return;
+        }
+        Node Temp = Head;
+        while (Temp.Next != null) {
+            Temp = Temp.Next;
+        }
+        Temp.Next = NewNode;
+    }
+
+    // Remove duplicate nodes from the linked list
+    public void removeDuplicates() {
+        if (Head == null) return;
+
+        HashSet<Integer> seen = new HashSet<>();
+        Node current = Head;
+        Node prev = null;
+
+        while (current != null) {
+            if (seen.contains(current.Data)) {
+                prev.Next = current.Next;  // Remove duplicate
+            } else {
+                seen.add(current.Data);
+                prev = current;
+            }
+            current = current.Next;
+        }
+    }
+
+    // Display the linked list
+    public void display() {
+        Node Temp = Head;
+        System.out.print("\nLinked List: ");
+        while (Temp != null) {
+            System.out.print(Temp.Data + " -> ");
+            Temp = Temp.Next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Q7 List = new Q7();
+
+        System.out.print("Enter Number Of Elements: ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter The Elements: ");
+        for (int i = 0; i < Count; i++) {
+            List.insert(scanner.nextInt());
+        }
+
+        System.out.print("Original Linked List: ");
+        List.display();
+
+        List.removeDuplicates();
+        System.out.print("Linked List After Removing Duplicates: ");
+        List.display();
+
+        scanner.close();
+    }
+}
+
+
+Question : 8
+
+import java.util.Scanner;
+
+class Q8 {
+    static class Node {
+        int Data;
+        Node Next;
+
+        Node(int Data) {
+            this.Data = Data;
+            this.Next = null;
+        }
+    }
+
+    Node Head;
+
+    public void insert(int Data) {
+        Node NewNode = new Node(Data);
+        if (Head == null) {
+            Head = NewNode;
+            return;
+        }
+        Node Temp = Head;
+        while (Temp.Next != null) {
+            Temp = Temp.Next;
+        }
+        Temp.Next = NewNode;
+    }
+
+    public Q8 copyInReverseOrder() {
+        Q8 NewList = new Q8();
+        Node Temp = Head;
+        while (Temp != null) {
+            Node NewNode = new Node(Temp.Data);
+            NewNode.Next = NewList.Head;
+            NewList.Head = NewNode;
+            Temp = Temp.Next;
+        }
+        return NewList;
+    }
+
+    public void display() {
+        Node Temp = Head;
+        System.out.print("\nLinked List : ");
+        while (Temp != null) {
+            System.out.print(Temp.Data + " -> ");
+            Temp = Temp.Next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Q8 List = new Q8();
+
+        System.out.print("Enter Number Of Elements : ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter The Elements : ");
+        for (int i = 0; i < Count; i++) {
+            List.insert(scanner.nextInt());
+        }
+
+        System.out.print("Original Linked List : ");
+        List.display();
+
+        Q8 ReversedList = List.copyInReverseOrder();
+        System.out.print("Copied Reversed Linked List : ");
+        ReversedList.display();
+    }
+}
+
+Question : 9
+
+import java.util.Scanner;
+
+class Q9 {
+    static class Node {
+        int Data;
+        Node Next;
+
+        Node(int Data) {
+            this.Data = Data;
+            this.Next = null;
+        }
+    }
+
+    Node Head;
+
+    public void insert(int Data) {
+        Node NewNode = new Node(Data);
+        if (Head == null) {
+            Head = NewNode;
+            return;
+        }
+        Node Temp = Head;
+        while (Temp.Next != null) {
+            Temp = Temp.Next;
+        }
+        Temp.Next = NewNode;
+    }
+
+    public boolean compare(Q9 List) {
+        Node Temp1 = Head;
+        Node Temp2 = List.Head;
+
+        while (Temp1 != null && Temp2 != null) {
+            if (Temp1.Data != Temp2.Data) {
+                return false;
+            }
+            Temp1 = Temp1.Next;
+            Temp2 = Temp2.Next;
+        }
+        return Temp1 == null && Temp2 == null;
+    }
+
+    public void display() {
+        Node Temp = Head;
+        System.out.print("Linked List : ");
+        while (Temp != null) {
+            System.out.print(Temp.Data + " -> ");
+            Temp = Temp.Next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Q9 List1 = new Q9();
+        Q9 List2 = new Q9();
+
+        System.out.print("Enter Number Of Elements :");
+        int Count1 = scanner.nextInt();
+        System.out.print("Enter The Elements For First Linked List : ");
+        for (int i = 0; i < Count1; i++) {
+            List1.insert(scanner.nextInt());
+        }
+
+        System.out.print("Enter Number Of Elements For Second Linked List : ");
+        int Count2 = scanner.nextInt();
+        System.out.print("Enter The Elements For Second Linked List : ");
+        for (int i = 0; i < Count2; i++) {
+            List2.insert(scanner.nextInt());
+        }
+
+        System.out.print("First Linked List : ");
+        List1.display();
+        System.out.print("Second Linked List : ");
+        List2.display();
+
+        if (List1.compare(List2)) {
+            System.out.println("The Two Linked Lists Are Equal");
+        } else {
+            System.out.println("The Two Linked Lists Are Not Equal");
+        }
+    }
+}
+
+Question : 10
+
+import java.util.Scanner;
+
+class Q10 {
+    static class Node {
+        int Data;
+        Node Next;
+
+        Node(int Data) {
+            this.Data = Data;
+            this.Next = null;
+        }
+    }
+
+    Node Head;
+
+    public void insert(int Data) {
+        Node NewNode = new Node(Data);
+        if (Head == null) {
+            Head = NewNode;
+            return;
+        }
+        Node Temp = Head;
+        while (Temp.Next != null) {
+            Temp = Temp.Next;
+        }
+        Temp.Next = NewNode;
+    }
+
+    public void deleteAllOccurrences(int Value) {
+        while (Head != null && Head.Data == Value) {
+            Head = Head.Next;
+        }
+
+        Node Temp = Head;
+        while (Temp != null && Temp.Next != null) {
+            if (Temp.Next.Data == Value) {
+                Temp.Next = Temp.Next.Next;
+            } else {
+                Temp = Temp.Next;
+            }
+        }
+    }
+
+    public void display() {
+        Node Temp = Head;
+        System.out.print("Linked List : ");
+        while (Temp != null) {
+            System.out.print(Temp.Data + " -> ");
+            Temp = Temp.Next;
+        }
+        System.out.println("null");
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Q10 List = new Q10();
+
+        System.out.print("Enter Number Of Elements : ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter The Elements : ");
+        for (int i = 0; i < Count; i++) {
+            List.insert(scanner.nextInt());
+        }
+
+        System.out.println("Original Linked List : ");
+        List.display();
+
+        System.out.print("Enter The Value To Delete All Occurrences : ");
+        int Value = scanner.nextInt();
+        List.deleteAllOccurrences(Value);
+
+        System.out.println("Linked List After Deleting All Occurrences Of " + Value + ":");
+        List.display();
+    }
+}
+
+Output--
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>javac Q1.java   
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>java Q1
+Enter The Choice : Insert
+Enter Elements For The Linked List : 
+Insert At Beginning: 10
+Enter The Choice : Insert
+Enter Elements For The Linked List : 
+Insert At Beginning: 7
+Enter The Choice : Display 
+Final Linked List : 
+Linked List: 7 -> 10 -> null
+Enter The Choice : Exit
+Exiting...
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>javac Q2.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>java Q2
+
+Enter The Choice : Insert
+Insert At Beginning: 10
+
+Enter The Choice : AtEnd
+Insert At End: 11
+
+Enter The Choice : Between
+Insert At Position: 2
+Value To Insert: 7
+
+Enter The Choice : Display
+
+Linked List: 10 -> 11 -> 7 -> null
+
+Enter The Choice : Exit
+Exiting...
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>javac Q3.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>java Q3
+Enter Number Of Elements : 5
+Enter the Elements : 1 3 5 2 4
+Original List :
+
+Linked List: 1 -> 3 -> 5 -> 2 -> 4 -> null
+Choose Deletion Operation :
+Enter Your Choice : 1
+After Deleting First :
+Linked List: 3 -> 5 -> 2 -> 4 -> null   
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>javac Q4.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>java Q4
+Enter Number Of Elements In The Linked List: 5
+Enter The Elements: 1 5 3 2 4
+Original Linked List:
+Linked List: 1 -> 5 -> 3 -> 2 -> 4 -> null
+Enter Element to Search: 2
+Element Found In The Linked List        
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>javac Q5.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>java Q5
+Enter Number Of Elements : 5
+Enter The Elements : 3 4 1 5 2
+Linked List Before Sorting :
+Linked List : 3 -> 4 -> 1 -> 5 -> 2 -> null
+Linked List After Sorting :
+Linked List : 1 -> 2 -> 3 -> 4 -> 5 -> null
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>javac Q6.java 
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>java Q6
+Enter Number Of Elements : 5
+Enter The Elements : 1 2 3 4 5
+Original Linked List :
+Linked List : 1 -> 2 -> 3 -> 4 -> 5 -> null
+Linked List After Removing Duplicates : 
+Linked List : 1 -> 2 -> 3 -> 4 -> 5 -> null
+Linked List After Reversing :
+Linked List : 5 -> 4 -> 3 -> 2 -> 1 -> null
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>javac Q7.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>java Q7
+Enter Number Of Elements: 5
+Enter The Elements: 1 2 1 3 1
+Original Linked List: 
+Linked List: 1 -> 2 -> 1 -> 3 -> 1 -> null
+Linked List After Removing Duplicates: 
+Linked List: 1 -> 2 -> 3 -> null
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>javac Q8.java 
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>java Q8
+Enter Number Of Elements : 5
+Enter The Elements : 1 3 5 2 4
+Original Linked List :
+Linked List : 1 -> 3 -> 5 -> 2 -> 4 -> null
+Copied Reversed Linked List :
+Linked List : 4 -> 2 -> 5 -> 3 -> 1 -> null
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>javac Q9.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>java Q9
+Enter Number Of Elements :5
+Enter The Elements For First Linked List : 1 2 3 4 5
+Enter Number Of Elements For Second Linked List : 5 4 3 2 1
+Enter The Elements For Second Linked List : 5 
+First Linked List : Linked List : 1 -> 2 -> 3 -> 4 -> 5 -> null
+Second Linked List : Linked List : 4 -> 3 -> 2 -> 1 -> 5 -> null
+The Two Linked Lists Are Not Equal      
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>javac Q10.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-3>java Q10
+Enter Number Of Elements : 5
+Enter The Elements : 1 2 3 4 5
+Original Linked List :
+Linked List : 1 -> 2 -> 3 -> 4 -> 5 -> null
+Enter The Value To Delete All Occurrences : 1
+Linked List After Deleting All Occurrences Of 1:
+Linked List : 2 -> 3 -> 4 -> 5 -> null
+
+Assignment - 4
+
+Question : 1
+
+import java.util.Scanner;
+import java.util.Stack;
+
+class Q1 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Stack<Integer> stack = new Stack<>();
+
+        System.out.print("Enter Number Of Elements To Push : ");
+        int count = scanner.nextInt();
+        System.out.print("Enter The Elements: ");
+        for (int i = 0; i < count; i++) {
+            stack.push(scanner.nextInt());
+        }
+
+        System.out.println("Stack: " + stack);
+        String choice;
+        String Exit = "";
+        while (!Exit.equalsIgnoreCase("Exit")) {
+            System.out.print("Do You Want To Pop An Element : ");
+            choice = scanner.next();
+            if (choice.equalsIgnoreCase("yes")) {
+                if (!stack.isEmpty()) {
+                    int popped = stack.pop();
+                    System.out.println("Popped Element : " + popped);
+                } else {
+                    System.out.println("Stack Is Empty");
+                    break;
+                }
+            }
+            System.out.print("Wish To Exit: ");
+            Exit = scanner.next();
+        }
+
+        System.out.println("Is Stack Empty? " + stack.isEmpty());
+        System.out.println("Final Stack: " + stack);
+    }
+}
+
+Question : 2
+
+import java.util.Scanner;
+import java.util.Stack;
+
+class Q2 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Stack<Integer> Stack = new Stack<>();
+
+        System.out.print("Enter Number Of Elements In The Stack : ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter The Elements : ");
+        for (int i = 0; i < Count; i++) {
+            Stack.push(scanner.nextInt());
+        }
+
+        System.out.println("Stack : " + Stack);
+        int[] NextSmallest = new int[Stack.size()];
+        Stack<Integer> TempStack = new Stack<>();
+        int Index = Stack.size() - 1;
+
+        while (!Stack.isEmpty()) {
+            int Current = Stack.pop();
+            while (!TempStack.isEmpty() && TempStack.peek() >= Current) {
+                TempStack.pop();
+            }
+            NextSmallest[Index--] = TempStack.isEmpty() ? -1 : TempStack.peek();
+            TempStack.push(Current);
+        }
+
+        System.out.print("Next Smallest Elements : ");
+        for (int Element : NextSmallest) {
+            System.out.print(Element + " ");
+        }
+        System.out.println();
+    }
+}
+
+Question : 3
+
+import java.util.Scanner;
+import java.util.Stack;
+
+class Q3 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter A Parenthesis Expression : ");
+        String Expression = scanner.next();
+
+        Stack<Integer> Stack = new Stack<>();
+        int Count = 1;
+        System.out.print("Parenthesis Numbers : ");
+        for (char c : Expression.toCharArray()) {
+            if (c == '(') {
+                Stack.push(Count);
+                System.out.print(Count++ + " ");
+            } else if (c == ')') {
+                System.out.print(Stack.pop() + " ");
+            }
+        }
+        System.out.println();
+    }
+}
+
+Question : 4
+
+import java.util.Scanner;
+import java.util.Stack;
+
+class Q4 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Stack<Integer> Stack = new Stack<>();
+
+        System.out.print("Enter Number Of Elements In The Stack : ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter The Elements : ");
+        for (int i = 0; i < Count; i++) {
+            Stack.push(scanner.nextInt());
+        }
+
+        System.out.println("Original Stack : " + Stack);
+
+        Stack<Integer> ReversedStack = reverse(Stack);
+        System.out.println("Reversed Stack : " + ReversedStack);
+    }
+
+    public static Stack<Integer> reverse(Stack<Integer> Stack) {
+        Stack<Integer> TempStack = new Stack<>();
+        while (!Stack.isEmpty()) {
+            TempStack.push(Stack.pop());
+        }
+        return TempStack;
+    }
+}
+
+Question : 5
+
+import java.util.Scanner;
+import java.util.Stack;
+
+class Q5 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Stack<Integer> Stack = new Stack<>();
+
+        System.out.print("Enter Number Of Elements In The Stack : ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter The Elements : ");
+        for (int i = 0; i < Count; i++) {
+            Stack.push(scanner.nextInt());
+        }
+
+        System.out.println("Original Stack : " + Stack);
+
+        sortStack(Stack);
+        System.out.println("Sorted Stack : " + Stack);
+
+        scanner.close();
+    }
+
+    public static void sortStack(Stack<Integer> Stack) {
+        if (!Stack.isEmpty()) {
+            int Temp = Stack.pop();
+            sortStack(Stack);
+            insertInSortedOrder(Stack, Temp);
+        }
+    }
+
+    private static void insertInSortedOrder(Stack<Integer> Stack, int Element) {
+        if (Stack.isEmpty() || Element > Stack.peek()) {
+            Stack.push(Element);
+        } else {
+            int Temp = Stack.pop();
+            insertInSortedOrder(Stack, Element);
+            Stack.push(Temp);
+        }
+    }
+}
+
+Question : 6
+
+
+
+Question : 7
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+class Q7 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Queue<Integer> Queue = new LinkedList<>();
+
+        System.out.print("Enter Number Of Elements To Add To The Queue : ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter the Elements : ");
+        for (int i = 0; i < Count; i++) {
+            Queue.add(scanner.nextInt());
+        }
+
+        System.out.println("Initial Queue : " + Queue);
+        String Exit="";
+        while (!Exit.equalsIgnoreCase("Exit")) {
+            System.out.print("Do You Want to Remove An Element? ");
+            String RemoveChoice = scanner.next();
+            if (RemoveChoice.equalsIgnoreCase("yes")) {
+                if (!Queue.isEmpty()) {
+                    System.out.println("Removed Element : " + Queue.remove());
+                } else {
+                    System.out.println("Queue Is Empty");
+                }
+            }
+            System.out.print("Wish To Exit: ");
+            Exit = scanner.next();
+        }
+
+        System.out.println("Final Queue : " + Queue);
+    }
+}
+
+Question : 8
+
+import java.util.Scanner;
+import java.util.Stack;
+
+class Q8 {
+    static class Queue {
+        Stack<Integer> Stack1 = new Stack<>();
+        Stack<Integer> Stack2 = new Stack<>();
+
+        void enqueue(int Data) {
+            while (!Stack1.isEmpty()) {
+                Stack2.push(Stack1.pop());
+            }
+            Stack1.push(Data);
+            while (!Stack2.isEmpty()) {
+                Stack1.push(Stack2.pop());
+            }
+        }
+
+        int dequeue() {
+            if (Stack1.isEmpty()) return -1;
+            return Stack1.pop();
+        }
+
+        boolean isEmpty() {
+            return Stack1.isEmpty();
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Queue Queue = new Queue();
+
+        System.out.print("Enter Number Of Elements To Add To The Queue : ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter The Elements : ");
+        for (int i = 0; i < Count; i++) {
+            Queue.enqueue(scanner.nextInt());
+        }
+
+        System.out.print("Do You Want To Remove An Element? ");
+        String Choice = scanner.next();
+        if (Choice.equalsIgnoreCase("yes")) {
+            System.out.println("Removed Element : " + Queue.dequeue());
+        }
+
+        System.out.println("Is Queue Empty? " + Queue.isEmpty());
+    }
+}
+
+Question : 9
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+import java.util.Stack;
+
+class Q9 {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Queue<Integer> Queue = new LinkedList<>();
+
+        System.out.print("Enter Number Of Elements In The Queue : ");
+        int Count = scanner.nextInt();
+        System.out.print("Enter The Elements : ");
+        for (int i = 0; i < Count; i++) {
+            Queue.add(scanner.nextInt());
+        }
+
+        System.out.println("Original Queue : " + Queue);
+
+        Queue = reverse(Queue);
+        System.out.println("Reversed Queue : " + Queue);
+    }
+
+    public static Queue<Integer> reverse(Queue<Integer> Queue) {
+        Stack<Integer> Stack = new Stack<>();
+        while (!Queue.isEmpty()) {
+            Stack.push(Queue.remove());
+        }
+        while (!Stack.isEmpty()) {
+            Queue.add(Stack.pop());
+        }
+        return Queue;
+    }
+}
+
+Question : 10
+
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Scanner;
+
+class Q10 {
+
+    public static void reverseQueue(Queue<Integer> queue) {
+        if (queue.isEmpty()) {
+            return;
+        }
+        int element = queue.poll();
+        reverseQueue(queue);
+        queue.add(element);
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Queue<Integer> queue = new LinkedList<>();
+
+        System.out.print("Enter The Number Of Elements In The Queue : ");
+        int count = scanner.nextInt();
+
+        System.out.print("Enter The Elements Of The Queue: ");
+        for (int i = 0; i < count; i++) {
+            queue.add(scanner.nextInt());
+        }
+
+        System.out.println("Original Queue: " + queue);
+        
+        reverseQueue(queue);
+        
+        System.out.println("Reversed Queue: " + queue);
+
+        scanner.close();
+    }
+}
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>javac Q1.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>java Q1
+Enter Number Of Elements To Push : 5
+Enter The Elements: 1 2 3 4 5
+Stack: [1, 2, 3, 4, 5]
+Do You Want To Pop An Element : Yes
+Popped Element : 5
+Wish To Exit: No
+Do You Want To Pop An Element : Yes
+Popped Element : 4
+Wish To Exit: Exit
+Is Stack Empty? false
+Final Stack: [1, 2, 3]
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>javac Q2.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>java Q2
+Enter Number Of Elements In The Stack : 5
+Enter The Elements : 1 2 3 4 5
+Stack : [1, 2, 3, 4, 5]
+Next Smallest Elements : -1 -1 -1 -1 -1 
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>javac Q3.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>java Q3
+Enter A Parenthesis Expression : (5+2)/(9-2)*(4/3)
+Parenthesis Numbers : 1 1 2 2 3 3 
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>javac Q4.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>java Q4
+Enter Number Of Elements In The Stack : 5
+Enter The Elements : 1 2 3 4 5
+Original Stack : [1, 2, 3, 4, 5]        
+Reversed Stack : [5, 4, 3, 2, 1]        
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>javac Q5.java 
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>java Q5
+Enter Number Of Elements In The Stack : 5
+Enter The Elements : 1 3 5 2 4
+Original Stack : [1, 3, 5, 2, 4]        
+Sorted Stack : [1, 2, 3, 4, 5]
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>javac Q7.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>java Q7
+Enter Number Of Elements To Add To The Queue : 5
+Enter the Elements : 1 2 3 4 5
+Initial Queue : [1, 2, 3, 4, 5]
+Do You Want to Remove An Element? Yes   
+Removed Element : 1
+Wish To Exit: No
+Do You Want to Remove An Element? Yes   
+Removed Element : 2
+Wish To Exit: Exit
+Final Queue : [3, 4, 5]
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>javac Q8.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>java Q8
+Enter Number Of Elements To Add To The Queue : 5
+Enter The Elements : 1 3 5 2 4
+Do You Want To Remove An Element? Yes   
+Removed Element : 1
+Is Queue Empty? false
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>javac Q9.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>java Q9
+Enter Number Of Elements In The Queue : 5
+Enter The Elements : 2 5 4 1 3
+Original Queue : [2, 5, 4, 1, 3]        
+Reversed Queue : [3, 1, 4, 5, 2]        
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>javac Q10.java
+
+D:\VS Code Files\Java Code Files\Semester-3\Assignment-4>java Q10
+Enter The Number Of Elements In The Queue : 5
+Enter The Elements Of The Queue: 1 2 3 4 5
+Original Queue: [1, 2, 3, 4, 5]
+Reversed Queue: [5, 4, 3, 2, 1]
