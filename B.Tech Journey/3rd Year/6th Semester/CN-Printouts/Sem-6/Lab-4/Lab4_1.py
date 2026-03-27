@@ -57,8 +57,10 @@ def decrypt_playfair(text, key):
         else:
             result += matrix[r1][c2] + matrix[r2][c1]
     return result
-msg = "hello"
-key = "key"
+msg = input("Enter The Message: ")
+print("Enter The Message: ",msg)
+key = input("Enter The Key: ")
+print("Enter The Key: ",key)
 enc = encrypt_playfair(msg, key)
 dec = decrypt_playfair(enc, key)
 print("Encrypted:", enc)
