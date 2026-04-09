@@ -1,0 +1,629 @@
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+:root {
+
+  /**
+   * colors
+   */
+
+  --spanish-gray: hsl(0, 0%, 60%);
+  --sonic-silver: hsl(0, 0%, 47%);
+  --eerie-black: hsl(0, 0%, 13%);
+  --salmon-pink: hsl(353, 100%, 78%);
+  --sandy-brown: hsl(29, 90%, 65%);
+  --bittersweet: hsl(0, 100%, 70%);
+  --ocean-green: hsl(152, 51%, 52%);
+  --davys-gray: hsl(0, 0%, 33%);
+  --cultured: hsl(0, 0%, 93%);
+  --white: hsl(0, 100%, 100%);
+  --onyx: hsl(0, 0%, 27%);
+
+  --gradient: linear-gradient(to top, var(--white) 0%, var(--cultured) 100%);
+
+  --rich-black: #1a1a2e;
+  --platinum: #e8e8e8;
+
+  /**
+   * typography
+   */
+
+  --fs-1: 1.563rem;
+  --fs-2: 1.375rem;
+  --fs-3: 1.25rem;
+  --fs-4: 1.125rem;
+  --fs-5: 1rem;
+  --fs-6: 0.938rem;
+  --fs-7: 0.875rem;
+  --fs-8: 0.813rem;
+  --fs-9: 0.75rem;
+  --fs-10: 0.688rem;
+  --fs-11: 0.625rem;
+
+  --weight-300: 300;
+  --weight-400: 400;
+  --weight-500: 500;
+  --weight-600: 600;
+  --weight-700: 700;
+
+  /**
+   * spacing
+   */
+
+  --section-padding: 60px;
+
+  /**
+   * radius
+   */
+
+  --border-radius-md: 10px;
+  --border-radius-sm: 5px;
+
+  /**
+   * transition
+   */
+
+  --transition-timing: 0.2s ease;
+
+}
+
+/* Cartico Auth Modal Styles */
+.auth-container {
+  padding: 30px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.auth-tabs {
+  display: flex;
+  margin-bottom: 24px;
+  border-bottom: 2px solid var(--platinum);
+  position: relative;
+}
+
+.auth-tab {
+  flex: 1;
+  padding: 14px;
+  background: none;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--sonic-silver);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 1;
+}
+
+.auth-tab.active {
+  color: var(--rich-black);
+}
+
+.auth-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--rich-black);
+}
+
+.auth-form {
+  display: none;
+  animation: fadeIn 0.3s ease;
+}
+
+.auth-form.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--rich-black);
+  font-family: 'Poppins', sans-serif;
+}
+
+.auth-desc {
+  font-size: 14px;
+  color: var(--sonic-silver);
+  margin-bottom: 24px;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--eerie-black);
+  font-size: 13px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.input-field {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid var(--platinum);
+  border-radius: var(--border-radius-sm);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background: var(--white);
+  color: var(--eerie-black);
+}
+
+.input-field:focus {
+  outline: none;
+  border-color: var(--rich-black);
+  box-shadow: 0 0 0 3px rgba(26, 26, 46, 0.1);
+}
+
+.input-field::placeholder {
+  color: var(--sonic-silver);
+}
+
+.input-field.error {
+  border-color: var(--bittersweet);
+}
+
+.input-icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--sonic-silver);
+}
+
+.input-icon ion-icon {
+  font-size: 18px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+  color: var(--eerie-black);
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.btn-auth {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, var(--rich-black) 0%, #2d2d44 100%);
+  color: var(--white);
+  border: none;
+  border-radius: var(--border-radius-sm);
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-auth:hover {
+  background: linear-gradient(135deg, #2d2d44 0%, var(--rich-black) 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(26, 26, 46, 0.3);
+}
+
+.btn-auth:active {
+  transform: translateY(0);
+}
+
+.btn-auth .spinner {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--white);
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.btn-auth.loading .btn-text {
+  display: none;
+}
+
+.btn-auth.loading .spinner {
+  display: block;
+}
+
+/* Login Modal Override */
+#loginModal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+}
+
+#loginModal.active {
+  display: flex;
+}
+
+.login-modal-content {
+  background: var(--white);
+  padding: 40px;
+  border-radius: var(--border-radius-md);
+  max-width: 420px;
+  width: 90%;
+  position: relative;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.login-modal-content .modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--sonic-silver);
+}
+
+.login-modal-content .modal-close-btn:hover {
+  color: var(--eerie-black);
+}
+
+.auth-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+  border-bottom: 2px solid var(--platinum);
+}
+
+.auth-tabs .auth-tab {
+  flex: 1;
+  padding: 12px;
+  background: none;
+  border: none;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--sonic-silver);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -2px;
+  transition: all 0.3s ease;
+}
+
+.auth-tabs .auth-tab.active {
+  color: var(--rich-black);
+  border-bottom-color: var(--rich-black);
+}
+
+.auth-form {
+  display: none;
+}
+
+.auth-form.active {
+  display: block;
+}
+
+.auth-form .input-field {
+  margin-bottom: 20px;
+}
+
+.auth-form .input-field label {
+  display: block;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--davys-gray);
+  margin-bottom: 8px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.auth-form .input-field input,
+.auth-form .input-field select {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid var(--platinum);
+  border-radius: var(--border-radius-sm);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  transition: border-color 0.3s ease;
+}
+
+.auth-form .input-field input:focus,
+.auth-form .input-field select:focus {
+  outline: none;
+  border-color: var(--rich-black);
+}
+
+.auth-switch {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--sonic-silver);
+  font-family: 'Poppins', sans-serif;
+}
+
+.auth-switch a {
+  color: var(--rich-black);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.auth-switch a:hover {
+  color: var(--ocean-green);
+  text-decoration: underline;
+}
+
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 20px 0;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--platinum);
+}
+
+.divider span {
+  padding: 0 12px;
+  font-size: 12px;
+  color: var(--sonic-silver);
+}
+
+.social-login {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.social-btn {
+  flex: 1;
+  padding: 12px;
+  border: 2px solid var(--platinum);
+  border-radius: var(--border-radius-sm);
+  background: var(--white);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.social-btn:hover {
+  border-color: var(--rich-black);
+  background: var(--cultured);
+}
+
+.social-btn ion-icon {
+  font-size: 18px;
+  color: #1877f2;
+}
+
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  font-size: 13px;
+}
+
+.remember-me {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--sonic-silver);
+}
+
+.remember-me input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--rich-black);
+}
+
+.forgot-link {
+  color: var(--rich-black);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+/* Notification Toast */
+.notification-toast {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  background: var(--white);
+  border-radius: var(--border-radius-md);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 18px;
+  z-index: 1000;
+  animation: slideInRight 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  border-left: 4px solid var(--ocean-green);
+}
+
+.notification-toast.error {
+  border-left-color: var(--bittersweet);
+}
+
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.toast-close-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--sonic-silver);
+  padding: 4px;
+  transition: color 0.3s ease;
+}
+
+.toast-close-btn:hover {
+  color: var(--rich-black);
+}
+
+.toast-banner {
+  width: 50px;
+  height: 50px;
+  border-radius: var(--border-radius-sm);
+  overflow: hidden;
+}
+
+.toast-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.toast-detail {
+  padding-right: 20px;
+}
+
+.toast-message {
+  font-size: 13px;
+  color: var(--sonic-silver);
+  font-family: 'Poppins', sans-serif;
+}
+
+.toast-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--rich-black);
+  font-family: 'Poppins', sans-serif;
+  margin-top: 4px;
+}
+
+.toast-meta {
+  font-size: 12px;
+  color: var(--sonic-silver);
+  margin-top: 4px;
+}
+
+/* Modal Active State */
+.modal.active {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal.active .modal-content {
+  transform: scale(1);
+  opacity: 1;
+}
+
+.modal-content {
+  background: var(--white);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  transform: scale(1);
+  opacity: 1;
+  transition: all 0.3s ease;
+  max-height: 90vh;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 450px;
+  margin: 20px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: var(--cultured);
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.modal-close-btn:hover {
+  background: var(--sonic-silver);
+  color: var(--white);
+}
+
+.modal-close-btn ion-icon {
+  font-size: 20px;
+}
+
+/* Loading Overlay */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  display: none;
+}
+
+.loading-overlay.active {
+  display: flex;
+}
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--platinum);
+  border-top-color: var(--rich-black);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}

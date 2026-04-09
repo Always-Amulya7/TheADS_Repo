@@ -89,17 +89,12 @@ public class Playfair {
         return result.toString();
     }
     public static void main(String[] args) {
-        String key,text;
-        Scanner sc=new Scanner(System.in);
-        System.out.print("Enter The Text: ");
-        text=sc.nextLine();
-        System.out.print("Enter The Key: ");
-        key=sc.nextLine();
+        String key = "MONARCHY";
+        String text = "HELLO";
         generateMatrix(key);
         String encrypted = encrypt(text);
         System.out.println("Encrypted: " + encrypted);
         String decrypted = decrypt(encrypted);
         System.out.println("Decrypted: " + decrypted);
-        sc.close();
     }
 }

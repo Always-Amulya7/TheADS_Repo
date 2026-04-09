@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Products - Cartico</title>
+
+  <link rel="shortcut icon" href="./assets/images/logo/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/style-prefix.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="overlay" data-overlay></div>
+
+  <header>
+    <div class="header-main">
+      <div class="container">
+        <a href="/" class="header-logo">
+          <img src="./assets/images/logo/logo.svg" alt="Cartico" width="120" height="36">
+        </a>
+
+        <div class="header-search-container">
+          <input type="search" name="search" class="search-field" id="searchInput" placeholder="Enter your product name...">
+          <button class="search-btn" onclick="doSearch()">
+            <ion-icon name="search-outline"></ion-icon>
+          </button>
+        </div>
+
+        <div class="header-user-actions">
+          <button class="action-btn" id="loginBtn">
+            <ion-icon name="person-outline"></ion-icon>
+          </button>
+
+          <button class="action-btn" onclick="window.location.href='/cart.html'">
+            <ion-icon name="bag-handle-outline"></ion-icon>
+            <span class="count">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <nav class="desktop-navigation-menu">
+      <div class="container">
+        <ul class="desktop-menu-category-list">
+          <li class="menu-category">
+            <a href="/" class="menu-title">Home</a>
+          </li>
+          <li class="menu-category">
+            <a href="/products.html" class="menu-title">All Products</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <div class="product-container">
+      <div class="sidebar" style="display:none;"></div>
+      
+      <div class="product-box">
+        <div class="product-main">
+          <h2 id="pageTitle">All Products</h2>
+          
+          <div class="product-grid" id="productGrid">
+            <div class="loading" style="grid-column: 1/-1; text-align:center; padding: 40px;">
+              Loading products...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-category">
+      <div class="container">
+        <h2 class="footer-category-title">Cartico - Your Online Shopping Destination</h2>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    const API_BASE_URL = '/api';
+    const auth = {
+      token: localStorage.getItem('cartico_token'),
+      user: JSON.parse(localStorage.getItem('cartico_user') || 'null'),
+      isLoggedIn() { return !!this.token; }
+    };
+
+    function showToast(message) {
+      alert(message);
+    }
+
+    function doSearch() {
+      const query = document.getElementById('searchInput').value.trim();
+      if (query) {
+        window.location.href = `/products.html?search=${encodeURIComponent(query)}`;
+      }
+    }
+
+    // Load products
+    async function loadProducts() {
+      const params = new URLSearchParams(window.location.search);
+      const search = params.get('search') || '';
+      const category = params.get('category') || '';
+      
+      let url = `${API_BASE_URL}/products`;
+      const queryParams = [];
+      
+      if (search) {
+        queryParams.push(`search=${encodeURIComponent(search)}`);
+        document.getElementById('searchInput').value = search;
+        document.getElementById('pageTitle').textContent = `Search: "${search}"`;
+      }
+      
+      if (category) {
+        queryParams.push(`category=${encodeURIComponent(category)}`);
+        document.getElementById('pageTitle').textContent = category.charAt(0).toUpperCase() + category.slice(1);
+      }
+      
+      if (queryParams.length > 0) {
+        url += '?' + queryParams.join('&');
+      }
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+        
+        const products = data.data?.products || [];
+        const grid = document.getElementById('productGrid');
+        
+        if (products.length === 0) {
+          grid.innerHTML = `
+            <div style="grid-column:1/-1; text-align:center; padding:40px;">
+              <h3>No products found</h3>
+              <p>Try a different search term</p>
+              <a href="/products.html" class="btn btn-primary" style="display:inline-block; margin-top:20px; padding:12px 24px; background:var(--blue-oxford); color:white; text-decoration:none; border-radius:5px;">View All Products</a>
+            </div>`;
+          return;
+        }
+
+        let html = '';
+        
+        products.forEach(product => {
+          const image = product.images && product.images[0] ? product.images[0].url : './assets/images/products/1.jpg';
+          const price = product.price || 0;
+          const originalPrice = product.originalPrice || price * 1.2;
+          const discount = Math.round((1 - price / originalPrice) * 100);
+          
+          html += `
+            <div class="showcase">
+              <div class="showcase-banner">
+                <a href="#">
+                  <img src="${image}" alt="${product.name}" width="300" class="showcase-img">
+                </a>
+              </div>
+              <div class="showcase-content">
+                <a href="#" class="showcase-category">${product.category?.name || 'Product'}</a>
+                <a href="#">
+                  <h3 class="showcase-title">${product.name}</h3>
+                </a>
+                <div class="showcase-rating">
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star"></ion-icon>
+                  <ion-icon name="star-outline"></ion-icon>
+                  <ion-icon name="star-outline"></ion-icon>
+                </div>
+                <div class="price-box">
+                  <p class="price">$${price.toFixed(2)}</p>
+                  ${originalPrice > price ? `<del>$${originalPrice.toFixed(2)}</del>` : ''}
+                </div>
+                <button class="btn btn-primary" onclick="addToCart('${product._id}')">Add to Cart</button>
+              </div>
+            </div>`;
+        });
+        
+        grid.innerHTML = html;
+        
+      } catch (error) {
+        console.error('Error loading products:', error);
+        document.getElementById('productGrid').innerHTML = '<div style="grid-column:1/-1; text-align:center;">Error loading products</div>';
+      }
+    }
+
+    async function addToCart(productId) {
+      if (!auth.isLoggedIn()) {
+        window.location.href = '/';
+        return;
+      }
+      
+      try {
+        const response = await fetch(`${API_BASE_URL}/cart/add`, {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth.token}`
+          },
+          body: JSON.stringify({ productId, quantity: 1 })
+        });
+        
+        if (response.ok) {
+          showToast('Added to cart!');
+        } else {
+          const data = await response.json();
+          showToast(data.message || 'Error adding to cart');
+        }
+      } catch (error) {
+        showToast('Error adding to cart');
+      }
+    }
+
+    // Enter key for search
+    document.getElementById('searchInput').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') doSearch();
+    });
+
+    // Load products on page load
+    loadProducts();
+  </script>
+</body>
+
+</html>

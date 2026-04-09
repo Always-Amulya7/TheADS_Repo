@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Wishlist - Cartico</title>
+
+  <link rel="shortcut icon" href="./assets/images/logo/favicon.ico" type="image/x-icon">
+  <link rel="stylesheet" href="./assets/css/style-prefix.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    .wishlist-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .wishlist-header {
+      margin-bottom: 30px;
+    }
+
+    .wishlist-header h1 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--eerie-black);
+    }
+
+    .wishlist-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 25px;
+    }
+
+    .wishlist-item {
+      background: var(--white);
+      border-radius: var(--radius-5);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      overflow: hidden;
+      position: relative;
+      transition: transform 0.3s;
+    }
+
+    .wishlist-item:hover {
+      transform: translateY(-5px);
+    }
+
+    .wishlist-item img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+
+    .wishlist-item-content {
+      padding: 15px;
+    }
+
+    .wishlist-item-category {
+      font-size: 12px;
+      color: var(--sonic-silver);
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+
+    .wishlist-item-title {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--eerie-black);
+      margin-bottom: 10px;
+    }
+
+    .wishlist-item-price {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--eerie-black);
+    }
+
+    .item-actions {
+      display: flex;
+      gap: 10px;
+      padding: 15px;
+      border-top: 1px solid var(--platinum);
+    }
+
+    .btn {
+      flex: 1;
+      padding: 12px 20px;
+      border: none;
+      border-radius: var(--radius-5);
+      font-family: var(--font-family);
+      font-weight: 600;
+      cursor: pointer;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    .btn-primary {
+      background: var(--blue-oxford);
+      color: var(--white);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--blue-oxford);
+      color: var(--blue-oxford);
+    }
+
+    .btn-remove {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: var(--white);
+      border: none;
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    .btn-remove ion-icon {
+      color: var(--sonic-silver);
+    }
+
+    .empty-wishlist {
+      text-align: center;
+      padding: 80px 20px;
+    }
+
+    .empty-wishlist ion-icon {
+      font-size: 80px;
+      color: var(--sonic-silver);
+      margin-bottom: 20px;
+    }
+
+    .empty-wishlist h2 {
+      font-size: 24px;
+      color: var(--eerie-black);
+      margin-bottom: 10px;
+    }
+
+    .empty-wishlist p {
+      color: var(--sonic-silver);
+      margin-bottom: 20px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="overlay" data-overlay></div>
+
+  <header>
+    <div class="header-main">
+      <div class="container">
+        <a href="/" class="header-logo">
+          <img src="./assets/images/logo/logo.svg" alt="Cartico" width="120" height="36">
+        </a>
+
+        <div class="header-user-actions">
+          <button class="action-btn" id="loginBtn">
+            <ion-icon name="person-outline"></ion-icon>
+          </button>
+
+          <button class="action-btn" onclick="window.location.href='/cart.html'">
+            <ion-icon name="bag-handle-outline"></ion-icon>
+            <span class="count" id="cartCount">0</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <div class="wishlist-container">
+      <div class="wishlist-header">
+        <h1>My Wishlist</h1>
+      </div>
+
+      <div id="wishlistContent">
+        <div class="loading">Loading...</div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script>
+    const API_BASE_URL = '/api';
+    const auth = {
+      token: localStorage.getItem('cartico_token'),
+      user: JSON.parse(localStorage.getItem('cartico_user') || 'null'),
+      isLoggedIn() { return !!this.token; }
+    };
+
+    function showToast(message, type = 'success') {
+      alert(message);
+    }
+
+    // Load wishlist on page load
+    async function loadWishlist() {
+      const content = document.getElementById('wishlistContent');
+      
+      if (!auth.isLoggedIn()) {
+        content.innerHTML = `
+          <div class="empty-wishlist">
+            <ion-icon name="heart-outline"></ion-icon>
+            <h2>Your wishlist is empty</h2>
+            <p>Sign in to save your favorite items</p>
+            <button class="btn btn-primary" onclick="window.location.href='/'">Continue Shopping</button>
+          </div>`;
+        return;
+      }
+
+      try {
+        const response = await fetch(`${API_BASE_URL}/wishlist`, {
+          headers: { 'Authorization': `Bearer ${auth.token}` }
+        });
+        
+        const data = await response.json();
+        const items = data.data || [];
+        
+        if (items.length === 0) {
+          content.innerHTML = `
+            <div class="empty-wishlist">
+              <ion-icon name="heart-outline"></ion-icon>
+              <h2>Your wishlist is empty</h2>
+              <p>Start adding items you love</p>
+              <button class="btn btn-primary" onclick="window.location.href='/'">Continue Shopping</button>
+            </div>`;
+          return;
+        }
+
+        let html = '<div class="wishlist-grid">';
+        
+        items.forEach(item => {
+          const product = item.product || item;
+          const image = product.images && product.images[0] ? product.images[0].url : './assets/images/products/1.jpg';
+          
+          html += `
+            <div class="wishlist-item">
+              <button class="btn-remove" onclick="removeFromWishlist('${product._id}')">
+                <ion-icon name="close-outline"></ion-icon>
+              </button>
+              <img src="${image}" alt="${product.name}">
+              <div class="wishlist-item-content">
+                <div class="wishlist-item-category">${product.category?.name || 'Product'}</div>
+                <div class="wishlist-item-title">${product.name}</div>
+                <div class="wishlist-item-price">$${(product.price || 0).toFixed(2)}</div>
+              </div>
+              <div class="item-actions">
+                <button class="btn btn-primary" onclick="addToCart('${product._id}')">Add to Cart</button>
+              </div>
+            </div>`;
+        });
+        
+        html += '</div>';
+        content.innerHTML = html;
+        
+        document.getElementById('cartCount').textContent = items.length;
+        
+      } catch (error) {
+        console.error('Error loading wishlist:', error);
+        content.innerHTML = '<div class="loading">Error loading wishlist</div>';
+      }
+    }
+
+    async function removeFromWishlist(productId) {
+      if (!confirm('Remove from wishlist?')) return;
+      
+      try {
+        const response = await fetch(`${API_BASE_URL}/wishlist/remove/${productId}`, {
+          method: 'DELETE',
+          headers: { 'Authorization': `Bearer ${auth.token}` }
+        });
+        
+        if (response.ok) {
+          showToast('Removed from wishlist');
+          loadWishlist();
+        } else {
+          const data = await response.json();
+          showToast(data.message || 'Error removing');
+        }
+      } catch (error) {
+        showToast('Error removing from wishlist');
+      }
+    }
+
+    async function addToCart(productId) {
+      if (!auth.isLoggedIn()) {
+        window.location.href = '/';
+        return;
+      }
+      
+      try {
+        const response = await fetch(`${API_BASE_URL}/cart/add`, {
+          method: 'POST',
+          headers: { 
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth.token}`
+          },
+          body: JSON.stringify({ productId, quantity: 1 })
+        });
+        
+        if (response.ok) {
+          showToast('Added to cart!');
+          window.location.href = '/cart.html';
+        } else {
+          const data = await response.json();
+          showToast(data.message || 'Error adding to cart');
+        }
+      } catch (error) {
+        showToast('Error adding to cart');
+      }
+    }
+
+    // Login button handler
+    document.getElementById('loginBtn').addEventListener('click', () => {
+      if (!auth.isLoggedIn()) {
+        window.location.href = '/';
+      } else {
+        auth.logout();
+      }
+    });
+
+    // Load wishlist on page load
+    loadWishlist();
+  </script>
+</body>
+
+</html>

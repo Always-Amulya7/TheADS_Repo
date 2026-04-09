@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard - Cartico</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo/favicon.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style-prefix.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    /* Dashboard Styles */
+    .dashboard-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 30px;
+      padding-bottom: 20px;
+      border-bottom: 2px solid var(--cultured);
+    }
+
+    .dashboard-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--eerie-black);
+    }
+
+    .dashboard-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+
+    .stat-card {
+      background: var(--white);
+      padding: 24px;
+      border-radius: var(--border-radius-md);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    .stat-card h3 {
+      font-size: 14px;
+      color: var(--sonic-silver);
+      margin-bottom: 8px;
+    }
+
+    .stat-card .value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--eerie-black);
+    }
+
+    .stat-card .value.success { color: var(--ocean-green); }
+    .stat-card .value.warning { color: var(--sandy-brown); }
+    .stat-card .value.danger { color: var(--bittersweet); }
+
+    .dashboard-section {
+      background: var(--white);
+      padding: 24px;
+      border-radius: var(--border-radius-md);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      margin-bottom: 30px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .section-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--eerie-black);
+    }
+
+    .tab-container {
+      display: flex;
+      border-bottom: 2px solid var(--cultured);
+      margin-bottom: 20px;
+    }
+
+    .tab-btn {
+      padding: 12px 24px;
+      background: none;
+      border: none;
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--sonic-silver);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -2px;
+    }
+
+    .tab-btn.active {
+      color: var(--eerie-black);
+      border-bottom-color: var(--eerie-black);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .data-table th,
+    .data-table td {
+      padding: 12px;
+      text-align: left;
+      border-bottom: 1px solid var(--cultured);
+    }
+
+    .data-table th {
+      font-weight: 600;
+      color: var(--sonic-silver);
+      font-size: 14px;
+    }
+
+    .data-table td {
+      font-size: 14px;
+      color: var(--davys-gray);
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-pending { background: #fff3cd; color: #856404; }
+    .status-processing { background: #cce5ff; color: #004085; }
+    .status-shipped { background: #d4edda; color: #155724; }
+    .status-delivered { background: #d4edda; color: #155724; }
+    .status-cancelled { background: #f8d7da; color: #721c24; }
+    .status-paid { background: #d4edda; color: #155724; }
+
+    .role-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .role-customer { background: #e2e3e5; color: #383d41; }
+    .role-seller { background: #cce5ff; color: #004085; }
+    .role-admin { background: #d4edda; color: #155724; }
+
+    .action-btns {
+      display: flex;
+      gap: 8px;
+    }
+
+    .btn-sm {
+      padding: 6px 12px;
+      font-size: 12px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .btn-edit { background: var(--ocean-green); color: var(--white); }
+    .btn-delete { background: var(--bittersweet); color: var(--white); }
+    .btn-view { background: var(--eerie-black); color: var(--white); }
+
+    .btn-primary {
+      padding: 12px 24px;
+      background: var(--eerie-black);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-primary:hover { background: var(--onyx); }
+
+    .empty-state {
+      text-align: center;
+      padding: 40px;
+      color: var(--sonic-silver);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="dashboard-container">
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Admin Dashboard</h1>
+      <div>
+        <span id="adminName"></span>
+        <a href="/" class="btn-primary" style="margin-left: 16px;">Back to Shop</a>
+      </div>
+    </div>
+
+    <div class="dashboard-stats">
+      <div class="stat-card">
+        <h3>Total Users</h3>
+        <div class="value" id="totalUsers">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Total Products</h3>
+        <div class="value" id="totalProducts">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Total Orders</h3>
+        <div class="value" id="totalOrders">0</div>
+      </div>
+      <div class="stat-card">
+        <h3>Total Revenue</h3>
+        <div class="value success" id="totalRevenue">$0</div>
+      </div>
+    </div>
+
+    <div class="dashboard-section">
+      <div class="tab-container">
+        <button class="tab-btn active" data-tab="users" onclick="switchTab('users')">Users</button>
+        <button class="tab-btn" data-tab="products" onclick="switchTab('products')">Products</button>
+        <button class="tab-btn" data-tab="orders" onclick="switchTab('orders')">Orders</button>
+        <button class="tab-btn" data-tab="verifications" onclick="switchTab('verifications')">Seller Verifications</button>
+      </div>
+
+      <!-- Users Tab -->
+      <div class="tab-content active" id="usersTab">
+        <div id="usersList">
+          <div class="empty-state">Loading users...</div>
+        </div>
+      </div>
+
+      <!-- Products Tab -->
+      <div class="tab-content" id="productsTab">
+        <div id="productsList">
+          <div class="empty-state">Loading products...</div>
+        </div>
+      </div>
+
+      <!-- Orders Tab -->
+      <div class="tab-content" id="ordersTab">
+        <div id="ordersList">
+          <div class="empty-state">Loading orders...</div>
+        </div>
+      </div>
+
+      <!-- Verifications Tab -->
+      <div class="tab-content" id="verificationsTab">
+        <div id="verificationsList">
+          <div class="empty-state">Loading pending verifications...</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="./assets/js/app.js"></script>
+  <script>
+    const API_BASE_URL = '/api';
+    let currentUsers = [];
+    let currentProducts = [];
+    let currentOrders = [];
+
+    // Check authentication
+    if (!auth.isLoggedIn() || auth.user.role !== 'admin') {
+      window.location.href = '/';
+    }
+
+    document.getElementById('adminName').textContent = auth.user.name;
+
+    function switchTab(tabName) {
+      document.querySelectorAll('.tab-btn').forEach(btn => {
+        btn.classList.remove('active');
+        if (btn.dataset.tab === tabName) btn.classList.add('active');
+      });
+      document.querySelectorAll('.tab-content').forEach(content => {
+        content.classList.remove('active');
+      });
+      document.getElementById(tabName + 'Tab').classList.add('active');
+    }
+
+    async function loadUsers() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/auth/users`, {
+          headers: { 'Authorization': `Bearer ${auth.token}` }
+        });
+        currentUsers = await response.json();
+        document.getElementById('totalUsers').textContent = currentUsers.length;
+        renderUsers();
+      } catch (error) {
+        console.error('Error loading users:', error);
+      }
+    }
+
+    async function loadProducts() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/products?limit=100`);
+        const data = await response.json();
+        currentProducts = data.products || [];
+        document.getElementById('totalProducts').textContent = currentProducts.length;
+        renderProducts();
+      } catch (error) {
+        console.error('Error loading products:', error);
+      }
+    }
+
+    async function loadOrders() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/orders/seller/all?limit=100`, {
+          headers: { 'Authorization': `Bearer ${auth.token}` }
+        });
+        const data = await response.json();
+        currentOrders = data.orders || [];
+        document.getElementById('totalOrders').textContent = currentOrders.length;
+        const revenue = currentOrders.reduce((sum, o) => sum + o.totalPrice, 0);
+        document.getElementById('totalRevenue').textContent = formatPrice(revenue);
+        renderOrders();
+      } catch (error) {
+        console.error('Error loading orders:', error);
+      }
+    }
+
+    let pendingSellers = [];
+
+    async function loadVerifications() {
+      try {
+        const response = await fetch(`${API_BASE_URL}/auth/sellers/pending`, {
+          headers: { 'Authorization': `Bearer ${auth.token}` }
+        });
+        pendingSellers = await response.json();
+        renderVerifications();
+      } catch (error) {
+        console.error('Error loading verifications:', error);
+      }
+    }
+
+    function renderVerifications() {
+      const container = document.getElementById('verificationsList');
+      if (pendingSellers.length === 0) {
+        container.innerHTML = '<div class="empty-state">No pending seller verifications</div>';
+        return;
+      }
+      container.innerHTML = `
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Business</th>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${pendingSellers.map(seller => `
+              <tr>
+                <td>${seller.name}</td>
+                <td>${seller.email}</td>
+                <td>${seller.businessName || 'N/A'}</td>
+                <td>${seller.businessDescription || 'N/A'}</td>
+                <td><span class="role-badge role-seller">${seller.verificationStatus}</span></td>
+                <td class="action-btns">
+                  <button class="btn-sm btn-edit" onclick="verifySeller('${seller._id}', 'approved')">Approve</button>
+                  <button class="btn-sm btn-delete" onclick="verifySeller('${seller._id}', 'rejected')">Reject</button>
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    async function verifySeller(sellerId, status) {
+      const reason = status === 'rejected' ? prompt('Enter rejection reason (optional):') : '';
+      
+      try {
+        const response = await fetch(`${API_BASE_URL}/auth/sellers/${sellerId}/verify`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${auth.token}`
+          },
+          body: JSON.stringify({ status, reason })
+        });
+        
+        if (response.ok) {
+          alert(status === 'approved' ? 'Seller approved successfully!' : 'Seller rejected');
+          loadVerifications();
+        } else {
+          alert('Failed to update seller status');
+        }
+      } catch (error) {
+        console.error('Error verifying seller:', error);
+        alert('Error verifying seller');
+      }
+    }
+
+    function renderUsers() {
+      const container = document.getElementById('usersList');
+      if (currentUsers.length === 0) {
+        container.innerHTML = '<div class="empty-state">No users found</div>';
+        return;
+      }
+      container.innerHTML = `
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Role</th>
+              <th>Status</th>
+              <th>Joined</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${currentUsers.map(user => `
+              <tr>
+                <td>${user.name}</td>
+                <td>${user.email}</td>
+                <td><span class="role-badge role-${user.role}">${user.role}</span></td>
+                <td>${user.isActive ? 'Active' : 'Inactive'}</td>
+                <td>${new Date(user.createdAt).toLocaleDateString()}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function renderProducts() {
+      const container = document.getElementById('productsList');
+      if (currentProducts.length === 0) {
+        container.innerHTML = '<div class="empty-state">No products found</div>';
+        return;
+      }
+      container.innerHTML = `
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Seller</th>
+              <th>Category</th>
+              <th>Price</th>
+              <th>Stock</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${currentProducts.map(product => `
+              <tr>
+                <td>${product.name}</td>
+                <td>${product.seller?.name || 'Unknown'}</td>
+                <td>${product.category}</td>
+                <td>${formatPrice(product.price)}</td>
+                <td>${product.stock}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    function renderOrders() {
+      const container = document.getElementById('ordersList');
+      if (currentOrders.length === 0) {
+        container.innerHTML = '<div class="empty-state">No orders found</div>';
+        return;
+      }
+      container.innerHTML = `
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Order #</th>
+              <th>Customer</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Payment</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${currentOrders.map(order => `
+              <tr>
+                <td>${order.orderNumber}</td>
+                <td>${order.user?.name || 'Unknown'}</td>
+                <td>${formatPrice(order.totalPrice)}</td>
+                <td><span class="status-badge status-${order.status}">${order.status}</span></td>
+                <td><span class="status-badge status-${order.paymentStatus}">${order.paymentStatus}</span></td>
+                <td>${new Date(order.createdAt).toLocaleDateString()}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
+    }
+
+    // Initialize
+    loadUsers();
+    loadProducts();
+    loadOrders();
+    loadVerifications();
+  </script>
+</body>
+
+</html>

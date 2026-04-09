@@ -30,16 +30,11 @@ public class Vigenere {
         return text.toString();
     }
     public static void main(String[] args) {
-        String key,text;
-        Scanner sc=new Scanner(System.in);
-        System.out.print("Enter The Text: ");
-        text=sc.nextLine();
-        System.out.print("Enter The Key: ");
-        key=sc.nextLine();
+        String text = "HELLOWORLD";
+        String key = "KEY";
         String cipher = encrypt(text, key);
         System.out.println("Encrypted Text: " + cipher);
         String decrypted = decrypt(cipher, key);
         System.out.println("Decrypted Text: " + decrypted);
-        sc.close();
     }
 }

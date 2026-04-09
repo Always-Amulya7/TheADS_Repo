@@ -1,4 +1,4 @@
-// To run the code- g++ Timber.cpp -lsfml-graphics -lsfml-window -lsfml-system -lsfml-audio
+// To run the code- g++ Timber.cpp -lsfml-graphics -lsfml-window -lsfml-system
 
 #include <SFML/Graphics.hpp>
 #include <sstream>

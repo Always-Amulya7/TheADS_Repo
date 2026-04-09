@@ -22,10 +22,8 @@ def decrypt_vigenere(text, key):
         else:
             result += i
     return result
-msg = input("Enter The Message: ")
-print("Enter The Message: ",msg)
-key = input("Enter The Key: ")
-print("Enter The Key: ",key)
+msg = "SOA UNIVERSITY BBSR"
+key = "AMULYA"
 enc = encrypt_vigenere(msg, key)
 dec = decrypt_vigenere(enc, key)
 print("Encrypted:", enc)
