@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Anon - eCommerce Website</title>
+  <title>Cartico - eCommerce Website</title>
 
   <!--
     - favicon
@@ -16,6 +16,11 @@
     - custom css link
   -->
   <link rel="stylesheet" href="./assets/css/style-prefix.css">
+
+  <!--
+    - auth css link
+  -->
+  <link rel="stylesheet" href="./assets/css/auth.css">
 
   <!--
     - google font link
@@ -59,7 +64,7 @@
             <h3 class="newsletter-title">Subscribe Newsletter.</h3>
 
             <p class="newsletter-desc">
-              Subscribe the <b>Anon</b> to get latest products and discount update.
+              Subscribe the <b>Cartico</b> to get latest products and discount update.
             </p>
 
           </div>
@@ -112,6 +117,93 @@
 
   </div>
 
+
+  <!--
+    - LOGIN/REGISTER MODAL
+  -->
+
+  <div class="modal" id="loginModal">
+    <div class="modal-close-overlay" data-modal-overlay></div>
+    <div class="modal-content login-modal-content">
+      <button class="modal-close-btn" data-modal-close onclick="hideModal('loginModal')">
+        <ion-icon name="close-outline"></ion-icon>
+      </button>
+
+      <div class="auth-container">
+        <div class="auth-tabs">
+          <button class="auth-tab active" data-tab="login" onclick="switchAuthTab('login')">Login</button>
+          <button class="auth-tab" data-tab="register" onclick="switchAuthTab('register')">Register</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm" class="auth-form active">
+          <h3 class="auth-title">Welcome Back</h3>
+          <p class="auth-desc">Login to your Cartico account</p>
+          
+          <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" id="loginEmail" class="input-field" placeholder="Enter your email" required>
+          </div>
+          
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="loginPassword" class="input-field" placeholder="Enter your password" required>
+          </div>
+          
+          <div class="remember-forgot">
+            <label class="remember-me">
+              <input type="checkbox"> Remember me
+            </label>
+            <a href="#" class="forgot-link">Forgot Password?</a>
+          </div>
+          
+          <button type="submit" class="btn-auth">
+            <span class="btn-text">Login</span>
+            <span class="spinner"></span>
+          </button>
+        </form>
+
+        <!-- Register Form -->
+        <form id="registerForm" class="auth-form">
+          <h3 class="auth-title">Create Account</h3>
+          <p class="auth-desc">Join Cartico as a customer or seller</p>
+          
+          <div class="input-group">
+            <label>Full Name</label>
+            <input type="text" id="registerName" class="input-field" placeholder="Enter your name" required>
+          </div>
+          
+          <div class="input-group">
+            <label>Email Address</label>
+            <input type="email" id="registerEmail" class="input-field" placeholder="Enter your email" required>
+          </div>
+          
+          <div class="input-group">
+            <label>Password</label>
+            <input type="password" id="registerPassword" class="input-field" placeholder="Create a password" required>
+          </div>
+          
+          <div class="input-group">
+            <label>Account Type</label>
+            <select id="registerRole" class="input-field">
+              <option value="customer">Customer</option>
+              <option value="seller">Seller</option>
+            </select>
+          </div>
+          
+          <div class="input-group seller-fields" style="display:none;">
+            <label>Business Name</label>
+            <input type="text" id="businessName" class="input-field" placeholder="Enter business name">
+          </div>
+          
+          <button type="submit" class="btn-auth">
+            <span class="btn-text">Create Account</span>
+            <span class="spinner"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
 
 
 
@@ -188,8 +280,8 @@
 
       <div class="container">
 
-        <a href="#" class="header-logo">
-          <img src="./assets/images/logo/logo.svg" alt="Anon's logo" width="120" height="36">
+        <a href="index.html" class="header-logo">
+          <img src="./assets/images/logo/logo.svg" alt="Cartico's logo" width="120" height="36">
         </a>
 
         <div class="header-search-container">
@@ -204,16 +296,16 @@
 
         <div class="header-user-actions">
 
-          <button class="action-btn">
+          <button class="action-btn" id="loginBtn">
             <ion-icon name="person-outline"></ion-icon>
           </button>
 
-          <button class="action-btn">
+          <button class="action-btn" id="wishlistBtn">
             <ion-icon name="heart-outline"></ion-icon>
             <span class="count">0</span>
           </button>
 
-          <button class="action-btn">
+          <button class="action-btn" id="cartBtn">
             <ion-icon name="bag-handle-outline"></ion-icon>
             <span class="count">0</span>
           </button>
@@ -231,11 +323,11 @@
         <ul class="desktop-menu-category-list">
 
           <li class="menu-category">
-            <a href="#" class="menu-title">Home</a>
+            <a href="index.html" class="menu-title">Home</a>
           </li>
 
           <li class="menu-category">
-            <a href="#" class="menu-title">Categories</a>
+            <a href="products.html" class="menu-title">Categories</a>
 
             <div class="dropdown-panel">
 
@@ -3578,7 +3670,7 @@
         <img src="./assets/images/payment.png" alt="payment method" class="payment-img">
 
         <p class="copyright">
-          Copyright &copy; <a href="#">Anon</a> all rights reserved.
+          Copyright &copy; <a href="#">Cartico</a> all rights reserved.
         </p>
 
       </div>
@@ -3586,6 +3678,8 @@
     </div>
 
   </footer>
+
+  <script src="./assets/js/app.js"></script>
 
   <!--
     - custom js link
