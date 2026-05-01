@@ -1,0 +1,203 @@
+-- 1. DEPARTMENT
+CREATE TABLE DEPARTMENT (
+    DEPT_NAME VARCHAR(50) PRIMARY KEY,
+    BUILDING VARCHAR(50) NOT NULL,
+    BUDGET DECIMAL(10,2) CHECK (BUDGET > 0)
+);
+
+-- 2. INSTRUCTOR
+CREATE TABLE INSTRUCTOR (
+    ID CHAR(5) PRIMARY KEY,
+    NAME VARCHAR(50) NOT NULL,
+    DEPT_NAME VARCHAR(50),
+    SALARY DECIMAL(10,2) CHECK (SALARY > 2000),
+    FOREIGN KEY (DEPT_NAME) REFERENCES DEPARTMENT(DEPT_NAME)
+);
+
+-- 3. STUDENT
+CREATE TABLE STUDENT (
+    ID CHAR(5) PRIMARY KEY,
+    NAME VARCHAR(50) NOT NULL,
+    DEPT_NAME VARCHAR(50),
+    TOT_CRED INT CHECK (TOT_CRED >= 0),
+    FOREIGN KEY (DEPT_NAME) REFERENCES DEPARTMENT(DEPT_NAME)
+);
+
+-- 4. CLASSROOM
+CREATE TABLE CLASSROOM (
+    ROOM_NO INT,
+    BUILDING VARCHAR(50),
+    CAPACITY INT CHECK (CAPACITY >= 10),
+    PRIMARY KEY (ROOM_NO, BUILDING)
+);
+
+-- 5. COURSE
+CREATE TABLE COURSE (
+    COURSE_ID VARCHAR(10) PRIMARY KEY,
+    TITLE VARCHAR(100) NOT NULL,
+    DEPT_NAME VARCHAR(50),
+    CREDIT INT CHECK (CREDIT > 0),
+    FOREIGN KEY (DEPT_NAME) REFERENCES DEPARTMENT(DEPT_NAME)
+);
+
+-- 6. SECTION
+CREATE TABLE SECTION (
+    COURSE_ID VARCHAR(10),
+    SEC_ID VARCHAR(10),
+    SEMESTER VARCHAR(10),
+    YEAR INT CHECK (YEAR BETWEEN 2000 AND 2026),
+    ROOM_NO INT,
+    BUILDING VARCHAR(50),
+    PRIMARY KEY (COURSE_ID, SEC_ID, SEMESTER, YEAR),
+    FOREIGN KEY (COURSE_ID) REFERENCES COURSE(COURSE_ID),
+    FOREIGN KEY (ROOM_NO, BUILDING) REFERENCES CLASSROOM(ROOM_NO, BUILDING),
+    CHECK (SEMESTER IN ('SPRING','SUMMER','FALL','WINTER'))
+);
+
+-- 7. ADVISOR
+CREATE TABLE ADVISOR (
+    I_ID CHAR(5),
+    S_ID CHAR(5),
+    PRIMARY KEY (I_ID, S_ID),
+    FOREIGN KEY (I_ID) REFERENCES INSTRUCTOR(ID),
+    FOREIGN KEY (S_ID) REFERENCES STUDENT(ID)
+);
+
+-- 8. TEACHES
+CREATE TABLE TEACHES (
+    ID CHAR(5),
+    COURSE_ID VARCHAR(10),
+    SEC_ID VARCHAR(10),
+    SEMESTER VARCHAR(10),
+    YEAR INT,
+    PRIMARY KEY (ID, COURSE_ID, SEC_ID, SEMESTER, YEAR),
+    FOREIGN KEY (ID) REFERENCES INSTRUCTOR(ID),
+    FOREIGN KEY (COURSE_ID, SEC_ID, SEMESTER, YEAR)
+        REFERENCES SECTION(COURSE_ID, SEC_ID, SEMESTER, YEAR)
+);
+
+-- 9. TAKES
+CREATE TABLE TAKES (
+    S_ID CHAR(5),
+    COURSE_ID VARCHAR(10),
+    SEC_ID VARCHAR(10),
+    SEMESTER VARCHAR(10),
+    YEAR INT,
+    GRADE VARCHAR(2),
+    PRIMARY KEY (S_ID, COURSE_ID, SEC_ID, SEMESTER, YEAR),
+    FOREIGN KEY (S_ID) REFERENCES STUDENT(ID),
+    FOREIGN KEY (COURSE_ID, SEC_ID, SEMESTER, YEAR)
+        REFERENCES SECTION(COURSE_ID, SEC_ID, SEMESTER, YEAR)
+);
+
+INSERT INTO DEPARTMENT (DEPT_NAME, BUILDING, BUDGET) VALUES ('Biology', 'Watson', 90000);
+INSERT INTO DEPARTMENT (DEPT_NAME, BUILDING, BUDGET) VALUES ('Comp. Sci.', 'Taylor', 100000);
+INSERT INTO DEPARTMENT (DEPT_NAME, BUILDING, BUDGET) VALUES ('Elec. Eng.', 'Taylor', 85000);
+INSERT INTO DEPARTMENT (DEPT_NAME, BUILDING, BUDGET) VALUES ('Finance', 'Painter', 120000);
+INSERT INTO DEPARTMENT (DEPT_NAME, BUILDING, BUDGET) VALUES ('History', 'Painter', 50000);
+INSERT INTO DEPARTMENT (DEPT_NAME, BUILDING, BUDGET) VALUES ('Music', 'Packard', 80000);
+INSERT INTO DEPARTMENT (DEPT_NAME, BUILDING, BUDGET) VALUES ('Physics', 'Watson', 70000);
+
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('10101', 'Srinivasan', 'Comp. Sci.', 65000);
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('12121', 'Wu', 'Finance', 90000);
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('15151', 'Mozart', 'Music', 40000);
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('22222', 'Einstein', 'Physics', 95000);
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('32343', 'El Said', 'History', 60000);
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('33456', 'Gold', 'Physics', 87000);
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('45565', 'Katz', 'Comp. Sci.', 75000);
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('58583', 'Califieri', 'History', 62000);
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('76543', 'Singh', 'Finance', 80000);
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('76766', 'Crick', 'Biology', 72000);
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('83821', 'Brandt', 'Comp. Sci.', 92000);
+INSERT INTO INSTRUCTOR (ID, name, dept_name, salary) VALUES ('98345', 'Kim', 'Elec. Eng.', 80000);
+
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('00128', 'Zhang', 'Comp. Sci.', 102);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('12345', 'Shankar', 'Comp. Sci.', 32);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('19991', 'Brandt', 'History', 80);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('23121', 'Chavez', 'Finance', 110);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('44553', 'Peltier', 'Physics', 56);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('45678', 'Levy', 'Physics', 46);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('54321', 'Williams', 'Comp. Sci.', 54);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('55739', 'Sanchez', 'Music', 38);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('70557', 'Snow', 'Physics', 0);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('76543', 'Brown', 'Comp. Sci.', 58);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('76653', 'Aoi', 'Elec. Eng.', 60);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('98765', 'Bourikas', 'Elec. Eng.', 98);
+INSERT INTO STUDENT (ID, name, dept_name, tot_cred) VALUES ('98988', 'Tanaka', 'Biology', 120);
+
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('BIO-101', 'Intro. to Biology', 'Biology', 4);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('BIO-301', 'Genetics', 'Biology', 4);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('BIO-399', 'Computational Biology', 'Biology', 3);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('CS-101', 'Intro. to Computer Science', 'Comp. Sci.', 4);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('CS-190', 'Game Design', 'Comp. Sci.', 4);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('CS-315', 'Robotics', 'Comp. Sci.', 3);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('CS-319', 'Image Processing', 'Comp. Sci.', 3);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('CS-347', 'Database System Concepts', 'Comp. Sci.', 3);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('EE-181', 'Intro. to Digital Systems', 'Elec. Eng.', 3);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('FIN-201', 'Investment Banking', 'Finance', 3);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('HIS-351', 'World History', 'History', 3);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('MU-199', 'Music Video Production', 'Music', 3);
+INSERT INTO COURSE (course_id, title, dept_name, credit) VALUES ('PHY-101', 'Physical Principles', 'Physics', 4);
+
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('BIO-101', '1', 'Summer', 2009, 'Painter', '514');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('BIO-301', '1', 'Summer', 2010, 'Painter', '514');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('CS-101', '1', 'Fall', 2009, 'Packard', '101');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('CS-101', '1', 'Spring', 2010, 'Packard', '101');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('CS-190', '1', 'Spring', 2009, 'Taylor', '3128');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('CS-190', '2', 'Spring', 2009, 'Taylor', '3128');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('CS-315', '1', 'Spring', 2010, 'Watson', '120');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('CS-319', '1', 'Spring', 2010, 'Watson', '100');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('CS-319', '2', 'Spring', 2010, 'Taylor', '3128');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('CS-347', '1', 'Fall', 2009, 'Taylor', '3128');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('EE-181', '1', 'Spring', 2009, 'Taylor', '3128');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('FIN-201', '1', 'Spring', 2010, 'Packard', '101');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('HIS-351', '1', 'Spring', 2010, 'Painter', '514');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('MU-199', '1', 'Spring', 2010, 'Packard', '101');
+INSERT INTO SECTION (course_id, sec_id, semester, year, building, room_no) VALUES ('PHY-101', '1', 'Fall', 2009, 'Watson', '100');
+
+INSERT INTO CLASSROOM (building, room_no, capacity) VALUES ('Packard', '101', 500);
+INSERT INTO CLASSROOM (building, room_no, capacity) VALUES ('Painter', '514', 10);
+INSERT INTO CLASSROOM (building, room_no, capacity) VALUES ('Taylor', '3128', 70);
+INSERT INTO CLASSROOM (building, room_no, capacity) VALUES ('Watson', '100', 30);
+INSERT INTO CLASSROOM (building, room_no, capacity) VALUES ('Watson', '120', 50);
+
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('10101', 'CS-101', '1', 'Fall', 2009);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('10101', 'CS-315', '1', 'Spring', 2010);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('10101', 'CS-347', '1', 'Fall', 2009);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('12121', 'FIN-201', '1', 'Spring', 2010);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('15151', 'MU-199', '1', 'Spring', 2010);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('22222', 'PHY-101', '1', 'Fall', 2009);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('32343', 'HIS-351', '1', 'Spring', 2010);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('45565', 'CS-101', '1', 'Spring', 2010);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('45565', 'CS-319', '1', 'Spring', 2010);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('76766', 'BIO-101', '1', 'Summer', 2009);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('76766', 'BIO-301', '1', 'Summer', 2010);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('83821', 'CS-190', '1', 'Spring', 2009);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('83821', 'CS-190', '2', 'Spring', 2009);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('83821', 'CS-319', '2', 'Spring', 2010);
+INSERT INTO TEACHES (ID, course_id, sec_id, semester, year) VALUES ('98345', 'EE-181', '1', 'Spring', 2009);
+
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('00128', 'CS-101', '1', 'Fall', 2009, 'A');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('00128', 'CS-347', '1', 'Fall', 2009, 'A-');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('12345', 'CS-101', '1', 'Fall', 2009, 'C');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('12345', 'CS-190', '2', 'Spring', 2009, 'A');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('12345', 'CS-315', '1', 'Spring', 2010, 'A');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('12345', 'CS-347', '1', 'Fall', 2009, 'A');
+INSERT INTO TAKES (S_ID, course_id,_sec_id, semester, year, grade) VALUES ('19991', 'HIS-351', '1', 'Spring', 2010, 'B');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('23121', 'FIN-201', '1', 'Spring', 2010, 'C+');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('44553', 'PHY-101', '1', 'Fall', 2009, 'B-');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('45678', 'CS-101', '1', 'Fall', 2009, 'F');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('45678', 'CS-101', '1', 'Spring', 2010, 'B+');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('45678', 'CS-319', '1', 'Spring', 2010, 'B');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('54321', 'CS-101', '1', 'Fall', 2009, 'A-');
+INSERT INTO TAKES (S_ID, course_id, sec_id, semester, year, grade) VALUES ('54321', 'CS-190', '2', 'Spring', 2009, 'B+');
+
+INSERT INTO ADVISOR (s_id, i_id) VALUES ('00128', '45565');
+INSERT INTO ADVISOR (s_id, i_id) VALUES ('12345', '10101');
+INSERT INTO ADVISOR (s_id, i_id) VALUES ('23121', '76543');
+INSERT INTO ADVISOR (s_id, i_id) VALUES ('44553', '22222');
+INSERT INTO ADVISOR (s_id, i_id) VALUES ('45678', '22222');
+INSERT INTO ADVISOR (s_id, i_id) VALUES ('76543', '45565');
+INSERT INTO ADVISOR (s_id, i_id) VALUES ('76653', '98345');
+INSERT INTO ADVISOR (s_id, i_id) VALUES ('98765', '98345');
+INSERT INTO ADVISOR (s_id, i_id) VALUES ('98988', '76766');

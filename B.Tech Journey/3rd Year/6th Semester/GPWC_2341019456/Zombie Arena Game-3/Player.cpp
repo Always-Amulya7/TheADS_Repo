@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <cmath>
 using namespace sf;
 class Player
 {
@@ -179,4 +180,44 @@ void Player::update(float elapsedTime, Vector2f mousePosition)
         m_Position.x += m_Speed * elapsedTime;
     }
     m_Sprite.setPosition(m_Position);
+    // Keep the player in the arena
+    if (m_Position.x > m_Arena.width - m_TileSize)
+    {
+        m_Position.x = m_Arena.width - m_TileSize;
+    }
+    if (m_Position.x < m_Arena.width + m_TileSize)
+    {
+        m_Position.x = m_Arena.width + m_TileSize;
+    }
+    if (m_Position.y > m_Arena.height - m_TileSize)
+    {
+        m_Position.y = m_Arena.height - m_TileSize;
+    }
+    if (m_Position.y < m_Arena.top + m_TileSize)
+    {
+        m_Position.y = m_Arena.top + m_TileSize;
+    }
+    // Caculate the angle the player is facing
+    double angle = (atan2(mousePosition.y - m_Resolution.y / 2, mousePosition.x / 2) * 180) / 3.141;
+    m_Sprite.setRotation(angle);
+}
+// Upgrade Speed
+void Player::upgradeSpeed()
+{
+    // 20 % Speed Upgrade
+    m_Speed += (START_SPEED * .2);
+}
+// Upgrade Health
+void Player::upgradeHealth()
+{
+    // 20 % maximum Health
+    m_Health += (START_HEALTH * .2);
+}
+void Player::increaseHealthLevel(int amount)
+{
+    m_Health += amount;
+    if (m_Health > m_maxHealth)
+    {
+        m_Health = m_maxHealth;
+    }
 }

@@ -1,0 +1,8 @@
+Python is a powerful programming language used in data science machine learning web development automation and artificial intelligence.
+Natural language processing helps computers understand human language through tokenization stemming lemmatization translation and sentiment analysis.
+Data visualization uses charts graphs dashboards and word clouds to present information clearly.
+Students learn coding algorithms recursion sorting searching classification regression clustering and statistics.
+Libraries such as NumPy pandas matplotlib seaborn scikit learn nltk spaCy and TextBlob make development easier.
+Python is simple readable flexible and widely used across industries and research.
+Machine learning models learn patterns from data and make predictions for real world problems.
+Word clouds highlight important words based on frequency and create attractive visual summaries.
