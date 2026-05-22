@@ -1,0 +1,14 @@
+## Contains all required Python libraries and dependencies for the project.
+## Helps install necessary packages using a single command.
+## Ensures the project runs consistently across different systems.
+
+tensorflow
+opencv-python
+numpy
+flask
+pytesseract
+seaborn
+
+## Start The CMD
+## Run The Command- 1) pip install -r Requirements.txt
+##                  2) set TF_CPP_MIN_LOG_LEVEL=3

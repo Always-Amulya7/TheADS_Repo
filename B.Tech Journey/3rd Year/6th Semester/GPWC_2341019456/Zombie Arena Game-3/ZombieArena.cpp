@@ -1,5 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "Player.cpp"
+using namespace sf;
 int main()
 {
     enum class State
@@ -15,9 +16,9 @@ int main()
     Vector2f resolution;
     resolution.x = VideoMode::getDesktopMode().width;
     resolution.y = VideoMode::getDesktopMode().height;
-    RenderWindow window(VideoMode(resolution.x, resolution.y), "ZOMBIEARena", Style::Fullscreen);
+    RenderWindow window(VideoMode(resolution.x, resolution.y), "ZOMBIEArena", Style::Fullscreen);
     // Create a SFML view for main action
-    View mainViews(sf::FloatRect(0, 0, resolution.x, resolution.y));
+    View mainView(sf::FloatRect(0, 0, resolution.x, resolution.y));
     // Clock
     Clock clock;
     // How long has the playing active
@@ -55,6 +56,55 @@ int main()
                 {
                     state = State::LEVELING_UP;
                 }
+
+                // Handle the levelling up
+                if (state == State::LEVELING_UP)
+                {
+                    // Handle the player levelling up
+                    if (event.key.code == Keyboard::Num1)
+                    {
+                        state = State::PLAYING;
+                    }
+                    if (event.key.code == Keyboard::Num2)
+                    {
+                        state = State::PLAYING;
+                    }
+                    if (event.key.code == Keyboard::Num3)
+                    {
+                        state = State::PLAYING;
+                    }
+                    if (event.key.code == Keyboard::Num4)
+                    {
+                        state = State::PLAYING;
+                    }
+                    if (event.key.code == Keyboard::Num5)
+                    {
+                        state = State::PLAYING;
+                    }
+                    if (event.key.code == Keyboard::Num6)
+                    {
+                        state = State::PLAYING;
+                    }
+                    if (state == State::PLAYING)
+                    {
+                        // Prepare the level
+                        // We will modify the next two lines later
+                        arena.width = 500;
+                        arena.height = 300;
+                        arena.left = 0;
+                        arena.top = 0;
+
+                        // We will modify this line of code later
+                        int tileSize = 50;
+
+                        // Spawn the player in the middle of the arena
+                        player.spawn(arena, resolution, tileSize);
+
+                        // Reset the clock so there isn't a frame jump
+                        clock.restart();
+                    }
+                }
+
                 if (state == State::PLAYING)
                 {
                 }
@@ -100,6 +150,62 @@ int main()
             {
                 player.stopRight();
             }
-        }
+            // End of WASD key
+            /*
+            ****************
+            Update the frame
+            ****************
+            */
+            if (state == State::PLAYING)
+            {
+                // Update the delta time
+                Time dt = clock.restart();
+                // Update the total game time
+                gameTimeTotal += dt;
+                // Make a decimal fraction of 1 from the delta time
+                float dtAsSeconds = dt.asSeconds();
+
+                // Where is the mouse pointer
+                mouseScreenPosition = Mouse::getPosition();
+
+                // Convert mouse position to world coordinates of mainView
+                mouseWorldPosition = window.mapPixelToCoords(Mouse::getPosition(), mainView);
+
+                // Update the player
+                player.update(dtAsSeconds, mouseWorldPosition);
+
+                // Make a note of the players new position
+                Vector2f playerPosition(player.getCenter());
+
+                // Make the view centre around the player
+                mainView.setCenter(player.getCenter());
+            } // End updating the scene
+            /*
+            **************
+            Draw the scene
+            **************
+            */
+            if (state == State::PLAYING)
+            {
+                window.clear();
+
+                // set the mainView to be displayed in the window
+                // And Draw everything related to it
+                window.setView(mainView);
+
+                // Draw the player
+                window.draw(player.getSprite());
+            }
+            if (state == State::LEVELING_UP)
+            {
+            }
+            if (state == State::PAUSED)
+            {
+            }
+            if (state == State::GAME_OVER)
+            {
+            }
+            window.display();
+        } // End Game Loop
     }
 }

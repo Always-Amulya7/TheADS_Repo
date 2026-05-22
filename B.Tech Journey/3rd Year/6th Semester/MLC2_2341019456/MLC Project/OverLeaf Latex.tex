@@ -1,0 +1,1234 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{setspace}
+\usepackage{tocloft}
+\usepackage{array}
+\usepackage{float}
+
+\setlength{\cftbeforesubsecskip}{10pt}
+\setlength{\cftaftertoctitleskip}{0.7cm}
+
+\begin{document}
+
+% ---------------- COVER PAGE ----------------
+\begin{center}
+
+% -------- LOGO --------
+\includegraphics[width=4.5cm]{LOGO.pdf}\\[0.5cm]
+
+% -------- UNIVERSITY NAME --------
+{\Large \textbf{SIKSHA ‘O’ ANUSANDHAN}}\\
+{\small (Deemed To Be University)}\\
+{\small \textcolor{blue!60!black}{Accredited (3rd Cycle) by NAAC with A++ Grade}}\\[0.5cm]
+
+\textcolor{gray}{\rule{12cm}{0.4pt}}\\[0.5cm]
+
+Admission Batch: \textbf{2023} \hspace{1cm} Session: \textbf{2025--26}\\[1cm]
+
+% -------- TITLE BLOCK --------
+{\Large \textbf{\textcolor{teal}{Major Project Report}}}\\[0.3cm]
+
+{\large \textbf{of}}\\[0.3cm]
+
+{\large \textbf{\textcolor{purple}{MACHINE LEARNING CONCEPT -2 (CSE 3968)}}}\\[0.8cm]
+
+{\large \textbf{On}}\\[0.3cm]
+
+{\Huge \textbf{\textcolor{red!70!black}{Handwritten Digit Recognization}}}\\[1cm]
+
+% -------- STUDENTS --------
+\textbf{\large Submitted by:}\\[0.5cm]
+
+\begin{tabular}{ll}
+1) Amulya Shrivastava & 2341019456 \\
+2) Amaan Ahmed & 2341001055 \\
+3) Anusha Kumari & 2341011265 \\
+4) Kumari Muskan & 2341013427 \\
+\end{tabular}
+
+\vspace{1cm}
+
+Section: \textbf{23412F3} \hspace{0.8cm}
+Semester: \textbf{6th} \hspace{0.8cm}
+Branch: \textbf{B.Tech CSE}
+
+\vspace{1.2cm}
+
+% -------- FOOTER --------
+{\small
+Department of Computer Science \& Engineering\\
+\textbf{Institute of Technical Education and Research (ITER), Siksha `O' Anusandhan Deemed to be University}\\
+Jagamohan Nagar, Jagamara, Bhubaneswar, Odisha – 751030
+}
+
+\vfill
+
+\textbf{(May, 2026)}
+
+\end{center}
+
+\newpage
+
+\newpage
+% ---------------- DECLARATION PAGE ----------------
+\newpage
+
+\begin{center}
+
+{\Large \textbf{DECLARATION}}\\[1cm]
+
+\end{center}
+
+\noindent
+We hereby declare that the project report entitled
+
+
+\begin{center}
+\textbf{``Handwritten Digit Recognition''}
+\end{center}
+
+\noindent
+is a bonafide record of the work carried out by us during the 6\textsuperscript{th} semester of the Bachelor of Technology program in Computer Science and Engineering for the course \textbf{Machine Learning Concept - 2 (CSE 3968)}, under the regulations of Siksha `O' Anusandhan Deemed to be University.
+
+\vspace{0.5cm}
+
+\noindent
+This work has been carried out under the guidance of the project supervisor and has not been submitted elsewhere for any academic evaluation or certification. We further declare that there are \textbf{no competing interests} associated with this project.
+
+\vspace{1cm}
+
+\noindent
+\textbf{Submitted by:}
+
+\vspace{0.5cm}
+
+\begin{tabular}{p{8cm} p{5cm}}
+
+Amulya Shrivastava & Signature: \\
+(Regd. No: 2341019456) & \\[-0.2cm]
+& \rule{5cm}{0.4pt} \\[0.7cm]
+
+
+Amaan Ahmed & Signature: \\
+(Regd. No: 2341001055) & \\[-0.2cm]
+& \rule{5cm}{0.4pt} \\[0.7cm]
+
+
+Anusha Kumari & Signature: \\
+(Regd. No: 2341011265) & \\[-0.2cm]
+& \rule{5cm}{0.4pt} \\[0.7cm]
+
+
+Kumari Muskan & Signature: \\
+(Regd. No: 2341013427) & \\[-0.2cm]
+& \rule{5cm}{0.4pt} \\[0.7cm]
+
+\end{tabular}
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{Project Supervisor:} \\
+
+Name: \textbf{Manju Kumari} \\
+
+Signature: \rule{6cm}{0.4pt}
+
+\vfill
+
+\begin{center}
+
+Department of Computer Science \& Engineering\\
+Institute of Technical Education and Research (ITER)\\
+Siksha `O' Anusandhan Deemed to be University\\
+Bhubaneswar, Odisha\\[0.5cm]
+
+\textbf{Date:} \rule{4cm}{0.4pt}
+
+\end{center}
+
+\newpage
+% ---------------- TOC ----------------
+\tableofcontents
+\newpage
+
+% ---------------- CONTENT ----------------
+
+\section{Abstract}
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{Handwritten Digit Recognition} is one of the most important applications of \textbf{Artificial Intelligence}, \textbf{Machine Learning}, and \textbf{Computer Vision}. It is widely used in automation systems, banking applications, educational tools, postal systems, document digitization, and OCR-based technologies. The ability of machines to accurately understand handwritten content has become increasingly important for developing intelligent and efficient digital solutions.
+
+\vspace{0.4cm}
+
+\noindent
+This project presents an advanced \textbf{Handwritten Digit Recognition System} using \textbf{Deep Learning} and \textbf{Optical Character Recognition (OCR)} capable of identifying both \textbf{single-digit} and \textbf{multi-digit handwritten inputs} with improved flexibility and prediction accuracy. Unlike traditional systems that mainly focus on standard numerical digits, the proposed system also supports \textbf{Roman numeral recognition} and handles complex handwritten patterns effectively.
+
+\vspace{0.4cm}
+
+\noindent
+The system is developed using \textbf{Convolutional Neural Networks (CNNs)} along with \textbf{Tesseract OCR} for improved image scanning and text extraction. Various image preprocessing techniques such as grayscale conversion, thresholding, contour detection, noise removal, digit segmentation, and orientation correction are implemented to improve recognition quality for rotated, noisy, and irregular handwritten images.
+
+\vspace{0.4cm}
+
+\noindent
+A major feature of the project is the \textbf{adaptive retraining mechanism}, where wrongly predicted samples are stored in a custom dataset and later used for additional model training. This allows the system to continuously improve its learning capability and prediction performance over time.
+
+\vspace{0.4cm}
+
+\noindent
+To improve practical usability, a \textbf{Flask-based web application} has also been developed where users can upload handwritten digit images and instantly receive prediction results through a simple and interactive interface.
+
+\vspace{0.4cm}
+
+\noindent
+Overall, the project demonstrates the practical implementation of \textbf{Artificial Intelligence}, \textbf{Deep Learning}, \textbf{OCR}, and image processing techniques in building an intelligent, scalable, and user-friendly handwritten digit recognition system suitable for real-world applications.
+
+\newpage
+
+\section{Introduction}
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{Handwritten Digit Recognition} is an important application of \textbf{Artificial Intelligence}, \textbf{Machine Learning}, and \textbf{Computer Vision}. It enables machines to identify handwritten numerical content from images and is widely used in areas such as bank cheque processing, postal code recognition, document digitization, educational tools, and intelligent scanning systems.
+
+\vspace{0.3cm}
+
+\noindent
+In recent years, the demand for intelligent handwritten recognition systems has increased due to the growing use of automation and digital technologies. However, traditional handwritten recognition systems often face challenges while handling unclear handwriting, rotated images, multiple digits in a single image, noisy backgrounds, and irregular spacing between digits. These limitations reduce prediction accuracy and affect real-world implementation.
+
+\vspace{0.3cm}
+
+\noindent
+To overcome these challenges, this project introduces an advanced handwritten digit recognition system using \textbf{Deep Learning} and \textbf{Optical Character Recognition (OCR)} techniques. The proposed system is designed to improve prediction accuracy, flexibility, and usability while handling different handwritten image conditions efficiently.
+
+\vspace{0.3cm}
+
+\noindent
+The proposed system is capable of:
+\begin{itemize}
+\item Recognizing both \textbf{single-digit} and \textbf{multi-digit} handwritten inputs
+\item Supporting \textbf{Roman numeral identification}
+\item Handling rotated and irregular handwritten images
+\item Improving prediction accuracy using \textbf{Tesseract OCR}
+\item Learning from wrongly predicted samples through \textbf{custom retraining}
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+The project uses image preprocessing, digit segmentation, OCR-based extraction, and a \textbf{CNN-based prediction model} to improve recognition performance. Techniques such as grayscale conversion, thresholding, contour detection, and image normalization are used to enhance handwritten inputs before prediction.
+
+\vspace{0.3cm}
+
+\noindent
+In addition, a \textbf{Flask-based web application} has been developed where users can upload handwritten digit images and instantly view prediction results through a simple and user-friendly interface.
+
+\vspace{0.3cm}
+
+\noindent
+Overall, the project demonstrates the practical implementation of AI-driven handwritten recognition systems by combining Deep Learning, OCR, image processing, and web technologies into a single intelligent platform for real-world handwritten digit recognition.
+
+\newpage
+
+\section{Problem Statement}
+
+\vspace{0.3cm}
+
+\noindent
+Accurate recognition of handwritten digits remains a challenging task in the field of \textbf{Artificial Intelligence} and \textbf{Computer Vision} due to the large variations in human handwriting styles, image quality, spacing, alignment, and orientation. Handwritten inputs often contain unclear strokes, irregular patterns, noise, and inconsistent formatting, which make digit identification difficult for traditional recognition systems.
+
+\vspace{0.3cm}
+
+\noindent
+Most existing handwritten digit recognition systems mainly focus on recognizing only \textbf{single numerical digits} under controlled conditions. These systems generally fail when:
+\begin{itemize}
+\item Multiple handwritten digits are present in a single image
+\item Images are rotated, inverted, or poorly aligned
+\item Digits contain irregular spacing or overlapping structures
+\item Roman numeral representations are used
+\item Noisy or low-quality handwritten images are provided
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+Another major limitation in many recognition systems is the lack of adaptive learning. Once the model is trained, it usually cannot improve automatically from its previous mistakes, resulting in repeated prediction errors for difficult handwritten samples.
+
+\vspace{0.3cm}
+
+\noindent
+To overcome these limitations, the problem addressed in this project is to design and develop an intelligent handwritten digit recognition system capable of:
+\begin{itemize}
+\item Detecting both \textbf{single-digit} and \textbf{multi-digit} handwritten inputs
+\item Identifying \textbf{Roman numeral representations}
+\item Handling rotated and irregular image alignments
+\item Improving prediction accuracy using \textbf{OCR integration}
+\item Supporting continuous retraining for better learning from mistakes
+\item Providing a \textbf{user-friendly web interface} for real-time usage
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+The proposed solution aims to build a more flexible, scalable, and intelligent recognition system by combining \textbf{Deep Learning}, \textbf{OCR}, image preprocessing, digit segmentation, and adaptive retraining techniques into a single integrated platform.
+
+\newpage
+
+\section{Objectives}
+
+\vspace{0.3cm}
+
+\noindent
+The primary objective of this project is to design and develop an intelligent and efficient \textbf{Handwritten Digit Recognition System} capable of accurately identifying handwritten numerical inputs using \textbf{Deep Learning} and \textbf{OCR-based techniques}. The project focuses on improving recognition flexibility, prediction accuracy, and practical usability for real-world handwritten image processing applications.
+
+\vspace{0.3cm}
+
+\noindent
+The major objectives of the proposed system are as follows:
+
+\begin{itemize}
+
+\item To build an intelligent handwritten digit recognition system using \textbf{Deep Learning} techniques.
+
+\item To recognize both \textbf{single-digit} and \textbf{multi-digit} handwritten inputs from images.
+
+\item To integrate \textbf{Optical Character Recognition (OCR)} technology for improved text extraction and image scanning.
+
+\item To support \textbf{Roman numeral identification} along with standard numerical digit recognition.
+
+\item To perform advanced image preprocessing operations such as grayscale conversion, thresholding, contour detection, and image normalization for accurate predictions.
+
+\item To implement digit segmentation techniques for separating multiple handwritten digits present in a single image.
+
+\item To develop a \textbf{custom retraining mechanism} using wrongly predicted digit samples for continuous model improvement.
+
+\item To create a \textbf{Flask-based web application} that allows users to upload handwritten images and instantly view prediction results.
+
+\item To improve overall prediction accuracy, recognition flexibility, and practical usability of the system.
+
+\item To demonstrate the practical implementation of \textbf{Artificial Intelligence}, \textbf{Computer Vision}, and \textbf{Deep Learning} concepts in solving real-world recognition problems.
+
+\end{itemize}
+
+\newpage
+
+\section{Literature Review}
+
+\vspace{0.3cm}
+
+\noindent
+Handwritten Digit Recognition has been an important research area in the fields of \textbf{Artificial Intelligence}, \textbf{Machine Learning}, and \textbf{Computer Vision} for several years. Earlier handwritten recognition systems mainly relied on traditional machine learning algorithms where manual feature extraction techniques were used before classification. These approaches required significant preprocessing efforts and often produced limited accuracy for complex handwritten patterns.
+
+\vspace{0.3cm}
+
+\noindent
+With the advancement of \textbf{Deep Learning}, \textbf{Convolutional Neural Networks (CNNs)} became highly effective for image-based recognition tasks. CNN models automatically learn important image features such as edges, curves, shapes, and handwritten patterns directly from the dataset, resulting in significantly improved recognition accuracy and reduced manual intervention.
+
+\vspace{0.3cm}
+
+\noindent
+Researchers have also explored the use of \textbf{Optical Character Recognition (OCR)} systems such as \textbf{Tesseract OCR} for extracting textual information from images. OCR technologies improved the capability of systems to convert image-based handwritten content into machine-readable formats and enhanced the preprocessing workflow before classification.
+
+\vspace{0.3cm}
+
+\noindent
+Despite these advancements, many existing handwritten recognition systems still face several limitations while handling:
+\begin{itemize}
+\item Multiple handwritten digits in a single image
+\item Rotated or inverted handwritten inputs
+\item Irregular spacing and alignment between digits
+\item Noisy and low-quality handwritten images
+\item Mixed numeral formats such as Roman numerals
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+Most traditional systems are also limited by fixed training datasets and do not support adaptive learning from previously misclassified samples. This reduces their ability to improve continuously when exposed to real-world handwritten variations.
+
+\vspace{0.3cm}
+
+\noindent
+The proposed system addresses these limitations by integrating \textbf{Deep Learning}, \textbf{OCR}, image preprocessing, digit segmentation, and adaptive retraining techniques into a unified intelligent platform. The system is designed to provide improved flexibility, higher prediction accuracy, and better handling of complex handwritten digit recognition scenarios.
+
+\newpage
+
+\section{Methodology}
+
+\vspace{0.3cm}
+
+\noindent
+The proposed handwritten digit recognition system follows a structured multi-stage workflow to ensure accurate prediction, efficient image processing, and improved usability. The methodology combines \textbf{Deep Learning}, \textbf{OCR integration}, image preprocessing, digit segmentation, and adaptive retraining techniques to handle different handwritten image conditions effectively.
+
+\vspace{0.4cm}
+
+% ---------------- DATA COLLECTION ----------------
+
+\subsection{Data Collection}
+
+\vspace{0.2cm}
+
+\noindent
+The model was trained and tested using multiple handwritten digit datasets collected from different sources. The data used in the system includes:
+
+\begin{itemize}
+\item {MNIST handwritten digit dataset}
+\item {Custom handwritten image datasets}
+\item {User-uploaded handwritten samples}
+\item {Additional training samples collected from wrongly predicted outputs}
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent
+The inclusion of custom datasets helped improve the model's ability to recognize real-world handwritten patterns more effectively.
+
+\vspace{0.4cm}
+
+% ---------------- IMAGE PREPROCESSING ----------------
+
+\subsection{Image Preprocessing}
+
+\vspace{0.2cm}
+
+\noindent
+Before prediction, uploaded handwritten images are processed to improve image clarity and recognition accuracy. Several preprocessing operations are performed, including:
+
+\begin{itemize}
+\item {Grayscale conversion}
+\item {Noise removal}
+\item {Thresholding}
+\item {Image resizing}
+\item {Rotation handling}
+\item {Contour detection}
+\end{itemize}
+
+\vspace{0.2cm}
+
+\noindent
+These preprocessing techniques help normalize handwritten inputs and improve the model's capability to identify handwritten digit patterns accurately.
+
+\vspace{0.4cm}
+
+% ---------------- OCR INTEGRATION ----------------
+
+\subsection{OCR Integration}
+
+\vspace{0.2cm}
+
+\noindent
+\textbf{Tesseract OCR} has been integrated into the system to improve image scanning and text extraction before prediction. OCR helps refine handwritten image inputs and enhances recognition performance, especially for unclear or complex handwritten content.
+
+\vspace{0.4cm}
+
+% ---------------- DIGIT SEGMENTATION ----------------
+
+\subsection{Digit Segmentation}
+
+\vspace{0.2cm}
+
+\noindent
+For recognizing multiple handwritten digits from a single image, contour detection and image segmentation techniques are used. Each digit is separated individually before being passed to the prediction model. This improves multi-digit recognition accuracy and helps handle irregular spacing between digits.
+
+\vspace{0.4cm}
+
+% ---------------- MODEL DEVELOPMENT ----------------
+
+\subsection{Model Development}
+
+\vspace{0.2cm}
+
+\noindent
+The prediction model is developed using \textbf{Convolutional Neural Networks (CNNs)}. CNN architecture automatically extracts important image features such as edges, curves, and handwritten patterns from the dataset. This helps achieve high recognition accuracy while reducing manual feature extraction efforts.
+
+\vspace{0.4cm}
+
+% ---------------- CUSTOM RETRAINING ----------------
+
+\subsection{Custom Retraining}
+
+\vspace{0.2cm}
+
+\noindent
+A custom retraining mechanism has been implemented to improve continuous model learning. Whenever the system predicts an incorrect output, the corresponding handwritten image is stored in a custom dataset and later used for additional model training. This helps improve future prediction accuracy and makes the system more adaptive.
+
+\vspace{0.4cm}
+
+% ---------------- WEB APPLICATION ----------------
+
+\subsection{Web Application Development}
+
+\vspace{0.2cm}
+
+\noindent
+A \textbf{Flask-based web application} has been developed to improve accessibility and practical usability of the system. Through the web interface, users can upload handwritten digit images and instantly receive prediction results directly in the browser in real time.
+
+\newpage
+
+\section{System Architecture}
+
+\vspace{0.3cm}
+
+\noindent
+The proposed handwritten digit recognition system combines OCR, image preprocessing, digit segmentation, Deep Learning, and web integration to provide accurate handwritten digit prediction. The workflow is designed to process uploaded handwritten images efficiently and generate reliable results in real time.
+
+\vspace{0.4cm}
+
+\noindent
+The overall system architecture consists of the following stages:
+
+\begin{enumerate}
+\item {Image Upload}
+\item {OCR-based Text Scanning}
+\item {Image Preprocessing}
+\item {Digit Segmentation}
+\item {CNN Model Prediction}
+\item {Result Generation}
+\item {Web Display Output}
+\end{enumerate}
+
+\vspace{0.4cm}
+
+\noindent
+\textbf{Input Layer:}
+
+\begin{itemize}
+\item \textbf{Handwritten digit images}
+\item \textbf{Single-digit} and \textbf{multi-digit} handwritten inputs
+\item \textbf{Roman numeral} samples
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{Processing Layer:}
+
+\begin{itemize}
+\item OCR scanning using \textbf{Tesseract OCR}
+\item \textbf{Image preprocessing} and normalization
+\item \textbf{Digit segmentation} using contour detection
+\item \textbf{CNN-based} handwritten digit prediction
+\item \textbf{Custom retraining} for improved accuracy
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+\textbf{Output Layer:}
+
+\begin{itemize}
+\item Predicted handwritten digits
+\item \textbf{Roman numeral} identification
+\item \textbf{Multi-digit} recognition results
+\item \textbf{Real-time} prediction display through the web application
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+The integration of OCR, preprocessing techniques, and CNN-based classification improves the accuracy, flexibility, and usability of the proposed handwritten digit recognition system.
+
+\newpage
+
+\section{Implementation}
+
+\vspace{0.3cm}
+
+\noindent
+The implementation of the proposed handwritten digit recognition system combines \textbf{Deep Learning}, \textbf{OCR}, image preprocessing, and web technologies into a single intelligent platform. The system was developed using Python-based libraries and frameworks to ensure efficient processing and accurate handwritten digit prediction.
+
+\vspace{0.4cm}
+
+\noindent
+\textbf{Tools and Technologies Used:}
+
+\begin{itemize}
+
+\item \textbf{Python} -- Core programming language
+
+\item \textbf{TensorFlow and Keras} -- CNN model development and training
+
+\item \textbf{OpenCV} -- Image preprocessing and digit segmentation
+
+\item \textbf{NumPy} -- Numerical operations and array processing
+
+\item \textbf{Tesseract OCR} -- OCR-based text extraction
+
+\item \textbf{Flask} -- Web application development
+
+\item \textbf{Jupyter Notebook} -- Model training and testing
+
+\end{itemize}
+
+\vspace{0.4cm}
+
+\noindent
+\textbf{Implementation Workflow:}
+
+\begin{enumerate}
+
+\item Collection of handwritten digit datasets
+
+\item Image preprocessing and normalization
+
+\item OCR-based text extraction using \textbf{Tesseract OCR}
+
+\item Digit segmentation using contour detection
+
+\item Development and training of the \textbf{CNN model}
+
+\item Prediction and testing using handwritten images
+
+\item Custom retraining using wrongly predicted samples
+
+\item Development of the \textbf{Flask-based web application}
+
+\item Real-time image upload and result display
+
+\end{enumerate}
+
+\vspace{0.3cm}
+
+\noindent
+The implementation is designed to handle rotated images, irregular spacing, noisy backgrounds, and multi-digit handwritten inputs effectively.
+
+\vspace{0.4cm}
+
+\noindent
+\textbf{Execution Flow:}
+
+\begin{enumerate}
+
+\item \textbf{Data Loading} -- Loading handwritten datasets and custom images
+
+\item \textbf{Preprocessing} -- Cleaning, resizing, and segmenting images
+
+\item \textbf{Model Training} -- Training the CNN model using processed datasets
+
+\item \textbf{Prediction} -- Analyzing uploaded handwritten images and generating outputs
+
+\end{enumerate}
+
+\newpage
+
+\section{Results}
+
+\vspace{0.3cm}
+
+\noindent
+The developed handwritten digit recognition system produced accurate and reliable prediction results for different types of handwritten inputs. The system was successfully tested on both standard handwritten datasets and custom handwritten image samples containing single as well as multiple digits.
+
+\vspace{0.3cm}
+
+\noindent
+The integration of \textbf{Deep Learning}, \textbf{OCR}, image preprocessing, and digit segmentation techniques significantly improved the overall recognition performance and flexibility of the system.
+
+\vspace{0.4cm}
+
+\noindent
+\textbf{Major Outcomes of the Project:}
+
+\begin{itemize}
+
+\item Successful recognition of handwritten numerical digits with high prediction accuracy
+
+\item Detection and prediction of \textbf{multiple handwritten digits} from a single image
+
+\item Support for \textbf{Roman numeral identification}
+
+\item Accurate segmentation of rotated, inverted, and irregularly spaced handwritten digits
+
+\item Improved prediction quality using \textbf{Tesseract OCR} integration
+
+\item Continuous model improvement through \textbf{custom retraining mechanisms}
+
+\item Real-time prediction results through the \textbf{Flask-based web application}
+
+\item Better handling of noisy and real-world handwritten image conditions
+
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+The CNN-based prediction model demonstrated reliable performance even for complex handwritten inputs. The retraining feature further improved recognition accuracy by allowing the model to learn from previously misclassified samples.
+
+\vspace{0.3cm}
+
+\noindent
+Overall, the system achieved strong prediction performance while maintaining flexibility, scalability, and practical usability for real-world handwritten digit recognition applications.
+
+\newpage
+
+\section{Discussion}
+
+\vspace{0.3cm}
+
+\noindent
+The project demonstrates the practical implementation of \textbf{Deep Learning}, \textbf{OCR}, and image processing technologies for intelligent handwritten digit recognition. The integration of \textbf{Tesseract OCR} with a \textbf{CNN-based prediction model} significantly improved image understanding, digit extraction, and overall prediction reliability.
+
+\vspace{0.3cm}
+
+\noindent
+One of the major strengths of the proposed system is its capability to handle different handwritten image conditions effectively. Unlike traditional digit recognition systems, the developed model supports:
+
+\begin{itemize}
+
+\item Recognition of \textbf{multiple handwritten digits} from a single image
+
+\item Support for \textbf{Roman numeral identification}
+
+\item Handling of \textbf{rotated and inverted handwritten images}
+
+\item Detection of digits with \textbf{irregular spacing and alignment}
+
+\item Improved prediction performance through \textbf{OCR integration}
+
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+Another important feature of the system is the \textbf{custom retraining mechanism}. The model is capable of learning from previously misclassified handwritten samples by storing them in a custom dataset and using them for future training. This improves the adaptability and long-term prediction performance of the system.
+
+\vspace{0.3cm}
+
+\noindent
+The developed \textbf{Flask-based web application} also enhances practical usability by allowing users to upload handwritten images and receive prediction outputs instantly through a user-friendly interface.
+
+\vspace{0.3cm}
+
+\noindent
+Although the system performs effectively for most handwritten inputs, prediction accuracy may still vary for extremely unclear handwriting, overlapping digits, or highly noisy image conditions. The use of larger custom datasets and advanced Deep Learning architectures can further improve system performance in future implementations.
+
+\newpage
+
+\section{Applications}
+
+\vspace{0.3cm}
+
+\noindent
+The proposed handwritten digit recognition system can be applied in several real-world domains where automated handwritten content analysis and digit identification are required. The integration of \textbf{Deep Learning}, \textbf{OCR}, and image processing techniques makes the system suitable for intelligent automation and document processing applications.
+
+\vspace{0.4cm}
+
+\noindent
+\textbf{Major Applications of the System:}
+
+\begin{itemize}
+
+\item \textbf{Bank Cheque Digit Recognition} \\
+Used for automatic reading and verification of handwritten numerical values in banking systems.
+
+\vspace{0.2cm}
+
+\item \textbf{Postal Code Recognition Systems} \\
+Helps in identifying handwritten postal codes for automated mail sorting and delivery systems.
+
+\vspace{0.2cm}
+
+\item \textbf{Educational Handwriting Analysis Tools} \\
+Can be used in smart learning systems for analyzing handwritten numerical inputs and student responses.
+
+\vspace{0.2cm}
+
+\item \textbf{Automated Form Digitization} \\
+Useful for converting handwritten numerical data from forms into digital formats automatically.
+
+\vspace{0.2cm}
+
+\item \textbf{OCR-Based Intelligent Scanning Systems} \\
+Supports intelligent document scanning and handwritten text extraction applications.
+
+\vspace{0.2cm}
+
+\item \textbf{AI-Based Document Processing} \\
+Can be integrated into AI-powered systems for automated document verification and processing.
+
+\vspace{0.2cm}
+
+\item \textbf{Smart Classroom and Examination Systems} \\
+Useful in automated evaluation systems where handwritten numerical answers need to be recognized and processed efficiently.
+
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+The flexibility and scalability of the proposed system make it suitable for various industrial, educational, and automation-based applications involving handwritten digit recognition.
+
+\newpage
+
+\section{Future Scope}
+
+\vspace{0.3cm}
+
+\noindent
+The proposed handwritten digit recognition system has been designed with flexibility and scalability, allowing several future improvements and enhancements. Although the current system performs effectively for handwritten digit prediction, additional technologies and advanced models can further improve its accuracy, usability, and real-world applicability.
+
+\vspace{0.4cm}
+
+\noindent
+\textbf{Possible Future Enhancements:}
+
+\begin{itemize}
+
+\item \textbf{Cloud-Based Deployment} \\
+The system can be deployed on cloud platforms to provide remote accessibility, better scalability, and real-time online prediction services.
+
+\vspace{0.2cm}
+
+\item \textbf{Mobile Application Integration} \\
+A mobile-based application can be developed to allow users to capture handwritten images directly from smartphone cameras for instant prediction.
+
+\vspace{0.2cm}
+
+\item \textbf{Real-Time Camera-Based Recognition} \\
+The system can be extended to support live camera-based handwritten digit recognition for real-time processing applications.
+
+\vspace{0.2cm}
+
+\item \textbf{Alphabet and Character Recognition} \\
+The model can be further trained to recognize handwritten alphabets, symbols, and complete characters in addition to numerical digits.
+
+
+\vspace{0.2cm}
+
+\item \textbf{Multi-Language Handwritten Recognition} \\
+The system can be expanded to support handwritten text recognition for multiple regional and international languages.
+
+\vspace{0.2cm}
+
+\item \textbf{Improved Dataset Scaling} \\
+Using larger and more diverse handwritten datasets can further improve model training, adaptability, and overall prediction performance.
+
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+These future enhancements can make the system more intelligent, scalable, and suitable for advanced real-world handwritten recognition and automation applications.
+
+\newpage
+
+\section{Conclusion}
+
+\vspace{0.3cm}
+
+\noindent
+The project successfully developed an intelligent \textbf{Handwritten Digit Recognition System} using \textbf{Deep Learning}, \textbf{OCR}, and image processing techniques. The system is capable of recognizing both \textbf{single-digit} and \textbf{multi-digit} handwritten inputs while also supporting \textbf{Roman numeral identification} and rotated image handling.
+
+\vspace{0.3cm}
+
+\noindent
+The integration of \textbf{Tesseract OCR}, image preprocessing, digit segmentation, and \textbf{CNN-based prediction} significantly improved the overall accuracy and flexibility of the recognition process. The system can efficiently process handwritten images with irregular spacing, noisy backgrounds, and different orientations, making it suitable for handling real-world handwritten recognition tasks.
+
+\vspace{0.3cm}
+
+\noindent
+A major strength of the proposed system is its ability to combine OCR-based extraction with Deep Learning techniques to improve handwritten digit understanding and prediction reliability. The implementation of contour-based segmentation also helped in accurately separating and recognizing multiple handwritten digits from a single image.
+
+\vspace{0.3cm}
+
+\noindent
+Another important feature of the project is the implementation of a \textbf{custom retraining mechanism}, where wrongly predicted handwritten samples are stored and later used for additional model training. This enables the model to continuously improve its learning capability and enhance future prediction performance.
+
+\vspace{0.3cm}
+
+\noindent
+The developed \textbf{Flask-based web application} further improved the usability and accessibility of the system by allowing users to upload handwritten images and receive prediction results instantly through a simple and interactive interface.
+
+\vspace{0.3cm}
+
+\noindent
+Overall, the project demonstrates the effective integration of \textbf{Artificial Intelligence}, \textbf{Computer Vision}, \textbf{OCR}, and \textbf{Deep Learning} technologies in building a practical, scalable, and user-friendly handwritten digit recognition system suitable for real-world applications and intelligent automation systems.
+
+\newpage
+
+% ---------------- ROLES ----------------
+\section{Roles and Contributions}
+
+\vspace{0.3cm}
+
+\noindent
+The successful completion of the project was achieved through the collaborative efforts of all team members. Each member contributed in different areas including model development, OCR integration, testing, retraining, image processing, and system improvement.
+
+\vspace{0.5cm}
+
+\renewcommand{\arraystretch}{1.5}
+
+\vspace{0.5cm}
+\hspace*{-0.5cm}
+\begin{tabular}{|c|p{4.5cm}|>{\raggedright\arraybackslash}p{7.8cm}|}
+\hline
+
+\textbf{Candidate} & \textbf{Name} & \textbf{Contribution} \\
+\hline
+
+A &
+\textbf{Amulya Shrivastava} \newline
+(2341019456)
+&
+• Led project development and integration. \newline
+• Designed system architecture and
+\par \hspace*{0.5cm}workflow. \newline
+• Implemented CNN model and OCR \par \hspace*{0.5cm}integration. \newline
+• Developed multi-digit and Roman \par \hspace*{0.5cm}numeral recognition. \newline
+• Built Flask-based web application. \newline
+• Implemented custom retraining workflow.
+\\
+\hline
+
+B &
+\textbf{Amaan Ahmed} \newline
+(2341001055)
+&
+• Worked on custom retraining \par \hspace*{0.5cm}mechanisms. \newline
+• Assisted in testing and prediction \par \hspace*{0.5cm}refinement. \newline
+• Helped improve model learning from \par \hspace*{0.5cm}prediction errors. \newline
+• Contributed towards improving model \par \hspace*{0.5cm}accuracy.
+\\
+\hline
+
+C &
+\textbf{Anusha Kumari} \newline
+(2341011265)
+&
+• Worked on image classification and \par \hspace*{0.5cm}segmentation. \newline
+• Assisted in contour detection techniques \newline
+• Helped handle rotated and irregular \par \hspace*{0.5cm}image alignment. \newline
+• Improved digit extraction consistency
+\\
+\hline
+
+D &
+\textbf{Kumari Muskan} \newline
+(2341013427)
+&
+• Identified model limitations and \par \hspace*{0.5cm}optimization areas. \newline
+• Assisted in refining training datasets \newline
+• Researched scalable implementation \par \hspace*{0.5cm}techniques. \newline
+• Contributed towards improving \par \hspace*{0.5cm}prediction reliability.
+\\
+\hline
+
+\end{tabular}
+
+\vspace{0.5cm}
+\vspace{0.5cm}
+
+\noindent
+All team members contributed towards project discussions, testing, debugging, and successful completion of the system.
+\newpage
+
+% ---------------- REFERENCES ----------------
+\section{References}
+
+\vspace{0.3cm}
+
+\noindent
+The following resources, research materials, documentation, and datasets were referred to during the development and implementation of the proposed handwritten digit recognition system.
+
+\vspace{0.4cm}
+
+\begin{itemize}
+
+\item \textbf{MNIST Handwritten Digit Dataset} \\
+Yann LeCun, Corinna Cortes, and Christopher J.C. Burges
+
+\vspace{0.2cm}
+
+\item \textbf{TensorFlow and Keras Documentation} \\
+Official documentation for Deep Learning model development and training
+
+\vspace{0.2cm}
+
+\item \textbf{OpenCV Documentation} \\
+Used for image preprocessing, contour detection, and segmentation techniques
+
+\vspace{0.2cm}
+
+\item \textbf{Tesseract OCR Documentation} \\
+Used for OCR-based text extraction and image scanning integration
+
+\vspace{0.2cm}
+
+\item \textbf{Flask Documentation} \\
+Used for developing the web application interface and deployment workflow
+
+\vspace{0.2cm}
+
+\item \textbf{Research Papers on CNN-Based Handwritten Recognition Systems} \\
+Referred for understanding Deep Learning architectures and handwritten digit recognition techniques
+
+\vspace{0.2cm}
+
+\item \textbf{Machine Learning and Deep Learning Research Articles} \\
+Used for studying image classification, OCR integration, and adaptive retraining methods
+
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+These resources provided technical guidance, implementation support, and research insights throughout the development of the project.
+
+\newpage
+
+% ---------------- APPENDIX ----------------
+\section{Appendix}
+
+\vspace{0.3cm}
+
+\noindent
+This section contains additional supporting materials, screenshots, workflow representations, and implementation references related to the development of the handwritten digit recognition system.
+
+\vspace{0.4cm}
+
+\begin{itemize}
+
+% ---------------- CNN ----------------
+
+\item \textbf{CNN Model Architecture} \\
+
+Includes the structure, layers, and workflow of the Convolutional Neural Network (CNN) used for handwritten digit prediction. The architecture represents the complete process of feature extraction, image processing, classification, and final digit recognition performed by the trained model.
+
+\vspace{0.3cm}
+
+\begin{figure}[H]
+    \centering
+    \hspace*{0.5cm}
+    \includegraphics[width=1\linewidth,height=8cm]{CNN WorkFlow.png}
+    \caption{CNN Model Architecture Workflow}
+\end{figure}
+
+\vspace{0.4cm}
+
+\noindent
+The CNN model processes handwritten digit images through multiple layers including convolution, activation, pooling, flattening, and dense layers. These layers help the model automatically learn important handwritten features such as edges, curves, and digit patterns, resulting in accurate handwritten digit classification and prediction.
+
+\vspace{0.4cm}
+
+% ---------------- OCR ----------------
+\newpage
+\item \textbf{OCR Integration Workflow} \\
+
+Represents the integration process of \textbf{Tesseract OCR} with the handwritten recognition pipeline. The workflow demonstrates how OCR is used for image scanning, handwritten text extraction, preprocessing support, and improving the accuracy of digit identification before prediction by the CNN model.
+
+\vspace{0.8cm}
+
+\begin{figure}[H]
+    \centering
+    \hspace*{0.5cm}
+    \includegraphics[width=1\linewidth]{OCR WorkFlow.png}
+    \caption{OCR Integration Workflow}
+\end{figure}
+
+\vspace{0.4cm}
+
+% ---------------- SAMPLE OUTPUTS ----------------
+\newpage
+
+\item \textbf{Sample Input Images and Output} \\
+
+Contains handwritten digit image samples along with their corresponding prediction outputs generated by the system. The samples include single-digit, multi-digit, and Roman numeral handwritten inputs used to demonstrate the accuracy, segmentation capability, and real-time prediction performance of the proposed model.
+
+\vspace{0.8cm}
+
+\begin{figure}[H]
+\centering
+
+\setlength{\fboxrule}{1pt}
+\setlength{\fboxsep}{0pt}
+
+\hspace*{0.5cm}
+\begin{tabular}{c@{\hspace{1.5cm}}c}
+\textbf{Input} & \textbf{Output}
+
+\vspace{0.4cm} \\
+
+% ---------------- Row 1 ----------------
+\fbox{
+\begin{minipage}[c][4.5cm][c]{4.5cm}
+\centering
+\includegraphics[width=3.5cm,height=3cm,keepaspectratio]{test_04.png}
+\end{minipage}
+}
+&
+\fbox{
+\begin{minipage}[c][4.5cm][c]{8.5cm}
+\centering
+\includegraphics[width=8.5cm,height=4.5cm,keepaspectratio]{Out1.png}
+\end{minipage}
+}
+
+\vspace{0.8cm} \\
+
+% ---------------- Row 2 ----------------
+\fbox{
+\begin{minipage}[c][4.5cm][c]{4.5cm}
+\centering
+\includegraphics[width=3.5cm,height=3.5cm,keepaspectratio]{test_18.png}
+\end{minipage}
+}
+&
+\fbox{
+\begin{minipage}[c][4.5cm][c]{8.5cm}
+\centering
+\includegraphics[width=8.5cm,height=3.5cm]{Out2.png}
+\end{minipage}
+}
+
+\vspace{0.8cm} \\
+
+% ---------------- Row 3 ----------------
+\fbox{
+\begin{minipage}[c][4.5cm][c]{4.5cm}
+\centering
+\includegraphics[width=3.5cm,height=3.5cm,keepaspectratio]{test_31.png}
+\end{minipage}
+}
+&
+\fbox{
+\begin{minipage}[c][4.5cm][c]{8.5cm}
+\centering
+\includegraphics[width=8.5cm,height=2.5cm,keepaspectratio]{Out3.png}
+\end{minipage}
+}
+
+\end{tabular}
+
+\vspace{0.4cm}
+\caption{Sample Input Images and Prediction Outputs}
+
+\end{figure}
+
+\vspace{0.8cm}
+
+% ---------------- WEBSITE ----------------
+\newpage
+\item \textbf{Website Interface Screenshots} \\
+
+Includes screenshots of the Flask-based web application developed for real-time image upload and prediction.
+
+\vspace{0.3cm}
+
+\begin{figure}[H]
+    \centering
+    \hspace*{0.5cm}
+    \includegraphics[width=1\linewidth,height=9cm]{Single Digit Web.png}
+    \caption{Single Digit Prediction Output}
+\end{figure}
+
+\vspace{0.3cm}
+
+\begin{figure}[H]
+    \centering
+    \hspace*{0.5cm}
+    \includegraphics[width=1\linewidth,height=9cm]{Multi Digit Web.png}
+    \caption{Multi Digit Prediction Output}
+\end{figure}
+
+\vspace{0.3cm}
+
+\begin{figure}[H]
+    \centering
+    \hspace*{0.5cm}
+    \includegraphics[width=1\linewidth,height=10cm]{Roman Web.png}
+    \caption{Roman Numeral Prediction Output}
+\end{figure}
+
+\vspace{0.4cm}
+
+% ---------------- TRAINING ----------------
+
+\item \textbf{Model Training Snapshots} \\
+Displays training results, accuracy graphs, and model performance outputs during CNN training.
+
+\vspace{0.3cm}
+
+\begin{figure}[H]
+    \centering
+    \hspace*{0.5cm}
+    \includegraphics[width=0.95\linewidth,height=9cm]{Training Graph.png}
+    \caption{CNN Model Training Results}
+\end{figure}
+
+\vspace{0.4cm}
+
+% ---------------- DATASET ----------------
+
+\item \textbf{Custom Dataset Samples} \\
+Includes additional handwritten images used for custom retraining and model improvement.
+
+\vspace{0.5cm}
+
+\begin{figure}[H]
+\centering
+
+\setlength{\fboxrule}{1pt}
+\setlength{\fboxsep}{0pt}
+
+\begin{tabular}{ccc}
+\hspace*{0.5cm}
+% -------- Image 1 --------
+\fbox{
+\begin{minipage}[c][4.5cm][c]{4.5cm}
+\centering
+\includegraphics[width=3.5cm,height=3.5cm,keepaspectratio]{Test_01.png}
+\end{minipage}
+}
+&
+% -------- Image 2 --------
+\fbox{
+\begin{minipage}[c][4.5cm][c]{4.5cm}
+\centering
+\includegraphics[width=3.5cm,height=3.5cm,keepaspectratio]{Test_02.png}
+\end{minipage}
+}
+&
+% -------- Image 3 --------
+\fbox{
+\begin{minipage}[c][4.5cm][c]{4.5cm}
+\centering
+\includegraphics[width=3.5cm,height=3.5cm,keepaspectratio]{test_31.png}
+\end{minipage}
+}
+
+\end{tabular}
+
+\vspace{0.4cm}
+\caption{Custom Dataset Samples}
+
+\end{figure}
+
+\vspace{0.4cm}
+
+% ---------------- PREDICTION ----------------
+
+\item \textbf{Prediction Result Screenshots} \\
+Contains prediction examples for single-digit, multi-digit, and Roman numeral handwritten inputs.
+
+\vspace{0.3cm}
+
+\begin{figure}[H]
+    \centering
+    \hspace*{0.5cm}
+    \includegraphics[width=0.6\linewidth,height=10cm]{Prediction Results.png}
+    \caption{Prediction Result Examples}
+\end{figure}
+
+\end{itemize}
+
+\vspace{0.3cm}
+
+\noindent
+The appendix section provides additional visual and technical references that support the implementation and performance evaluation of the proposed system.
+
+\end{document}

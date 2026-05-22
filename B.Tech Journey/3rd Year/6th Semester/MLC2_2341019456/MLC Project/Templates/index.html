@@ -1,0 +1,294 @@
+<!--
+Provides the frontend interface for users to upload handwritten digit images.
+Displays the uploaded image and prediction result on the webpage.
+Creates a simple and interactive user experience.
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Handwritten Digit Recognition
+    </title>
+    <link rel="icon"type="image/png" href="{{ url_for('static',filename='Logo.png') }}" alt="Uploaded Image">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            overflow: hidden;
+            background: #f3f0f0;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .topHeader {
+            width: 100%;
+            padding: 18px 35px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #111827;
+        }
+
+        .mainSection {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 80px;
+            padding: 10px 60px 20px 60px;
+        }
+
+        .leftPanel {
+            width: 320px;
+        }
+
+        .uploadText {
+            font-size: 20px;
+            margin-bottom: 18px;
+            color: #1f2937;
+        }
+
+        .uploadBox {
+            width: 320px;
+            height: 360px;
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .uploadBox img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .uploadIcon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15);
+            font-size: 30px;
+            transition: 0.3s;
+        }
+
+        .uploadBox:hover .uploadIcon {
+            transform: scale(1.08);
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .detectButton {
+            width: 320px;
+            margin-top: 20px;
+            background: #2d2d38;
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 6px;
+            font-size: 22px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .detectButton:hover {
+            background: #111827;
+        }
+
+        .rightPanel {
+            max-width: 720px;
+        }
+
+        .mainTitle {
+            font-size: 44px;
+            line-height: 1.2;
+            font-family: Georgia, serif;
+            color: #0f172a;
+            margin-bottom: 25px;
+        }
+
+        .description {
+            font-size: 18px;
+            line-height: 1.8;
+            color: #1f2937;
+            margin-bottom: 30px;
+        }
+
+        .resultCard {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            width: 100%;
+            box-shadow: 0px 5px 18px rgba(0, 0, 0, 0.08);
+            border-left: 7px solid #2563eb;
+        }
+
+        .resultHeading {
+            font-size: 24px;
+            color: #111827;
+            margin-bottom: 18px;
+            font-weight: bold;
+        }
+
+        .resultInfo {
+            font-size: 22px;
+            color: #2563eb;
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .predictionValue {
+            font-size: 20px;
+            color: #16a34a;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .footer {
+            width: 100%;
+            height: 85px;
+            background: url('/Static/Footer.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0px 70px;
+            color: #111827;
+            font-size: 18px;
+            font-weight: 500;
+        }
+
+        @media(max-width:1100px) {
+            body {
+                overflow: auto;
+            }
+
+            .mainSection {
+                flex-direction: column;
+                gap: 45px;
+                text-align: center;
+            }
+
+            .mainTitle {
+                font-size: 38px;
+            }
+
+            .description {
+                font-size: 17px;
+            }
+
+            .footer {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+                gap: 8px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="topHeader">
+        MLC Group-12 Project
+    </div>
+    <div class="mainSection">
+        <div class="leftPanel">
+            <div class="uploadText">
+                Upload Your Image.....
+            </div>
+            <form method="POST" enctype="multipart/form-data">
+                <label for="fileUpload" class="uploadBox">
+                    {% if image_path %}
+                    <img src="{{ url_for('static',
+                    filename='Uploads/' +
+                    image_path.split('/')[-1]) }}" alt="Uploaded Image">
+                    {% else %}
+                    <div class="uploadIcon">
+                        🖼️
+                    </div>
+                    {% endif %}
+                </label>
+                <input type="file" id="fileUpload" name="file" accept="image/*" onchange="previewImage(event)" required>
+                <button type="submit" class="detectButton">
+                    Detect
+                </button>
+            </form>
+        </div>
+        <div class="rightPanel">
+            <div class="mainTitle">
+                Handwritten Digit
+                Recognition
+            </div>
+            <div class="description">
+                An AI-based handwritten recognition
+                system developed using Python,
+                TensorFlow, OpenCV and OCR to detect
+                handwritten digits, multi-digit
+                numbers and Roman numerals from images.
+            </div>
+            {% if prediction %}
+            <div class="resultCard">
+                <div class="resultHeading">
+                    Result Based On Image Uploaded (Model Detection)
+                </div>
+                {% if detected_type %}
+                <div class="resultInfo">
+                    Type :
+                    <b>{{ detected_type }}</b>
+                </div>
+                {% endif %}
+                <div class="predictionValue">
+                    Model's Prediction:
+                    {{ prediction }}
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="footer">
+        <div>
+            Batch- 2023 B.Tech CSE
+        </div>
+        <div>
+            © MLC2 Group-12 23412F3
+        </div>
+    </div>
+    <script>
+        function previewImage(event) {
+            const uploadBox =
+                document.querySelector('.uploadBox');
+            const file =
+                event.target.files[0];
+            if (file) {
+                const imageURL =
+                    URL.createObjectURL(file);
+                uploadBox.innerHTML =
+                    `<img src="${imageURL}"
+                    alt="Preview">`;
+            }
+        }
+    </script>
+</body>
+
+</html>
