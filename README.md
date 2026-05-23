@@ -46,22 +46,8 @@ Whether You're An Employer, Collaborator, Or Fellow Developer, Feel Free To Expl
     alt="always-amulya7"
   />
 </p>
-
-<p>
-  <img
-    align="center"
-    src="https://github-readme-stats.vercel.app/api?username=Always-Amulya7&show_icons=true&theme=radical"
-    alt="always-amulya7"
-    width=499px
-  />
-</p>
-
-<p>
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Always-Amulya7&layout=compact&theme=radical"
-         alt="Top Languages" />
 <img src="https://github.com/7oSkaaa/7oSkaaa/blob/main/Images/about_me.gif?raw=true"
          alt="About Me GIF" height="150" width="150" />
-</p>
 
 ## 🎯 Goals
 
