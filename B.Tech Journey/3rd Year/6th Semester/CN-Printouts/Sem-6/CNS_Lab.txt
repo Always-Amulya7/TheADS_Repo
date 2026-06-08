@@ -1,0 +1,307 @@
+Remote Access (Lab-1)
+
+Device-2901 Router (192.168.10.1) connected to 2960 Switch connected to PC0 (192.168.10.2)
+Open Router CLI and type- config t
+		 	  int gig0/0
+		 	  ip address 192.168.10.1 255.255.255.0
+		 	  no shutdown
+		 	  exit
+		 	  username CNSLAB privilege 15 password cnslab
+		 	  line vty 0 4
+		 	  login local
+		 	  transport input telnet
+		 	  exit
+		 	  service password-encryption
+		 	  enable secret class
+In PC0 CMD- telnet 192.168.10.1
+	    Username: CNSLAB
+	    Password: cnslab
+	   
+Remote Access (Lab-1) using SSH
+Device-2901 Router (192.168.10.1), 2960 Switch, PC0 (192.168.10.2)
+Open Router CLI and type- config t
+		 	  int gig0/0
+		 	  ip address 192.168.10.1 255.255.255.0
+		 	  no shutdown
+		 	  exit
+		 	  username CNSLAB privilege 15 password cnslab
+		 	  line vty 0 4
+		 	  login local
+		 	  transport input telnet
+		 	  exit
+		 	  service password-encryption
+		 	  enable secret class
+		 	  hostname R1
+		 	  domain-name cnslab.com
+		 	  crypto key generate rsa
+		 	  ip ssh version 2
+		 	  line vty 0 4
+		 	  transport input ssh
+		 	  login local
+		 	  exit
+In PC0 CMD- telnet 192.168.10.1
+	    Username: CNSLAB
+	    Password: cnslab
+	    Router>
+	    R1>ssh -l CNSLAB 192.168.10.1
+	    Password: cnslab
+	    telnet 192.168.10.1
+	    Password: cnslab
+	    
+Implementation of AAA Server (Lab-2)
+
+Devices- 1941 Router(192.168.1.1) Connected to 2960 Switch ( This switch connected to PC0(192.168.1.10) and Server-PT(192.168.1.2))
+In Server0 IP Config- IPV4->192.168.1.2
+		      Subnet Mask->255.255.255.0
+		      Default Gateway->192.168.1.1
+In Server0 Services- Service set to on
+AAA Service	     Radius Port-1645
+		     Set Client details as- Client Name-R1
+		     			    Client IP-192.168.1.1
+		     			    Server Type-Radius
+		     			    Key-cisco
+		     User Setup- Username-admin
+		     		 password-cisco123
+In Router0 Config gig0/0 set port status on and ip as 192.168.1.1, tx ring limit 10
+in PC0 set ip as 192.168.1.10 and default gateway as 192.168.1.1
+Open Router0 CLI and type- en
+			   conf t
+			   aaa new-model
+			   radius-server host 192.168.1.2 key cisco
+			   aaa authentication login default group radius local
+			   username backup privilege 15 secret backup123
+			   ip domain-name lab.local
+			   hostname R1
+			   crypto key generate rsa
+			   ip ssh version 2
+			   line vty 0 4
+			   transport input ssh
+			   login authentication default
+			   exit
+			   end
+In PC0 terminal-ping 192.168.1.2 then ping 192.168.1.2 then ssh -l admin 192.168.1.1 enter password as cisco123
+
+User Access List And Deny (Lab-3)
+
+Devices- ISR-331 Router0 connect it to (Server PT Server0 (192.168.2.100) and 2960 Switch0) then Switch0 is connected to 3 PC-
+	 PC0-192.168.1.10, Default Gateway- 192.168.1.1
+	 PC1-192.168.1.20, Default Gateway- 192.168.1.1
+	 PC2-192.168.1.30, Default Gateway- 192.168.1.1
+Open Router gig0/0/0 and set Port Status as on set the IP as 192.168.1.1
+Open Router gig0/0/1 and set Port Status as on set the IP as 192.168.2.1
+Open Server0 then in IP set IP as 192.168.2.100 and Default gateway as-192.168.2.1
+Open PC0 CMD- ping 192.168.1.20 then ping 192.168.1.30
+Open PC1 CMD- ping 192.168.1.10 then ping 192.168.1.30
+Open PC2 CMD- ping 192.168.1.10 then ping 192.168.1.20
+Then open Router CLI and Type- en
+			       conf t
+			       interface GigabitEthernet0/0/0
+			       ip address 192.168.1.1 255.255.255.0
+			       no shutdown
+			       exit
+			       interface GigabitEthernet0/0/1
+			       ip address 192.168.2.1 255.255.255.0
+			       no shutdown
+			       exit
+			       access-list 10 deny 192.168.1.20 0.0.0.0
+			       access-list 10 permit any
+			       interface GigabitEthernet0/0/0
+			       ip access-group 10 in
+			       exit
+Then in PC0 CMD- ftp 192.168.2.100 (This asks username password) Good
+Then in PC1 CMD type now- ping 192.168.2.100
+Then in PC0 Go to desktop then web browser and type url as http://192.168.2.100 (it works)
+	 
+Lab-4
+
+#PlayFair cipher
+def create_matrix(key):
+    key=key.lower().replace("j", "i")
+    matrix=[]
+    used=set()
+    for c in key+"abcdefghijklmnopqrstuvwxyz":
+        if c not in used and c.isalpha():
+            used.add(c)
+            matrix.append(c)
+    return [matrix[i:i+5] for i in range(0,25,5)]
+def find_pos(matrix,char):
+    for i in range(5):
+        for j in range(5):
+            if matrix[i][j]==char:
+                return i, j
+def prepare_text(text):
+    text=text.lower().replace(" ", "")
+    text=text.replace("j", "i")
+    result=""
+    i=0
+    while i<len(text):
+        a=text[i]
+        b=text[i+1] if i+1<len(text) else 'x'
+        if a==b:
+            result+=a+'x'
+            i+=1
+        else:
+            result+=a+b
+            i+=2
+    if len(result)%2!=0:
+        result+='x'
+    return result
+def encrypt_playfair(text,key):
+    matrix=create_matrix(key)
+    text=prepare_text(text)
+    result=""
+    for i in range(0,len(text),2):
+        a,b=text[i],text[i+1]
+        r1,c1=find_pos(matrix,a)
+        r2,c2=find_pos(matrix,b)
+        if r1==r2:
+            result+=matrix[r1][(c1+1)%5]+matrix[r2][(c2+1)%5]
+        elif c1==c2:
+            result+=matrix[(r1+1)%5][c1]+matrix[(r2+1)%5][c2]
+        else:
+            result+=matrix[r1][c2]+matrix[r2][c1]
+    return result
+def decrypt_playfair(text,key):
+    matrix=create_matrix(key)
+    result=""
+    for i in range(0,len(text),2):
+        a,b=text[i],text[i+1]
+        r1,c1=find_pos(matrix,a)
+        r2,c2=find_pos(matrix,b)
+        if r1==r2:
+            result+=matrix[r1][(c1-1)%5]+matrix[r2][(c2-1)%5]
+        elif c1==c2:
+            result+=matrix[(r1-1)%5][c1]+matrix[(r2-1)%5][c2]
+        else:
+            result+=matrix[r1][c2]+matrix[r2][c1]
+    return result
+msg="SOA ITER BBSR UNIVERSITY"
+key="AMULYA"
+enc=encrypt_playfair(msg, key)
+dec=decrypt_playfair(enc, key)
+print("Encrypted:", enc)
+print("Decrypted:", dec)
+
+#Vigenere Cipher
+def encrypt_vigenere(text,key):
+    result=""
+    key=key.lower()
+    j=0
+    for i in text:
+        if i.isalpha():
+            shift=ord(key[j%len(key)])-97
+            result+=chr((ord(i.lower())-97+shift)%26+97)
+            j+=1
+        else:
+            result+=i
+    return result
+def decrypt_vigenere(text,key):
+    result=""
+    key=key.lower()
+    j=0
+    for i in text:
+        if i.isalpha():
+            shift=ord(key[j%len(key)])-97
+            result+=chr((ord(i.lower())-97-shift)%26+97)
+            j+=1
+        else:
+            result+=i
+    return result
+msg="SOA ITER BBSR UNIVERSITY"
+key="AMULYA"
+enc=encrypt_vigenere(msg,key)
+dec=decrypt_vigenere(enc,key)
+print("Encrypted:",enc)
+print("Decrypted:",dec)
+
+Lab-5
+
+#DES Encryption and Decryption
+from Crypto.Cipher import DES
+from binascii import unhexlify,hexlify
+key_hex=input("Enter 16-Digit Hexadecimal Key: ").strip()
+plaintext_hex=input("Enter 16-Digit Hexadecimal Plaintext: ").strip()
+key=unhexlify(key_hex)
+plaintext=unhexlify(plaintext_hex)
+cipher=DES.new(key, DES.MODE_ECB)
+ciphertext=cipher.encrypt(plaintext)
+decrypted=cipher.decrypt(ciphertext)
+print("\nResults")
+print("-"*30)
+print("Key        :", key_hex.upper())
+print("Plaintext  :", plaintext_hex.upper())
+print("Ciphertext :", hexlify(ciphertext).decode().upper())
+print("Decrypted  :", hexlify(decrypted).decode().upper())
+
+Lab-6
+
+#RSA Algo Use
+import math
+import random
+def getKeys():
+    p=int(input("Enter p: "))
+    q=int(input("Enter q: "))
+    n=p*q
+    print("n = ",n)
+    phi=(p-1)*(q-1)
+    print("phi = ",phi)
+    e=int(input("Enter e: "))
+    while math.gcd(e,phi)!=1 or e<=1 or e>=phi:
+        e=int(input("Enter Value Of e again: "))
+    k=random.randint(2,1000)
+    while (k*phi+1)%e!=0:
+        k=random.randint(2,1000)
+    d=(k*phi+1)//e
+    print("d = ",d)
+    return e,d,n
+def encrypt(msg,e,n):
+    return pow(msg,e,n)
+def decrypt(c,d,n):
+    return pow(c,d,n)
+e,d,n=getKeys()
+m=int(input("\nEnter a message(number) : "))
+encrypted_msg=encrypt(m,e,n)
+decrypted_msg=decrypt(encrypted_msg,d,n)
+print("\nEncrypted Message : ",encrypted_msg)
+print("Decrypted Message : ",decrypted_msg)
+
+#Example for it- Enter p(prime.no) : 17
+		 Enter q(prime.no) : 11
+		 Enter e: 7
+		 Enter a message(number) : 88
+
+#Diffie-Hellman
+import random
+import math
+def isPrime(n):
+    if n<2:
+        return False
+    for i in range(2,int(math.sqrt(n))+1):
+        if n%i==0:
+            return False
+    return True
+def getPrimeNo(a,b):
+    while True:
+        n=random.randint(a, b)
+        if isPrime(n):
+            return n
+p=getPrimeNo(2,100)
+print("Choose Prime No. : ",p)
+g = int(input("Enter Generator g In Order Of p-1: "))
+x=random.randint(2,p-2)
+R1=pow(g,x,p)
+print("Alice Chosen A Large Random Number x:",x,"And Computed R1:",R1)
+y=random.randint(2,p-2)
+R2=pow(g,y,p)
+print("Bob Chosen A Large Random Number y:",y,"And Computed R2:",R2)
+k_Alice=pow(R2,x,p)
+k_Bob=pow(R1, y, p)
+print("Alice's Computed Shared Key Is:",k_Alice)
+print("Bob's Computed Shared Key Is:",k_Bob)
+if k_Alice==k_Bob:
+    print("Key Exchange Successful")
+else:
+    print("Key Exchange Not Successful")
+    
+#Example- Choose Prime No. : 59
+	  Enter Generator g In Order Of p-1: 13
